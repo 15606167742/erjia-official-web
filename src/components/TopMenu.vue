@@ -78,8 +78,11 @@
 <style scoped lang="scss">
 	.top-menu {
 		position: sticky;
+		top: 0;
+		z-index: 777;
 		height: 118px;
 		padding: 0 80px;
+		background-color: var(--color-bg-default);
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
