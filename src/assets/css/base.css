@@ -1,0 +1,9 @@
+:root{
+	--color-bg-default: #FFFFFF;
+	--color-bg-main: #D2A36D;
+	--color-t-active: #D2A36D;
+}
+
+html{
+	font-size: 10px;
+}
