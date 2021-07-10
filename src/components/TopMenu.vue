@@ -1,6 +1,6 @@
 <template>
 	<div class="top-menu">
-		<el-image class="logo" :src="require('@/assets/img/home/logo.png')" fit="contain"></el-image>
+		<el-image class="logo" :src="require('@/assets/img/header/logo.png')" fit="contain"></el-image>
 		<div class="tabs">
 			<div class="tab" :class="{active: $route.path==tab.path}" :key="tab.path" v-for="tab in tabs"
 				@click="gotoPath(tab.path)">{{tab.text}}</div>
