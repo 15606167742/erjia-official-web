@@ -69,7 +69,7 @@
 		<div class="profile">
 			<div class="profile-content">
 				<div class="title">公司介绍</div>
-				<div class="title_en">Conmpany Introduction</div>
+				<div class="title-en">Conmpany Introduction</div>
 				<div class="stick"></div>
 				<div class="text">
 					上海尔家商业管理有限公司（以下简称尔家商业）成立于2017年，隶属德实资本，是一家集商业资产盘活、运营为一体的专业化资产管理公司，主要业务范围有尔家公寓、尔家酒店、尔家民宿、尔家商场的管理运营，其中致力于打造服务式公寓标杆的尔家公寓为企业战略发展的核心业务。
@@ -503,7 +503,7 @@
 					color: var(--color-t-active);
 				}
 
-				.title_en {
+				.title-en {
 					margin-top: 20px;
 					font-size: 2.4rem;
 					letter-spacing: 0.1rem;
@@ -689,7 +689,7 @@
 						text-align: center;
 					}
 
-					.title_en {
+					.title-en {
 						text-align: center;
 					}
 				}
