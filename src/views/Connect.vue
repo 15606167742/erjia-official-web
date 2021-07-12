@@ -1,6 +1,6 @@
 <template>
 	<div class="connect">
-		<top-menu></top-menu>
+		<Header></Header>
 		<top-banner :info="info" @change="handleChange"></top-banner>
 		<div class="content1" v-if="activeTab === 1">
 			<div class="row1">
@@ -21,7 +21,7 @@
 				<div class="text" :class="{ hidden: activeJob !== job.id }" v-html="job.text"></div>
 			</div>
 		</div>
-		<div class="content2" v-if="activeTab === 2">
+		<div class="content2" v-else-if="activeTab === 2">
 			<div class="form">
 				<div class="form-item" :class="{'form-item-row': form.key=='content'}" :key="index" v-for="(form, index) in formList">
 					<div class="label">
@@ -38,35 +38,38 @@
 </template>
 
 <script>
-import TopMenu from '@/components/TopMenu.vue';
+import Header from '@/components/Header.vue';
 import TopBanner from '@/components/TopBanner.vue';
 import Footer from '@/components/Footer.vue';
 
 export default {
 	name: 'Connect',
 	components: {
-		TopMenu,
+		Header,
 		TopBanner,
 		Footer
 	},
 	data() {
 		return {
 			info: {
-				banner: require('@/assets/img/connect/connect1.png'),
+				banner: require('@/assets/img/connect/banner1.png'),
+				// banner: WEBCONFIG.resource_url_img+'/connect/banner1.png',
 				title: '联系我们',
 				title_en: 'Contact us',
 				tabList: [
 					{
 						id: 1,
 						active: true,
-						img: require('@/assets/img/connect/connect_tab1.png'),
+						banner: '/connect/banner1.png',
+						img: require('@/assets/img/connect/tab1.png'),
 						name: '加入我们',
 						name_en: 'Join us'
 					},
 					{
 						id: 2,
 						active: false,
-						img: require('@/assets/img/connect/connect_tab2.png'),
+						banner: '/connect/banner2.png',
+						img: require('@/assets/img/connect/tab2.png'),
 						name: '联系我们',
 						name_en: 'Contact us'
 					}
@@ -181,6 +184,8 @@ export default {
 			this.info.tabList.forEach(tab => {
 				if (tab.id === id) {
 					tab.active = true;
+					this.info.banner = require('@/assets/img'+tab.banner);
+					// this.info.banner = WEBCONFIG.resource_url_img+tab.banner;
 				} else {
 					tab.active = false;
 				}

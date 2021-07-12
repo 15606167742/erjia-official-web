@@ -8,7 +8,7 @@
 		<i class="el-icon-menu my-menu" @click="showMenu=true"></i>
 		<el-drawer :visible="showMenu" direction="rtl" :with-header="false" :show-close="false" :size="200"
 			:modal-append-to-body="false" :before-close="handleClose">
-			<el-menu :default-active="activeMenu" background-color="#FFF" text-color="#333"
+			<el-menu :default-active="$route.path" background-color="#FFF" text-color="#333"
 				active-text-color="var(--color-t-active)" @select="gotoPath">
 				<el-menu-item :index="tab.path" :key="tab.path" v-for="tab in tabs">
 					<i class="el-icon-document"></i>
@@ -54,7 +54,6 @@
 					},
 				],
 				showMenu: false,
-				activeMenu: '/home',
 			};
 		},
 		mounted() {},

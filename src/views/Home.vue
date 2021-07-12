@@ -1,6 +1,6 @@
 <template>
 	<div class="home">
-		<top-menu></top-menu>
+		<Header></Header>
 		<el-carousel class="my-banner">
 			<el-carousel-item :key="index" v-for="(banner, index) in banners">
 				<el-image class="banner" :src="banner" fit="cover"></el-image>
@@ -29,7 +29,7 @@
 				<div class="btn">点击搜索</div>
 			</div>
 		</div>
-		<el-image class="ad" :src="require('@/assets/img/home/advertisement1.png')" fit="contain"></el-image>
+		<el-image class="ad" :src="imgResource+'/home/advertisement1.png'" fit="contain"></el-image>
 		<div class="hot-house">
 			<div class="title1">热门房源推荐</div>
 			<div class="title2">温馨舒适，一如尔家，用心体验</div>
@@ -81,7 +81,7 @@
 				</div>
 				<div class="more">MORE ABOUT US</div>
 			</div>
-			<el-image class="profile-img" :src="require('@/assets/img/home/profile.png')" fit="contain"></el-image>
+			<el-image class="profile-img" :src="imgResource+'/home/profile.png'" fit="contain"></el-image>
 		</div>
 		<div class="activity">
 			<div class="title">尔家最新活动</div>
@@ -105,18 +105,20 @@
 </template>
 
 <script>
-	import TopMenu from '@/components/TopMenu.vue';
+	import Header from '@/components/Header.vue';
 	import Footer from '@/components/Footer.vue';
 
 	export default {
 		name: 'Home',
 		components: {
-			TopMenu,
+			Header,
 			Footer
 		},
 		data() {
 			return {
-				banners: [require('@/assets/img/home/banner1.png')],
+				imgResource: WEBCONFIG.resource_url_img,
+				// banners: [require('@/assets/img/home/banner1.png')],
+				banners: [WEBCONFIG.resource_url_img+'/home/banner1.png'],
 				search: {
 					city: '',
 					series: '',
@@ -150,7 +152,8 @@
 				],
 				hotHouseList: [{
 						id: 1,
-						img: require('@/assets/img/home/hothouse1.png'),
+						// img: require('@/assets/img/home/hothouse1.png'),
+						img: WEBCONFIG.resource_url_img+'/home/hothouse1.png',
 						tip: 'loft',
 						name: '镇江宝龙项目',
 						summary: '温馨舒适',
@@ -159,7 +162,8 @@
 					},
 					{
 						id: 2,
-						img: require('@/assets/img/home/hothouse2.png'),
+						// img: require('@/assets/img/home/hothouse2.png'),
+						img: WEBCONFIG.resource_url_img+'/home/hothouse2.png',
 						tip: '品质优选',
 						name: '无锡金科米兰',
 						summary: '一如尔家',
@@ -168,7 +172,8 @@
 					},
 					{
 						id: 3,
-						img: require('@/assets/img/home/hothouse3.png'),
+						// img: require('@/assets/img/home/hothouse3.png'),
+						img: WEBCONFIG.resource_url_img+'/home/hothouse3.png',
 						tip: '夏季换新房',
 						name: '绿地观澜湾店',
 						summary: '用心体验',
@@ -202,25 +207,31 @@
 					},
 				],
 				accessoryImgList: [
-					require('@/assets/img/home/accessory1.png'),
-					require('@/assets/img/home/accessory2.png'),
-					require('@/assets/img/home/accessory3.png'),
+					// require('@/assets/img/home/accessory1.png'),
+					// require('@/assets/img/home/accessory2.png'),
+					// require('@/assets/img/home/accessory3.png'),
+					WEBCONFIG.resource_url_img+'/home/accessory1.png',
+					WEBCONFIG.resource_url_img+'/home/accessory2.png',
+					WEBCONFIG.resource_url_img+'/home/accessory3.png',
 				],
 				projectList: [{
 					id: 1,
-					img: require('@/assets/img/home/project1.png'),
+					// img: require('@/assets/img/home/project1.png'),
+					img: WEBCONFIG.resource_url_img+'/home/project1.png',
 					date: '2020.07.15',
 					title: '尔家龙虾节｜一年一度的龙虾节终于来了，快上车带你实现“撸虾自由”！',
 					content: '会嘬才是吃龙虾的奥秘所在。这次尔家龙虾节多种口味齐上阵！麻辣小龙虾、风味蒜泥小龙虾、十三香小龙虾等多种口味掀起锡城嘬虾新风暴！',
 				}, {
 					id: 2,
-					img: require('@/assets/img/home/project2.png'),
+					// img: require('@/assets/img/home/project2.png'),
+					img: WEBCONFIG.resource_url_img+'/home/project2.png',
 					date: '2020.08.15',
 					title: '父亲节｜晒照片赢888元现金红包！',
 					content: '在你印象中，父亲是一个怎样的形象？小时候父亲的肩膀就是，我们看世界的瞭望台。可长大了我们才发现',
 				}, {
 					id: 3,
-					img: require('@/assets/img/home/project3.png'),
+					// img: require('@/assets/img/home/project3.png'),
+					img: WEBCONFIG.resource_url_img+'/home/project3.png',
 					date: '2020.08.16',
 					title: '原来你是这样的儿童！',
 					content: '你是否还记得童年的那一天？天气很蓝，阳光温馨你牵着小伙伴的手肆意的奔跑着那快乐无忧的笑声',
