@@ -28,7 +28,23 @@
 			</div>
 		</div>
 		<div class="content2" v-else-if="activeTab === 2">
-			
+			<div class="row1">
+				<span class="row1_l">企业</span>
+				<span class="row1_r">合作</span>
+				<el-image class="row1_split" :src="require('@/assets/img/cooperation/line.png')" fit="contain"></el-image>
+			</div>
+			<div class="row2">Enterprise cooperation</div>
+			<div class="enterprises">
+				<div class="enterprise" :key="index" v-for="(enterprise, index) in enterpriseList">
+					<div class="img">
+						<el-image class="my-img" :src="enterprise.img" fit="contain"></el-image>
+					</div>
+					<div class="name">{{enterprise.name}}</div>
+					<div class="phone" v-if="enterprise.phone">电话：{{enterprise.phone}}</div>
+					<div class="mail" v-if="enterprise.mail">邮箱：{{enterprise.mail}}</div>
+					<div class="address" v-if="enterprise.address">地址：{{enterprise.address}}</div>
+				</div>
+			</div>
 		</div>
 		<Footer></Footer>
 	</div>
@@ -93,6 +109,37 @@ export default {
 					value: '',
 				},
 			],
+			enterpriseList: [
+				{
+					img: require('@/assets/img/cooperation/enterprise1.png'),
+					name: '广告合作',
+					phone: '13575526679',
+					mail: 'wendy.gu@meadin.com',
+				},
+				{
+					img: require('@/assets/img/cooperation/enterprise2.png'),
+					name: '市场合作',
+					phone: '17816156913',
+					mail: 'market@meadin.com',
+				},
+				{
+					img: require('@/assets/img/cooperation/enterprise3.png'),
+					name: '资讯合作',
+					mail: 'news@meadin.com',
+				},
+				{
+					img: require('@/assets/img/cooperation/enterprise4.png'),
+					name: '报告合作',
+					phone: '15867174518',
+					mail: 'res@meadin.com',
+				},
+				{
+					img: require('@/assets/img/cooperation/enterprise5.png'),
+					name: '联系主编',
+					mail: 'huanying@meadin.com',
+					address: '杭州市文一西路522号西滨科创园9幢9楼',
+				},
+			]
 		};
 	},
 	methods: {
@@ -165,6 +212,37 @@ export default {
 					transform: translate(0.1rem, 0.1rem);
 				}
 			}
+		}
+	}
+	.content2 {
+		.row1 {
+			position: relative;
+			margin-top: 30px;
+			font-size: 3rem;
+			letter-spacing: 0.2rem;
+			font-weight: bold;
+			text-align: center;
+			.row1_l{
+				color: #666666;
+			}
+			.row1_r{
+				color: var(--color-t-active);
+			}
+			.row1_split{
+				width: 30%;
+				max-width: 520px;
+				min-width: 300px;
+				position: absolute;
+				top: 50%;
+				left: 50%;
+				transform: translateX(-50%);
+			}
+		}
+		.row2{
+			margin-top: 15px;
+			font-size: 1.6rem;
+			text-align: center;
+			color: #333333;
 		}
 	}
 }
