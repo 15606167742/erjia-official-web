@@ -244,6 +244,14 @@ export default {
 			text-align: center;
 			color: #333333;
 		}
+		.enterprises{
+			margin-top: 60px;
+			display: flex;
+			flex-wrap: wrap;
+			.enterprise{
+				
+			}
+		}
 	}
 }
 
