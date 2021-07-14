@@ -6,38 +6,32 @@
 			<div class="box" :key="news.id" v-for="news in newsList">
 				<el-image class="my-img" :src="news.img" fit="cover"></el-image>
 				<div class="text">
-					<div class="title">
-						{{news.title}}
-					</div>
-					<div class="content">
-						{{news.content}}
-					</div>
+					<div class="title">{{ news.title }}</div>
+					<div class="content">{{ news.content }}</div>
 				</div>
 			</div>
 		</div>
 		<div class="content2" v-else-if="activeTab === 2">
 			<div class="tree">
 				<div class="box" :key="activity.id" v-for="activity in activityList">
-					<div class="img">
-						<el-image class="my-img" :src="activity.img" fit="cover"></el-image>
-					</div>
+					<el-image class="my-img" :src="activity.img" fit="cover"></el-image>
 					<div class="text">
-						<div class="title">
-							{{activity.title}}
-						</div>
-						<div class="content">
-							{{activity.content}}
-						</div>
+						<div class="title">{{ activity.title }}</div>
+						<div class="content">{{ activity.content }}</div>
 						<div class="date">
 							<el-image class="date-icon" :src="require('@/assets/img/info/date.png')" fit="contain"></el-image>
-							<span>{{activity.date}}</span>
+							<span>{{ activity.date }}</span>
 						</div>
+					</div>
+					<div class="light"></div>
+					<div class="tip">
+						<div class="tip-up">{{ activity.date.slice(5, 10) }}</div>
+						<div class="tip-down">{{ activity.date.slice(0, 4) }}</div>
 					</div>
 				</div>
 			</div>
 		</div>
-		<div class="content3" v-else-if="activeTab === 3">
-		</div>
+		<div class="content3" v-else-if="activeTab === 3"></div>
 		<Footer></Footer>
 	</div>
 </template>
@@ -94,7 +88,8 @@ export default {
 					id: 1,
 					img: require('@/assets/img/info/news1.png'),
 					title: '考察交流｜绿地集团西南事业部与尔家商业就盘活商办类资产做深入交流',
-					content: '近日，绿地集团西南事业部总经理孙志文、绿地集团西南营销管理中心总经理戴咏春等人莅临上海尔家商业管理有限公司天空树雅寓营销中心、绿地观澜湾尔家雅寓（以下简称：尔...'
+					content:
+						'近日，绿地集团西南事业部总经理孙志文、绿地集团西南营销管理中心总经理戴咏春等人莅临上海尔家商业管理有限公司天空树雅寓营销中心、绿地观澜湾尔家雅寓（以下简称：尔...'
 				},
 				{
 					id: 2,
@@ -118,7 +113,8 @@ export default {
 					id: 5,
 					img: require('@/assets/img/info/news1.png'),
 					title: '考察交流｜绿地集团西南事业部与尔家商业就盘活商办类资产做深入交流',
-					content: '近日，绿地集团西南事业部总经理孙志文、绿地集团西南营销管理中心总经理戴咏春等人莅临上海尔家商业管理有限公司天空树雅寓营销中心、绿地观澜湾尔家雅寓（以下简称：尔...'
+					content:
+						'近日，绿地集团西南事业部总经理孙志文、绿地集团西南营销管理中心总经理戴咏春等人莅临上海尔家商业管理有限公司天空树雅寓营销中心、绿地观澜湾尔家雅寓（以下简称：尔...'
 				},
 				{
 					id: 6,
@@ -142,8 +138,9 @@ export default {
 					id: 9,
 					img: require('@/assets/img/info/news1.png'),
 					title: '考察交流｜绿地集团西南事业部与尔家商业就盘活商办类资产做深入交流',
-					content: '近日，绿地集团西南事业部总经理孙志文、绿地集团西南营销管理中心总经理戴咏春等人莅临上海尔家商业管理有限公司天空树雅寓营销中心、绿地观澜湾尔家雅寓（以下简称：尔...'
-				},
+					content:
+						'近日，绿地集团西南事业部总经理孙志文、绿地集团西南营销管理中心总经理戴咏春等人莅临上海尔家商业管理有限公司天空树雅寓营销中心、绿地观澜湾尔家雅寓（以下简称：尔...'
+				}
 			],
 			activityList: [
 				{
@@ -180,7 +177,7 @@ export default {
 					img: require('@/assets/img/info/activity3.png'),
 					title: '房券礼遇｜在尔家雅寓的一天，你是怎么度过的？',
 					content: '随着夏天的到来、那抹绿让人看的神清气爽、一阵凉爽的风轻轻拂来叶子“沙拉沙拉“地奏起独特的乐曲、在这清爽的季节里一起来亲身探索在尔家雅寓成都万科云城店的一天吧！'
-				},
+				}
 			]
 		};
 	},
@@ -195,7 +192,7 @@ export default {
 					tab.active = false;
 				}
 			});
-		},
+		}
 	}
 };
 </script>
@@ -208,20 +205,20 @@ export default {
 		flex-direction: column;
 		flex-wrap: wrap;
 		align-content: space-around;
-		.box{
+		.box {
 			margin-bottom: 20px;
-			border: 2px solid #EEEEEE;
+			border: 2px solid #eeeeee;
 			cursor: pointer;
-			.my-img{
+			.my-img {
 				display: block;
 			}
-			.text{
+			.text {
 				color: #333333;
-				.title{
+				.title {
 					font-size: 1.8rem;
 					line-height: 3rem;
 				}
-				.content{
+				.content {
 					margin-top: 10px;
 					font-size: 1.4rem;
 					line-height: 2.5rem;
@@ -230,10 +227,63 @@ export default {
 		}
 	}
 	.content2 {
-		.tree{
+		.tree {
 			border-left: 2px solid #999999;
-			.box{
-				border-bottom: 1px dashed #EEEEEE;
+			.box {
+				position: relative;
+				border-bottom: 1px dashed #eeeeee;
+				display: flex;
+				.text {
+					width: 100%;
+					display: flex;
+					flex-direction: column;
+					.title {
+						font-size: 2.4rem;
+						line-height: 3rem;
+						letter-spacing: 0.1rem;
+						color: #666666;
+					}
+					.content {
+						flex-grow: 1;
+						font-size: 1.8rem;
+						line-height: 2.5rem;
+						letter-spacing: 0.1rem;
+						color: #999999;
+					}
+					.date {
+						font-size: 1.2rem;
+						color: #666666;
+						display: flex;
+						align-items: center;
+						.date-icon {
+							width: 12px;
+							height: 12px;
+							margin-right: 8px;
+						}
+					}
+				}
+				.light {
+					position: absolute;
+					top: 0;
+					left: -84px;
+					width: 6px;
+					height: 28px;
+					background-color: var(--color-bg-main);
+				}
+				.tip{
+					position: absolute;
+					top: -20px;
+					left: -280px;
+					width: 200px;
+					text-align: center;
+					color: #333333;
+					.tip-up{
+						font-size: 4.6rem;
+					}
+					.tip-down{
+						font-size: 1.8rem;
+					}
+				}
 			}
 		}
 	}
@@ -243,14 +293,15 @@ export default {
 	.cooperation {
 		.content1 {
 			margin: 0 20px;
-			.box{
+			.box {
 				width: 100%;
-				.text{
+				.text {
 					padding: 20px;
 				}
 			}
 		}
-		.content2{}
+		.content2 {
+		}
 	}
 }
 
@@ -261,21 +312,40 @@ export default {
 			width: 60%;
 			min-width: 1000px;
 			max-height: 2000px;
-			.box{
+			.box {
 				width: 30%;
-				.text{
+				.text {
 					padding: 30px;
 					height: 250px;
 				}
 			}
 		}
-		.content2{
+		.content2 {
 			margin: 20px auto 60px;
 			width: 90%;
 			min-width: 1000px;
-			.tree{
+			.tree {
 				margin-left: 200px;
 				padding: 40px 80px;
+				.box {
+					margin-bottom: 60px;
+					padding-bottom: 40px;
+					.my-img {
+						flex-shrink: 0;
+						margin-right: 60px;
+						width: 360px;
+						height: 240px;
+						box-shadow: -20px -20px 0 0 #eeeeee;
+					}
+					.text {
+						.content {
+							margin-top: 30px;
+						}
+						.date {
+							margin-top: 20px;
+						}
+					}
+				}
 			}
 		}
 	}
