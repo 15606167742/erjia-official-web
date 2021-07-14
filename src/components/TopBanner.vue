@@ -108,8 +108,8 @@ export default {
 			margin: 0 3%;
 		}
 		.tab4 {
-			flex-basis: 20%;
-			margin: 0 2%;
+			flex-basis: 22%;
+			margin: 0 1%;
 		}
 		.active {
 			border: 2px solid var(--color-bg-main);

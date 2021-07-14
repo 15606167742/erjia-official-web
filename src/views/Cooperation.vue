@@ -39,10 +39,22 @@
 					<div class="img">
 						<el-image class="my-img" :src="enterprise.img" fit="contain"></el-image>
 					</div>
-					<div class="name">{{enterprise.name}}</div>
-					<div class="phone" v-if="enterprise.phone">电话：{{enterprise.phone}}</div>
-					<div class="mail" v-if="enterprise.mail">邮箱：{{enterprise.mail}}</div>
-					<div class="address" v-if="enterprise.address">地址：{{enterprise.address}}</div>
+					<div class="line">{{enterprise.name}}</div>
+					<div class="line" v-if="enterprise.phone">电话：{{enterprise.phone}}</div>
+					<div class="line" v-if="enterprise.mail">邮箱：{{enterprise.mail}}</div>
+					<div class="line" v-if="enterprise.address">地址：{{enterprise.address}}</div>
+				</div>
+			</div>
+			<el-image class="map" :src="require('@/assets/img/cooperation/map.png')" fit="cover"></el-image>
+			<div class="row1">
+				<span class="row1_l">媒体</span>
+				<span class="row1_r">合作</span>
+				<el-image class="row1_split" :src="require('@/assets/img/cooperation/line.png')" fit="contain"></el-image>
+			</div>
+			<div class="row2">Media invitation</div>
+			<div class="medias">
+				<div class="media" :key="index" v-for="(media, index) in mediaList">
+					<el-image class="my-img" :src="media" fit="contain"></el-image>
 				</div>
 			</div>
 		</div>
@@ -139,6 +151,12 @@ export default {
 					mail: 'huanying@meadin.com',
 					address: '杭州市文一西路522号西滨科创园9幢9楼',
 				},
+			],
+			mediaList: [
+				require('@/assets/img/cooperation/media1.png'),
+				require('@/assets/img/cooperation/media2.png'),
+				require('@/assets/img/cooperation/media3.png'),
+				require('@/assets/img/cooperation/media4.png'),
 			]
 		};
 	},
@@ -217,7 +235,6 @@ export default {
 	.content2 {
 		.row1 {
 			position: relative;
-			margin-top: 30px;
 			font-size: 3rem;
 			letter-spacing: 0.2rem;
 			font-weight: bold;
@@ -245,11 +262,38 @@ export default {
 			color: #333333;
 		}
 		.enterprises{
-			margin-top: 60px;
 			display: flex;
 			flex-wrap: wrap;
 			.enterprise{
-				
+				box-sizing: border-box;
+				padding: 20px;
+				.img{
+					margin-bottom: 20px;
+					.my-img{
+						width: 56px;
+						height: 56px;
+					}
+				}
+				.line{
+					margin-top: 10px;
+					font-size: 1.8rem;
+					line-height: 2.5rem;
+					color: #666666;
+					word-break: break-all;
+				}
+			}
+		}
+		.map{
+			display: block;
+			margin: 70px 0;
+		}
+		.medias{
+			display: flex;
+			flex-wrap: wrap;
+			justify-content: space-around;
+			align-items: center;
+			.media{
+				text-align: center;
 			}
 		}
 	}
@@ -270,6 +314,24 @@ export default {
 					margin: 50px auto;
 					padding: 15px 0;
 					border-radius: 5px;
+				}
+			}
+		}
+		.content2{
+			.enterprises{
+				margin: 0 20px;
+				margin-top: 50px;
+				.enterprise{
+					flex-basis: 100%;
+					margin-bottom: 20px;
+					text-align: center;
+				}
+			}
+			.medias{
+				margin: 40px 20px;
+				.media{
+					flex-basis: 40%;
+					margin-bottom: 20px;
 				}
 			}
 		}
@@ -297,6 +359,36 @@ export default {
 					margin: 100px auto;
 					padding: 20px 120px;
 					border-radius: 8px;
+				}
+			}
+		}
+		.content2{
+			margin: 20px auto;
+			.enterprises{
+				margin: 0 auto;
+				margin-top: 60px;
+				width: 60%;
+				min-width: 900px;
+				.enterprise{
+					flex-basis: 33%;
+					margin-bottom: 40px;
+					&:nth-child(1){
+						border-right: 1px solid #EEEEEE;
+					}
+					&:nth-child(2){
+						border-right: 1px solid #EEEEEE;
+					}
+					&:nth-child(4){
+						border-right: 1px solid #EEEEEE;
+					}
+				}
+			}
+			.medias{
+				margin: 80px auto;
+				width: 60%;
+				min-width: 900px;
+				.media{
+					flex-basis: 20%;
 				}
 			}
 		}
