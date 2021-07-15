@@ -38,7 +38,7 @@ export default {
 	methods: {
 		changeTab(id) {
 			this.info.tabList.forEach(tab => {
-				if (tab.id === id && !tab.active) {
+				if (tab.id === id) {
 					this.$emit('change', id);
 				}
 			});

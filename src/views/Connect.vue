@@ -52,8 +52,8 @@ export default {
 	data() {
 		return {
 			info: {
-				banner: require('@/assets/img/connect/banner1.png'),
-				// banner: WEBCONFIG.resource_url_img+'/connect/banner1.png',
+				// banner: require('@/assets/img/connect/banner1.png'),
+				banner: WEBCONFIG.resource_url_img+'/connect/banner1.png',
 				title: '联系我们',
 				title_en: 'Contact us',
 				tabList: [
@@ -184,8 +184,8 @@ export default {
 			this.info.tabList.forEach(tab => {
 				if (tab.id === id) {
 					tab.active = true;
-					this.info.banner = require('@/assets/img'+tab.banner);
-					// this.info.banner = WEBCONFIG.resource_url_img+tab.banner;
+					// this.info.banner = require('@/assets/img'+tab.banner);
+					this.info.banner = WEBCONFIG.resource_url_img+tab.banner;
 				} else {
 					tab.active = false;
 				}

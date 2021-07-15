@@ -45,7 +45,7 @@
 					<div class="line" v-if="enterprise.address">地址：{{enterprise.address}}</div>
 				</div>
 			</div>
-			<el-image class="map" :src="require('@/assets/img/cooperation/map.png')" fit="cover"></el-image>
+			<el-image class="map" :src="imgResource+'/cooperation/map.png'" fit="cover"></el-image>
 			<div class="row1">
 				<span class="row1_l">媒体</span>
 				<span class="row1_r">合作</span>
@@ -76,9 +76,10 @@ export default {
 	},
 	data() {
 		return {
+			imgResource: WEBCONFIG.resource_url_img,
 			info: {
-				banner: require('@/assets/img/cooperation/banner1.png'),
-				// banner: WEBCONFIG.resource_url_img+'/cooperation/banner.png',
+				// banner: require('@/assets/img/cooperation/banner1.png'),
+				banner: WEBCONFIG.resource_url_img+'/cooperation/banner1.png',
 				title: '商务合作',
 				title_en: 'Business cooperation',
 				tabList: [
@@ -166,7 +167,8 @@ export default {
 			this.info.tabList.forEach(tab => {
 				if (tab.id === id) {
 					tab.active = true;
-					this.info.banner = require('@/assets/img'+tab.banner);
+					// this.info.banner = require('@/assets/img'+tab.banner);
+					this.info.banner = WEBCONFIG.resource_url_img+tab.banner;
 				} else {
 					tab.active = false;
 				}

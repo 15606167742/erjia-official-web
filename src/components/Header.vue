@@ -59,7 +59,6 @@
 		mounted() {},
 		methods: {
 			gotoPath(path) {
-				console.log(path)
 				if (this.$route.path != path) {
 					this.$router.push({
 						path
