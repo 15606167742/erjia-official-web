@@ -178,17 +178,25 @@
 				}],
 			};
 		},
+		mounted() {
+			this.jump();
+		},
 		watch: {
 			$route: {
 				handler() {
-					if(this.$route.query.activeTab){
-						this.handleChange(parseInt(this.$route.query.activeTab))
-					}
+					this.jump();
 				},
 				deep: true,
 			}
 		},
 		methods: {
+			jump() {
+				if (this.$route.query.activeTab) {
+					this.handleChange(parseInt(this.$route.query.activeTab))
+				} else {
+					this.handleChange(1)
+				}
+			},
 			handleChange(id) {
 				this.activeTab = id;
 				this.info.tabList.forEach(tab => {
