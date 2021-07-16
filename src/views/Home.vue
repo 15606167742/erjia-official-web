@@ -124,30 +124,31 @@
 					series: '',
 					keyword: ''
 				},
-				cityList: [{
-						value: '212000',
-						label: '镇江'
+				cityList: [
+					{
+						value: '1',
+						label: '常州'
 					},
 					{
-						value: '214000',
+						value: '2',
+						label: '成都'
+					},
+					{
+						value: '3',
 						label: '无锡'
+					},
+					{
+						value: '4',
+						label: '镇江'
 					}
 				],
 				seriesList: [{
 						value: 'Z001',
-						label: '中式古典'
+						label: '尔家雅寓'
 					},
 					{
 						value: 'Z002',
-						label: '中式现代'
-					},
-					{
-						value: 'O001',
-						label: '欧式古典'
-					},
-					{
-						value: 'O002',
-						label: '欧式现代'
+						label: '尔家馨寓'
 					}
 				],
 				hotHouseList: [{

@@ -1,5 +1,5 @@
 <template>
-	<div class="cooperation">
+	<div class="info">
 		<Header></Header>
 		<top-banner :info="info" @change="handleChange"></top-banner>
 		<div class="content1" v-if="activeTab === 1 && !activeNews">
@@ -281,6 +281,16 @@ export default {
 			]
 		};
 	},
+	watch: {
+		$route: {
+			handler() {
+				if(this.$route.query.activeTab){
+					this.handleChange(parseInt(this.$route.query.activeTab))
+				}
+			},
+			deep: true,
+		}
+	},
 	methods: {
 		handleChange(id) {
 			this.activeTab = id;
@@ -311,7 +321,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.cooperation {
+.info {
 	background-color: var(--color-bg-default);
 
 	.content1 {
@@ -508,7 +518,7 @@ export default {
 }
 
 @media screen and (max-width: 1080px) {
-	.cooperation {
+	.info {
 		.content1 {
 			margin: 0 20px;
 
@@ -640,7 +650,7 @@ export default {
 }
 
 @media screen and (min-width: 1080px) {
-	.cooperation {
+	.info {
 		.content1 {
 			margin: 20px auto 60px;
 			width: 60%;

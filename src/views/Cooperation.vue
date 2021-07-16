@@ -53,8 +53,11 @@
 			</div>
 			<div class="row2">Media invitation</div>
 			<div class="medias">
-				<div class="media" :key="index" v-for="(media, index) in mediaList">
-					<el-image class="my-img" :src="media" fit="contain"></el-image>
+				<div class="media" :key="media.id" v-for="media in mediaList">
+					<el-image class="my-img" :src="media.img" fit="contain"></el-image>
+					<div class="title">
+						{{media.title}}
+					</div>
 				</div>
 			</div>
 		</div>
@@ -154,12 +157,38 @@ export default {
 				},
 			],
 			mediaList: [
-				require('@/assets/img/cooperation/media1.png'),
-				require('@/assets/img/cooperation/media2.png'),
-				require('@/assets/img/cooperation/media3.png'),
-				require('@/assets/img/cooperation/media4.png'),
+				{
+					id: 1,
+					img: require('@/assets/img/cooperation/media1.png'),
+					title: '尔家微博'
+				},
+				{
+					id: 2,
+					img: require('@/assets/img/cooperation/media2.png'),
+					title: '尔家公众号'
+				},
+				{
+					id: 3,
+					img: require('@/assets/img/cooperation/media3.png'),
+					title: '尔家小红书'
+				},
+				{
+					id: 4,
+					img: require('@/assets/img/cooperation/media4.png'),
+					title: '尔家抖音'
+				}
 			]
 		};
+	},
+	watch: {
+		$route: {
+			handler() {
+				if(this.$route.query.activeTab){
+					this.handleChange(parseInt(this.$route.query.activeTab))
+				}
+			},
+			deep: true,
+		}
 	},
 	methods: {
 		handleChange(id) {
@@ -296,6 +325,11 @@ export default {
 			align-items: center;
 			.media{
 				text-align: center;
+				.title{
+					font-size: 1.6rem;
+					margin-top: 15px;
+					color: #666666;
+				}
 			}
 		}
 	}

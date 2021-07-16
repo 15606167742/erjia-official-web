@@ -107,9 +107,8 @@
 				}
 
 				&:hover {
-					font-size: 2.5rem;
 					color: var(--color-t-active);
-					transition-duration: 1s;
+					transition-duration: 0.3s;
 				}
 			}
 		}
