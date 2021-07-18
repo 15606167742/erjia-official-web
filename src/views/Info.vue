@@ -289,15 +289,15 @@ export default {
 			handler() {
 				this.jump();
 			},
-			deep: true,
+			deep: true
 		}
 	},
 	methods: {
 		jump() {
 			if (this.$route.query.activeTab) {
-				this.handleChange(parseInt(this.$route.query.activeTab))
+				this.handleChange(parseInt(this.$route.query.activeTab));
 			} else {
-				this.handleChange(1)
+				this.handleChange(1);
 			}
 		},
 		handleChange(id) {
@@ -621,8 +621,8 @@ export default {
 			.sale {
 				flex-basis: 100%;
 				margin-bottom: 30px;
-				.box{
-					.my-img{
+				.box {
+					.my-img {
 						margin: 0 20px 140px 0;
 						box-shadow: 20px 120px 0 0 #dddddd;
 					}
@@ -632,7 +632,7 @@ export default {
 						right: 20px;
 						bottom: -120px;
 						height: 120px;
-						.title{
+						.title {
 							flex-basis: 100%;
 						}
 						.date {
@@ -644,10 +644,10 @@ export default {
 				.row2 {
 					margin-right: 20px;
 					text-align: right;
-					.introduction{
+					.introduction {
 						flex-basis: 100%;
 					}
-					.price{
+					.price {
 						flex-basis: 100%;
 						margin-top: 10px;
 					}
@@ -771,8 +771,8 @@ export default {
 			.sale {
 				flex-basis: 45%;
 				margin-bottom: 70px;
-				.box{
-					.my-img{
+				.box {
+					.my-img {
 						margin: 0 30px 120px 0;
 						box-shadow: 30px 100px 0 0 #dddddd;
 					}

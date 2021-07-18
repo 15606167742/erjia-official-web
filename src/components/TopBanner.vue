@@ -111,6 +111,10 @@ export default {
 			flex-basis: 22%;
 			margin: 0 1%;
 		}
+		.tab5 {
+			flex-basis: 18%;
+			margin: 0 1%;
+		}
 		.active {
 			border: 2px solid var(--color-bg-main);
 		}
@@ -148,7 +152,7 @@ export default {
 			height: 100px;
 		}
 		.tabs {
-			padding: 0 200px;
+			padding: 0 100px;
 			.tab {
 				padding: 30px 0 20px 0;
 			}
