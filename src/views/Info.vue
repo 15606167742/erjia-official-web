@@ -22,8 +22,8 @@
 				<p>
 					近日，绿地集团西南事业部总经理孙志文、绿地集团西南营销管理中心总经理戴咏春等人莅临上海尔家商业管理有限公司天空树雅寓营销中心、绿地观澜湾尔家雅寓（以下简称：尔家商业）进行考察交流。目的为双方就进一步盘活商办资产进行深度交流合作，同时探索商办资产开发商与尔家赋能的新模式。尔家商业总裁张二干、尔家商业成都城市公司总经理谈潭等人陪同接待。
 				</p>
-				<el-image class="my-img" :src="require('@/assets/img/info/detail1.png')" fit="contain"></el-image>
-				<el-image class="my-img" :src="require('@/assets/img/info/detail2.png')" fit="contain"></el-image>
+				<el-image class="my-img" :src="imgResource + '/info/detail1.png'" fit="contain"></el-image>
+				<el-image class="my-img" :src="imgResource + '/info/detail2.png'" fit="contain"></el-image>
 				<p>
 					在此次考察交流当中，尔家商业总裁张二干指出：“尔家商业之所以能成为行业效仿的标杆，离不开独特的商业运营模式
 					”。在实现资产盘活的同时为产品赋能，不仅为商办类资产开发商解决租赁人口居住问题还能为其赋能吸引更多人潮，从而实现合作共赢！
@@ -101,6 +101,7 @@ export default {
 	},
 	data() {
 		return {
+			imgResource: WEBCONFIG.resource_url_img,
 			info: {
 				// banner: require('@/assets/img/info/banner1.png'),
 				banner: WEBCONFIG.resource_url_img + '/info/banner1.png',
@@ -248,7 +249,8 @@ export default {
 			saleList: [
 				{
 					id: 1,
-					img: require('@/assets/img/info/sale1.png'),
+					// img: require('@/assets/img/info/sale1.png'),
+					img: WEBCONFIG.resource_url_img + '/info/sale1.png',
 					title: 'LOFT丨镇江宝龙项目',
 					date: '2021/06/09',
 					introduction: 'LOFT 户型 紧跟潮流',
@@ -256,7 +258,8 @@ export default {
 				},
 				{
 					id: 2,
-					img: require('@/assets/img/info/sale2.png'),
+					// img: require('@/assets/img/info/sale2.png'),
+					img: WEBCONFIG.resource_url_img + '/info/sale2.png',
 					title: '尔家雅寓绿地观澜湾店',
 					date: '2021/06/09',
 					introduction: '静谧领地·为你而来',
@@ -264,7 +267,8 @@ export default {
 				},
 				{
 					id: 3,
-					img: require('@/assets/img/info/sale3.png'),
+					// img: require('@/assets/img/info/sale3.png'),
+					img: WEBCONFIG.resource_url_img + '/info/sale3.png',
 					title: '品质优选丨无锡金科米兰店',
 					date: '2021/06/09',
 					introduction: '享生活·品格调·醉时光',
@@ -272,7 +276,8 @@ export default {
 				},
 				{
 					id: 4,
-					img: require('@/assets/img/info/sale4.png'),
+					// img: require('@/assets/img/info/sale4.png'),
+					img: WEBCONFIG.resource_url_img + '/info/sale4.png',
 					title: '尔家雅寓绿地观澜湾店',
 					date: '2021/06/09',
 					introduction: '静谧领地·为你而来',
@@ -315,8 +320,8 @@ export default {
 		},
 		getNewsDetail(id) {
 			console.log('搜索新闻id为' + id + '的详情');
-			this.info.banner = require('@/assets/img/info/banner2.png');
-			// this.info.banner = WEBCONFIG.resource_url_img+'/info/banner2.png';
+			// this.info.banner = require('@/assets/img/info/banner2.png');
+			this.info.banner = WEBCONFIG.resource_url_img+'/info/banner2.png';
 			this.activeNews = {
 				id: 1,
 				datetime: '2021-06-11 12:02:52',

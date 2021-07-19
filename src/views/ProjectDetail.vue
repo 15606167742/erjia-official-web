@@ -108,12 +108,14 @@ export default {
 	data() {
 		return {
 			info: {
-				banner: require('@/assets/img/project_detail/banner.png'),
+				// banner: require('@/assets/img/project_detail/banner.png'),
+				banner: WEBCONFIG.resource_url_img+'/project_detail/banner.png',
 				title: '项目详情',
 				title_en: 'Business cooperation'
 			},
 			detail: {
-				img: require('@/assets/img/project_detail/pic1.png'),
+				// img: require('@/assets/img/project_detail/pic1.png'),
+				img: WEBCONFIG.resource_url_img+'/project_detail/pic1.png',
 				tip: require('@/assets/img/project_detail/tip1.png'),
 				name: '常州世茂项目',
 				area: '60m²',
@@ -213,28 +215,32 @@ export default {
 			itemList: [
 				{
 					id: 1,
-					img: require('@/assets/img/project_detail/item1.png'),
+					// img: require('@/assets/img/project_detail/item1.png'),
+					img: WEBCONFIG.resource_url_img+'/project_detail/item1.png',
 					name: '豪华一居室',
 					price: '12000元/月起',
 					description: '1室1厅1厨1卫 58㎡起'
 				},
 				{
 					id: 2,
-					img: require('@/assets/img/project_detail/item2.png'),
+					// img: require('@/assets/img/project_detail/item2.png'),
+					img: WEBCONFIG.resource_url_img+'/project_detail/item2.png',
 					name: '豪华一居室',
 					price: '12000元/月起',
 					description: '1室1厅1厨1卫 58㎡起'
 				},
 				{
 					id: 3,
-					img: require('@/assets/img/project_detail/item3.png'),
+					// img: require('@/assets/img/project_detail/item3.png'),
+					img: WEBCONFIG.resource_url_img+'/project_detail/item3.png',
 					name: '豪华一居室',
 					price: '12000元/月起',
 					description: '1室1厅1厨1卫 58㎡起'
 				},
 				{
 					id: 4,
-					img: require('@/assets/img/project_detail/item4.png'),
+					// img: require('@/assets/img/project_detail/item4.png'),
+					img: WEBCONFIG.resource_url_img+'/project_detail/item4.png',
 					name: '豪华一居室',
 					price: '12000元/月起',
 					description: '1室1厅1厨1卫 58㎡起'

@@ -53,9 +53,9 @@
 							我只想征服一个人的胃和心
 						</div>
 					</div>
-					<el-image class="row1-1-img" :src="require('@/assets/img/service/management1_2.png')" fit="contain"></el-image>
+					<el-image class="row1-1-img" :src="imgResource + '/service/management1_2.png'" fit="contain"></el-image>
 				</div>
-				<el-image class="row1-2" :src="require('@/assets/img/service/management1_1.png')" fit="contain"></el-image>
+				<el-image class="row1-2" :src="imgResource + '/service/management1_1.png'" fit="contain"></el-image>
 			</div>
 			<div class="row2">
 				<div class="bg"></div>
@@ -67,9 +67,9 @@
 						</div>
 						<div class="title-row2">不开心的时候，流泪不如流汗</div>
 					</div>
-					<el-image class="row2-1-img" :src="require('@/assets/img/service/management2_2.png')" fit="contain"></el-image>
+					<el-image class="row2-1-img" :src="imgResource + '/service/management2_2.png'" fit="contain"></el-image>
 				</div>
-				<el-image class="row2-2" :src="require('@/assets/img/service/management2_1.png')" fit="contain"></el-image>
+				<el-image class="row2-2" :src="imgResource + '/service/management2_1.png'" fit="contain"></el-image>
 			</div>
 			<div class="row3">
 				<div class="row3-1">
@@ -81,7 +81,7 @@
 						<div class="title-row2">在素年锦时的光阴里 细品岁月静好</div>
 					</div>
 				</div>
-				<el-image class="row3-2" :src="require('@/assets/img/service/management3.png')" fit="contain"></el-image>
+				<el-image class="row3-2" :src="imgResource + '/service/management3.png'" fit="contain"></el-image>
 			</div>
 			<div class="row2">
 				<div class="row2-1">
@@ -96,9 +96,9 @@
 							让你我都不至于在突发情况怯场
 						</div>
 					</div>
-					<el-image class="row2-1-img" :src="require('@/assets/img/service/management4_2.png')" fit="contain"></el-image>
+					<el-image class="row2-1-img" :src="imgResource + '/service/management4_2.png'" fit="contain"></el-image>
 				</div>
-				<el-image class="row2-2" :src="require('@/assets/img/service/management4_1.png')" fit="contain"></el-image>
+				<el-image class="row2-2" :src="imgResource + '/service/management4_1.png'" fit="contain"></el-image>
 			</div>
 			<div class="row3">
 				<div class="row3-1">
@@ -114,7 +114,7 @@
 						</div>
 					</div>
 				</div>
-				<el-image class="row3-2 bg" :src="require('@/assets/img/service/management5.png')" fit="contain"></el-image>
+				<el-image class="row3-2 bg" :src="imgResource + '/service/management5.png'" fit="contain"></el-image>
 			</div>
 		</div>
 		<div class="content4" v-else-if="activeTab === 4">
@@ -174,8 +174,8 @@ export default {
 		return {
 			imgResource: WEBCONFIG.resource_url_img,
 			info: {
-				banner: require('@/assets/img/service/banner1.png'),
-				// banner: WEBCONFIG.resource_url_img+'/cooperation/banner1.png',
+				// banner: require('@/assets/img/service/banner1.png'),
+				banner: WEBCONFIG.resource_url_img+'/service/banner1.png',
 				title: '运营服务',
 				title_en: 'Operation services',
 				tabList: [
@@ -217,31 +217,36 @@ export default {
 			hotelList: [
 				{
 					id: 1,
-					img: require('@/assets/img/service/hotel1.png'),
+					// img: require('@/assets/img/service/hotel1.png'),
+					img: WEBCONFIG.resource_url_img+'/service/hotel1.png',
 					title: '维保服务',
 					introduction: '公区保洁、室内精保、熨烫衣物、室内维修服务、家电清洗服务'
 				},
 				{
 					id: 2,
-					img: require('@/assets/img/service/hotel2.png'),
+					// img: require('@/assets/img/service/hotel2.png'),
+					img: WEBCONFIG.resource_url_img+'/service/hotel2.png',
 					title: '安防服务',
 					introduction: '24小时保安、全梯控覆盖、楼层24小时监控、智能安全门锁'
 				},
 				{
 					id: 3,
-					img: require('@/assets/img/service/hotel3.png'),
+					// img: require('@/assets/img/service/hotel3.png'),
+					img: WEBCONFIG.resource_url_img+'/service/hotel3.png',
 					title: '交通服务',
 					introduction: '出租车预定、车辆租赁、停车设施（免费停车位）'
 				},
 				{
 					id: 4,
-					img: require('@/assets/img/service/hotel4.png'),
+					// img: require('@/assets/img/service/hotel4.png'),
+					img: WEBCONFIG.resource_url_img+'/service/hotel4.png',
 					title: '餐饮服务',
 					introduction: '简餐（早餐）、咖啡、甜点'
 				},
 				{
 					id: 5,
-					img: require('@/assets/img/service/hotel5.png'),
+					// img: require('@/assets/img/service/hotel5.png'),
+					img: WEBCONFIG.resource_url_img+'/service/hotel5.png',
 					title: '商务服务',
 					introduction: '复印/打印、快递中心、商务会议'
 				}
@@ -249,25 +254,29 @@ export default {
 			keeperList: [
 				{
 					id: 1,
-					img: require('@/assets/img/service/keeper1.png'),
+					// img: require('@/assets/img/service/keeper1.png'),
+					img: WEBCONFIG.resource_url_img+'/service/keeper1.png',
 					title: '私人秘书',
 					title_en: 'Private secretary'
 				},
 				{
 					id: 2,
-					img: require('@/assets/img/service/keeper2.png'),
+					// img: require('@/assets/img/service/keeper2.png'),
+					img: WEBCONFIG.resource_url_img+'/service/keeper2.png',
 					title: '室内特色场景布置',
 					title_en: 'Indoor characteristic\n scene layout'
 				},
 				{
 					id: 3,
-					img: require('@/assets/img/service/keeper3.png'),
+					// img: require('@/assets/img/service/keeper3.png'),
+					img: WEBCONFIG.resource_url_img+'/service/keeper3.png',
 					title: '代办个人事宜',
 					title_en: 'Personal affairs'
 				},
 				{
 					id: 4,
-					img: require('@/assets/img/service/keeper4.png'),
+					// img: require('@/assets/img/service/keeper4.png'),
+					img: WEBCONFIG.resource_url_img+'/service/keeper4.png',
 					title: '代充水电',
 					title_en: 'Daichong hydropower'
 				}
@@ -275,13 +284,15 @@ export default {
 			operationList: [
 				{
 					id: 1,
-					img: require('@/assets/img/service/operation1.png'),
+					// img: require('@/assets/img/service/operation1.png'),
+					img: WEBCONFIG.resource_url_img+'/service/operation1.png',
 					title: '私人秘书',
 					date: '2021-02-02'
 				},
 				{
 					id: 2,
-					img: require('@/assets/img/service/operation2.png'),
+					// img: require('@/assets/img/service/operation2.png'),
+					img: WEBCONFIG.resource_url_img+'/service/operation2.png',
 					title: '室内特色场景布置',
 					date: '2021-02-02'
 				}
@@ -290,24 +301,24 @@ export default {
 				{
 					id: 1,
 					date: '2021-06-17',
-					img: require('@/assets/img/service/activity1.png'),
-					// img: WEBCONFIG.resource_url_img + '/service/activity1.png',
+					// img: require('@/assets/img/service/activity1.png'),
+					img: WEBCONFIG.resource_url_img + '/service/activity1.png',
 					title: '燃爆盛夏 嗨翻全场｜尔家第三届百人龙虾节激情落幕！',
 					content: '燃爆盛夏 嗨翻全场、一场关于盛夏与龙虾的相遇、不仅因为美食本身还有对未来的十足期待'
 				},
 				{
 					id: 2,
 					date: '2021-05-16',
-					img: require('@/assets/img/service/activity2.png'),
-					// img: WEBCONFIG.resource_url_img + '/service/activity2.png',
+					// img: require('@/assets/img/service/activity2.png'),
+					img: WEBCONFIG.resource_url_img + '/service/activity2.png',
 					title: '尔家龙虾节｜一年一度的龙虾节终于来了，快上车带你实现“撸虾自由”！',
 					content: '会嘬才是吃龙虾的奥秘所在。这次尔家龙虾节多种口味齐上阵！麻辣小龙虾、风味蒜泥小龙虾、十三香小龙虾等多种口味掀起锡城嘬虾新风暴！'
 				},
 				{
 					id: 3,
 					date: '2021-05-01',
-					img: require('@/assets/img/service/activity3.png'),
-					// img: WEBCONFIG.resource_url_img + '/service/activity3.png',
+					// img: require('@/assets/img/service/activity3.png'),
+					img: WEBCONFIG.resource_url_img + '/service/activity3.png',
 					title: '房券礼遇｜在尔家雅寓的一天，你是怎么度过的？',
 					content: '随着夏天的到来、那抹绿让人看的神清气爽、一阵凉爽的风轻轻拂来叶子“沙拉沙拉“地奏起独特的乐曲、在这清爽的季节里一起来亲身探索在尔家雅寓成都万科云城店的一天吧！'
 				}

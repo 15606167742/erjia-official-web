@@ -13,16 +13,16 @@
 					</div>
 					<div class="title-row2">不只是公寓</div>
 				</div>
-				<el-image class="box1-img" :src="require('@/assets/img/product/highlight1.png')" fit="contain"></el-image>
+				<el-image class="box1-img" :src="imgResource + '/product/highlight1.png'" fit="contain"></el-image>
 			</div>
 			<div class="box2">
-				<el-image class="box2-img" :src="require('@/assets/img/product/highlight2.png')" fit="contain"></el-image>
+				<el-image class="box2-img" :src="imgResource + '/product/highlight2.png'" fit="contain"></el-image>
 				<div class="text">
 					尔家全系公寓产品以Box设计理念、立体集成化原则，严格执行人体工程学原理，为居住者定制最舒适的家居尺度、设计最合理的收纳空间，使公寓产品回归居住本质，营造引领时代的生活空间和生活方式！
 				</div>
 			</div>
 			<div class="box2 sp">
-				<el-image class="box2-img" :src="require('@/assets/img/product/highlight3.png')" fit="contain"></el-image>
+				<el-image class="box2-img" :src="imgResource + '/product/highlight3.png'" fit="contain"></el-image>
 				<div class="text">
 					尔家全系公寓产品以Box设计理念、立体集成化原则，严格执行人体工程学原理，为居住者定制最舒适的家居尺度、设计最合理的收纳空间，使公寓产品回归居住本质，营造引领时代的生活空间和生活方式！
 				</div>
@@ -32,7 +32,7 @@
 					<div class="title-row1">Check in with bags</div>
 					<div class="title-row2">全装全配 拎包入住</div>
 				</div>
-				<el-image class="box1-img" :src="require('@/assets/img/product/highlight4.png')" fit="contain"></el-image>
+				<el-image class="box1-img" :src="imgResource + '/product/highlight4.png'" fit="contain"></el-image>
 			</div>
 		</div>
 		<div class="content2" v-else-if="activeTab === 2">
@@ -119,9 +119,10 @@ export default {
 	},
 	data() {
 		return {
+			imgResource: WEBCONFIG.resource_url_img,
 			info: {
-				banner: require('@/assets/img/product/banner1.png'),
-				// banner: WEBCONFIG.resource_url_img + '/info/banner1.png',
+				// banner: require('@/assets/img/product/banner1.png'),
+				banner: WEBCONFIG.resource_url_img + '/product/banner1.png',
 				title: '产品介绍',
 				title_en: 'Product introduction',
 				tabList: [
@@ -155,19 +156,22 @@ export default {
 			houseList: [
 				{
 					id: 1,
-					img: require('@/assets/img/product/house1.png'),
+					// img: require('@/assets/img/product/house1.png'),
+					img: WEBCONFIG.resource_url_img + '/product/house1.png',
 					name: '无锡绿地观澜湾项目',
 					location: '无锡·梁溪区'
 				},
 				{
 					id: 2,
-					img: require('@/assets/img/product/house2.png'),
+					// img: require('@/assets/img/product/house2.png'),
+					img: WEBCONFIG.resource_url_img + '/product/house2.png',
 					name: '成都绿地GIC项目',
 					location: '成都·梁溪区'
 				},
 				{
 					id: 3,
-					img: require('@/assets/img/product/house3.png'),
+					// img: require('@/assets/img/product/house3.png'),
+					img: WEBCONFIG.resource_url_img + '/product/house3.png',
 					name: '无锡绿地天空树项目',
 					location: '成都·梁溪区'
 				}
@@ -175,7 +179,8 @@ export default {
 			itemList: [
 				{
 					id: 1,
-					img: require('@/assets/img/product/item1.png'),
+					// img: require('@/assets/img/product/item1.png'),
+					img: WEBCONFIG.resource_url_img + '/product/item1.png',
 					en: 'TOD',
 					title: '尔家雅寓无锡绿地天空树项目',
 					text: '48m²全装托管地铁小户,超值投资,跑赢通货膨胀'
@@ -208,8 +213,6 @@ export default {
 			this.info.tabList.forEach(tab => {
 				if (tab.id === id) {
 					tab.active = true;
-					this.info.banner = require('@/assets/img' + tab.banner);
-					// this.info.banner = WEBCONFIG.resource_url_img + tab.banner;
 				} else {
 					tab.active = false;
 				}
