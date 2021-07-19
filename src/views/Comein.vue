@@ -27,20 +27,12 @@
 			</div>
 			<div class="row2">Project introduction</div>
 			<div class="projects">
-				<div class="project" :class="{reverse: index%2==0}" :key="project.id"
-					v-for="(project, index) in projectList">
+				<div class="project" :class="{ reverse: index % 2 == 0 }" :key="project.id" v-for="(project, index) in projectList">
 					<el-image class="project-img" :src="project.img" fit="contain"></el-image>
 					<div class="project-content">
-						<div class="title">
-							{{project.title}}
-						</div>
-						<div class="text">
-							{{project.text}}
-						</div>
-						<div class="arror">
-							<el-image class="arror-img" :src="require('@/assets/img/comein/arror.png')" fit="contain">
-							</el-image>
-						</div>
+						<div class="title">{{ project.title }}</div>
+						<div class="text">{{ project.text }}</div>
+						<div class="arror"><el-image class="arror-img" :src="require('@/assets/img/comein/arror.png')" fit="contain"></el-image></div>
 					</div>
 				</div>
 			</div>
@@ -50,6 +42,31 @@
 				<el-image class="row1_split" :src="require('@/assets/img/comein/line.png')" fit="contain"></el-image>
 			</div>
 			<div class="row2">Operation mode</div>
+			<div class="modes">
+				<div class="mode" :key="mode.id" v-for="mode in modeList">
+					<div class="circle"></div>
+					<div class="text">{{ mode.text }}</div>
+				</div>
+			</div>
+			<el-image class="mode-img" :src="require('@/assets/img/comein/mode.png')" fit="contain"></el-image>
+			<div class="row1">
+				<span class="row1_l">在售</span>
+				<span class="row1_r">项目</span>
+				<el-image class="row1_split" :src="require('@/assets/img/comein/line.png')" fit="contain"></el-image>
+			</div>
+			<div class="row2">Items on sale</div>
+			<div class="sales">
+				<div class="sale" :key="sale.id" v-for="sale in saleList">
+					<el-image class="my-img" :src="sale.img" fit="contain"></el-image>
+					<div class="content">
+						<div class="en">{{ sale.en }}</div>
+						<div class="title">{{ sale.title }}</div>
+						<div class="text">{{ sale.adj }}</div>
+						<div class="text-en">{{ sale.adj_en }}</div>
+						<div class="text">{{ sale.text }}</div>
+					</div>
+				</div>
+			</div>
 		</div>
 		<div class="content2" v-else-if="activeTab === 2"></div>
 		<div class="content3" v-else-if="activeTab === 3"></div>
@@ -60,393 +77,561 @@
 </template>
 
 <script>
-	import Header from '@/components/Header.vue';
-	import TopBanner from '@/components/TopBanner.vue';
-	import Footer from '@/components/Footer.vue';
+import Header from '@/components/Header.vue';
+import TopBanner from '@/components/TopBanner.vue';
+import Footer from '@/components/Footer.vue';
 
-	export default {
-		name: 'Comein',
-		components: {
-			Header,
-			TopBanner,
-			Footer
-		},
-		data() {
-			return {
-				imgResource: WEBCONFIG.resource_url_img,
-				info: {
-					// banner: require('@/assets/img/comein/banner1.png'),
-					banner: WEBCONFIG.resource_url_img + '/comein/banner1.png',
-					title: '走进尔家',
-					title_en: 'Walk into uhome',
-					tabList: [{
-							id: 1,
-							active: true,
-							banner: '/comein/banner1.png',
-							img: require('@/assets/img/comein/tab1.png'),
-							name: '公司介绍',
-							name_en: 'Company profile'
-						},
-						{
-							id: 2,
-							active: false,
-							banner: '/comein/banner1.png',
-							img: require('@/assets/img/comein/tab2.png'),
-							name: '公司视频',
-							name_en: 'Company video'
-						},
-						{
-							id: 3,
-							active: false,
-							banner: '/comein/banner1.png',
-							img: require('@/assets/img/comein/tab3.png'),
-							name: '管理团队',
-							name_en: 'Management team'
-						},
-						{
-							id: 4,
-							active: false,
-							banner: '/comein/banner1.png',
-							img: require('@/assets/img/comein/tab4.png'),
-							name: '商业模式',
-							name_en: 'business model'
-						},
-						{
-							id: 5,
-							active: false,
-							banner: '/comein/banner1.png',
-							img: require('@/assets/img/comein/tab5.png'),
-							name: '发展历程',
-							name_en: 'Development history'
-						}
-					]
-				},
-				activeTab: 1,
-				projectList: [{
+export default {
+	name: 'Comein',
+	components: {
+		Header,
+		TopBanner,
+		Footer
+	},
+	data() {
+		return {
+			imgResource: WEBCONFIG.resource_url_img,
+			info: {
+				// banner: require('@/assets/img/comein/banner1.png'),
+				banner: WEBCONFIG.resource_url_img + '/comein/banner1.png',
+				title: '走进尔家',
+				title_en: 'Walk into uhome',
+				tabList: [
+					{
 						id: 1,
-						img: require('@/assets/img/comein/project1.png'),
-						// img: WEBCONFIG.resource_url_img+'/comein/project1.png',
-						title: '尔家雅寓\n无锡绿地天空树项目',
-						text: '48㎡全装托管地铁小户，超值投资\n跑赢通货膨胀'
+						active: true,
+						banner: '/comein/banner1.png',
+						img: require('@/assets/img/comein/tab1.png'),
+						name: '公司介绍',
+						name_en: 'Company profile'
 					},
 					{
 						id: 2,
-						img: require('@/assets/img/comein/project2.png'),
-						// img: WEBCONFIG.resource_url_img+'/comein/project2.png',
-						title: '镇江宝龙项目',
-						text: '小户型没有复式的惯例，\n尔佳镇江暴龙复式设计是例外。'
+						active: false,
+						banner: '/comein/banner1.png',
+						img: require('@/assets/img/comein/tab2.png'),
+						name: '公司视频',
+						name_en: 'Company video'
 					},
 					{
 						id: 3,
-						img: require('@/assets/img/comein/project3.png'),
-						// img: WEBCONFIG.resource_url_img+'/comein/project1.png',
-						title: '无锡金科米兰店',
-						text: '尔家馨寓金科米兰位于新吴区\n行创四路，区位配套完善，\n毗邻中央公园，环境优美，交通便利。'
+						active: false,
+						banner: '/comein/banner1.png',
+						img: require('@/assets/img/comein/tab3.png'),
+						name: '管理团队',
+						name_en: 'Management team'
 					},
 					{
 						id: 4,
-						img: require('@/assets/img/comein/project4.png'),
-						// img: WEBCONFIG.resource_url_img+'/comein/project1.png',
-						title: '尔家雅寓绿地观澜湾店',
-						text: '尔家雅寓地处无锡核心地段，\n东拥市中心，西临古运河，\n坐拥无锡CBD。'
+						active: false,
+						banner: '/comein/banner1.png',
+						img: require('@/assets/img/comein/tab4.png'),
+						name: '商业模式',
+						name_en: 'business model'
+					},
+					{
+						id: 5,
+						active: false,
+						banner: '/comein/banner1.png',
+						img: require('@/assets/img/comein/tab5.png'),
+						name: '发展历程',
+						name_en: 'Development history'
 					}
 				]
-			};
-		},
-		mounted() {
-			this.jump();
-		},
-		watch: {
-			$route: {
-				handler() {
-					this.jump();
-				},
-				deep: true
-			}
-		},
-		methods: {
-			jump() {
-				if (this.$route.query.activeTab) {
-					this.handleChange(parseInt(this.$route.query.activeTab));
-				} else {
-					this.handleChange(1);
-				}
 			},
-			handleChange(id) {
-				this.activeTab = id;
-				this.info.tabList.forEach(tab => {
-					if (tab.id === id) {
-						tab.active = true;
-					} else {
-						tab.active = false;
-					}
-				});
-			}
+			activeTab: 1,
+			projectList: [
+				{
+					id: 1,
+					img: require('@/assets/img/comein/project1.png'),
+					// img: WEBCONFIG.resource_url_img+'/comein/project1.png',
+					title: '尔家雅寓\n无锡绿地天空树项目',
+					text: '48㎡全装托管地铁小户，超值投资\n跑赢通货膨胀'
+				},
+				{
+					id: 2,
+					img: require('@/assets/img/comein/project2.png'),
+					// img: WEBCONFIG.resource_url_img+'/comein/project2.png',
+					title: '镇江宝龙项目',
+					text: '小户型没有复式的惯例，\n尔佳镇江暴龙复式设计是例外。'
+				},
+				{
+					id: 3,
+					img: require('@/assets/img/comein/project3.png'),
+					// img: WEBCONFIG.resource_url_img+'/comein/project1.png',
+					title: '无锡金科米兰店',
+					text: '尔家馨寓金科米兰位于新吴区\n行创四路，区位配套完善，\n毗邻中央公园，环境优美，交通便利。'
+				},
+				{
+					id: 4,
+					img: require('@/assets/img/comein/project4.png'),
+					// img: WEBCONFIG.resource_url_img+'/comein/project1.png',
+					title: '尔家雅寓绿地观澜湾店',
+					text: '尔家雅寓地处无锡核心地段，\n东拥市中心，西临古运河，\n坐拥无锡CBD。'
+				}
+			],
+			modeList: [
+				{
+					id: 1,
+					text:
+						'尔家商业率先成立国内首家公寓主题产品研究院，力邀清华、同济等国内一线学府优秀设计人才加盟，专注打造业内领先的创新公寓产品，目前已形成“尔家雅寓”和“尔家馨寓”两大产品系列。'
+				},
+				{
+					id: 2,
+					text:
+						'尔家全系公寓产品以Box设计理念、立体集成化原则，严格执行人体工程学原理，为居住者定制最舒适的家居尺度、设计最合理的收纳空间，使公寓产品回归居住本质，营造引领时代的生活空间和生活方式！'
+				},
+				{
+					id: 3,
+					text:
+						'尔家全系公寓产品为客户量身定制多维度灵活托管运营方案，客户可按需选择自用或托管服务模式，长短租结合，合理降低空置率，稳定提升托管收益，尽享运	营溢	价与自身增值带来的红利。'
+				},
+				{
+					id: 4,
+					text:
+						'以国际知名服务式公寓品牌雅诗阁为蓝本，尔家全系公寓产品严格执行星级酒店服务标准，24小时私属管家守候，公区多维服务，社群联盟运营，给长租精英群体和短租商旅人士带来家一般的温馨和温暖。'
+				},
+				{
+					id: 5,
+					text:
+						'凭借自身强大的“产品+运营”能力，尔家商业不断为各类商业项目赋能。一方面与各大开发商成功合作多个商业地产项目，在加速项目去化的同时提高产品溢价率，提升资产价值；另一方面，与政府大力合作旧区改造和城市更新项目，也正成为公司业务的新亮点，变“老破旧”为“白富美”，在实现资产盘活的同时，提升了区域的整体形象展示，实现多方共赢。 尔家商业的运营模式已经成为业内众多公司的效仿标杆，尔家商		业正以坚定稳健的步伐引领着行业潮流！'
+				}
+			],
+			saleList: [
+				{
+					id: 1,
+					img: require('@/assets/img/comein/sale1.png'),
+					// img: WEBCONFIG.resource_url_img+'/comein/sale1.png',
+					en: 'LOFT',
+					title: '镇江宝龙项目',
+					adj: '温馨舒适',
+					adj_en: 'Sweet & comfortable',
+					text: '小户型没有复式是惯例，尔家镇江宝龙复式设计是例外。'
+				},
+				{
+					id: 2,
+					img: require('@/assets/img/comein/sale1.png'),
+					// img: WEBCONFIG.resource_url_img+'/comein/sale1.png',
+					en: 'LOFT',
+					title: '镇江宝龙项目',
+					adj: '温馨舒适',
+					adj_en: 'Sweet & comfortable',
+					text: '小户型没有复式是惯例，尔家镇江宝龙复式设计是例外。'
+				},
+				{
+					id: 3,
+					img: require('@/assets/img/comein/sale1.png'),
+					// img: WEBCONFIG.resource_url_img+'/comein/sale1.png',
+					en: 'LOFT',
+					title: '镇江宝龙项目',
+					adj: '温馨舒适',
+					adj_en: 'Sweet & comfortable',
+					text: '小户型没有复式是惯例，尔家镇江宝龙复式设计是例外。'
+				}
+			]
+		};
+	},
+	mounted() {
+		this.jump();
+	},
+	watch: {
+		$route: {
+			handler() {
+				this.jump();
+			},
+			deep: true
 		}
-	};
+	},
+	methods: {
+		jump() {
+			if (this.$route.query.activeTab) {
+				this.handleChange(parseInt(this.$route.query.activeTab));
+			} else {
+				this.handleChange(1);
+			}
+		},
+		handleChange(id) {
+			this.activeTab = id;
+			this.info.tabList.forEach(tab => {
+				if (tab.id === id) {
+					tab.active = true;
+				} else {
+					tab.active = false;
+				}
+			});
+		}
+	}
+};
 </script>
 
 <style scoped lang="scss">
-	.comein {
-		background-color: var(--color-bg-default);
+.comein {
+	background-color: var(--color-bg-default);
 
-		.content1 {
-			.profile {
+	.content1 {
+		.profile {
+			display: flex;
+			flex-direction: row-reverse;
+			flex-wrap: wrap;
+			justify-content: center;
+			align-items: center;
+
+			.profile-img {
+			}
+
+			.profile-content {
+				.title {
+					font-size: 4.8rem;
+					font-weight: bold;
+					letter-spacing: 0.2rem;
+					color: var(--color-t-active);
+				}
+
+				.title-en {
+					margin-top: 20px;
+					font-size: 2.4rem;
+					letter-spacing: 0.1rem;
+					color: #999999;
+				}
+
+				.stick {
+					margin: 40px auto 80px 20px;
+					width: 3px;
+					height: 40px;
+					background-color: var(--color-bg-main);
+				}
+
+				.text {
+					font-size: 1.6rem;
+					line-height: 3rem;
+					text-indent: 2rem;
+					color: #333333;
+				}
+			}
+		}
+
+		.row1 {
+			position: relative;
+			font-size: 3rem;
+			letter-spacing: 0.2rem;
+			font-weight: bold;
+			text-align: center;
+
+			.row1_l {
+				color: #666666;
+			}
+
+			.row1_r {
+				color: var(--color-t-active);
+			}
+
+			.row1_split {
+				width: 30%;
+				max-width: 520px;
+				min-width: 300px;
+				position: absolute;
+				top: 50%;
+				left: 50%;
+				transform: translateX(-50%);
+			}
+		}
+
+		.row2 {
+			margin-top: 15px;
+			font-size: 1.6rem;
+			text-align: center;
+			color: #333333;
+		}
+
+		.projects {
+			display: flex;
+			flex-wrap: wrap;
+			justify-content: center;
+			align-items: center;
+
+			.project {
 				display: flex;
-				flex-direction: row-reverse;
-				flex-wrap: wrap;
-				justify-content: center;
-				align-items: center;
 
-				.profile-img {}
+				.project-content {
+					white-space: pre;
+					display: flex;
+					flex-direction: column;
 
-				.profile-content {
 					.title {
-						font-size: 4.8rem;
-						font-weight: bold;
-						letter-spacing: 0.2rem;
-						color: var(--color-t-active);
-					}
-
-					.title-en {
-						margin-top: 20px;
 						font-size: 2.4rem;
-						letter-spacing: 0.1rem;
-						color: #999999;
-					}
-
-					.stick {
-						margin: 40px auto 80px 20px;
-						width: 3px;
-						height: 40px;
-						background-color: var(--color-bg-main);
+						font-weight: bold;
+						color: #333333;
 					}
 
 					.text {
 						font-size: 1.6rem;
-						line-height: 3rem;
-						text-indent: 2rem;
+						color: #999999;
+					}
+
+					.arror {
+						.arror-img {
+							width: 38px;
+							height: 38px;
+						}
+					}
+				}
+			}
+		}
+
+		.modes {
+			.mode {
+				display: flex;
+				&:last-child {
+					.text {
+						border-bottom: none;
+					}
+				}
+				.circle {
+					flex-shrink: 0;
+					margin: 20px 0;
+					margin-right: 15px;
+					width: 12px;
+					height: 12px;
+					border-radius: 100%;
+					background-color: var(--color-bg-main);
+				}
+				.text {
+					flex-grow: 1;
+					padding: 10px 0;
+					border-bottom: 1px solid #eeeeee;
+					font-size: 1.6rem;
+					line-height: 3rem;
+					color: #666666;
+				}
+			}
+		}
+		.mode-img {
+			display: block;
+		}
+		.sales {
+			display: flex;
+			flex-wrap: wrap;
+			justify-content: space-around;
+			.sale {
+				box-shadow: 0 0 10px 0 #999999;
+				.my-img {
+					display: block;
+				}
+				.content {
+					padding: 30px;
+					.en {
+						font-size: 1.8rem;
+						font-weight: bold;
+						color: var(--color-t-active);
+					}
+					.title {
+						margin-top: 5px;
+						font-size: 2.8rem;
+						line-height: 3.5rem;
+						color: #cccccc;
+					}
+					.text {
+						margin-top: 20px;
+						font-size: 1.8rem;
+						line-height: 2.5rem;
 						color: #333333;
+					}
+					.text-en {
+						margin-top: 5px;
+						font-size: 1.4rem;
+						color: #333333;
+					}
+				}
+			}
+		}
+	}
+
+	.content2 {
+	}
+
+	.content3 {
+	}
+
+	.content4 {
+	}
+}
+
+@media screen and (max-width: 1080px) {
+	.comein {
+		.content1 {
+			.profile {
+				padding: 30px 0;
+
+				.profile-img {
+					margin-top: 20px;
+					flex-basis: 100%;
+				}
+
+				.profile-content {
+					padding: 10px;
+					flex-basis: 100%;
+
+					.title {
+						text-align: center;
+					}
+
+					.title-en {
+						text-align: center;
 					}
 				}
 			}
 
 			.row1 {
-				position: relative;
-				font-size: 3rem;
-				letter-spacing: 0.2rem;
-				font-weight: bold;
-				text-align: center;
-
-				.row1_l {
-					color: #666666;
-				}
-
-				.row1_r {
-					color: var(--color-t-active);
-				}
-
-				.row1_split {
-					width: 30%;
-					max-width: 520px;
-					min-width: 300px;
-					position: absolute;
-					top: 50%;
-					left: 50%;
-					transform: translateX(-50%);
-				}
-			}
-
-			.row2 {
-				margin-top: 15px;
-				font-size: 1.6rem;
-				text-align: center;
-				color: #333333;
+				margin-top: 50px;
 			}
 
 			.projects {
-				display: flex;
-				flex-wrap: wrap;
-				justify-content: center;
-				align-items: center;
+				margin-top: 30px;
 
 				.project {
-					display: flex;
+					margin-bottom: 30px;
+					flex-wrap: wrap;
+
+					.project-img {
+						flex-basis: 100%;
+					}
 
 					.project-content {
-						white-space: pre;
-						display: flex;
-						flex-direction: column;
+						flex-basis: 100%;
+						text-align: center;
 
 						.title {
-							font-size: 2.4rem;
-							font-weight: bold;
-							color: #333333;
+							margin-top: 30px;
 						}
 
 						.text {
-							font-size: 1.6rem;
-							color: #999999;
+							margin-top: 15px;
 						}
 
 						.arror {
-							.arror-img {
-								width: 38px;
-								height: 38px;
-							}
+							margin-top: 15px;
 						}
 					}
 				}
 			}
+			.modes {
+				margin-top: 30px;
+				padding: 0 10px;
+			}
+			.mode-img {
+				margin-top: 30px;
+			}
+			.sales {
+				margin: 30px 20px;
+				.sale {
+					margin-bottom: 30px;
+					flex-basis: 100%;
+				}
+			}
 		}
 
-		.content2 {}
+		.content2 {
+		}
 
-		.content3 {}
+		.content3 {
+		}
 
-		.content4 {}
+		.content4 {
+		}
 	}
+}
 
-	@media screen and (max-width: 1080px) {
-		.comein {
-			.content1 {
-				.profile {
-					padding: 30px 0;
+@media screen and (min-width: 1080px) {
+	.comein {
+		.content1 {
+			margin: 20px auto 100px;
+			width: 70%;
+			min-width: 1000px;
 
-					.profile-img {
-						margin-top: 20px;
-						flex-basis: 100%;
+			.profile {
+				.profile-img {
+					margin: 0 2.5%;
+					flex-basis: 45%;
+				}
+
+				.profile-content {
+					margin: 0 2.5%;
+					flex-basis: 45%;
+				}
+			}
+
+			.row1 {
+				margin-top: 150px;
+			}
+
+			.projects {
+				margin-top: 60px;
+
+				.project {
+					margin-bottom: 40px;
+					margin-left: 15px;
+					margin-right: 0;
+					flex: 45%;
+
+					&.reverse {
+						flex-direction: row-reverse;
+						margin-left: 0;
+						margin-right: 15px;
+
+						.project-img {
+							margin-left: 20px;
+							margin-right: 0;
+						}
+
+						.project-content {
+							text-align: right;
+						}
 					}
 
-					.profile-content {
-						padding: 10px;
-						flex-basis: 100%;
+					.project-img {
+						flex-basis: 40%;
+						flex-shrink: 0;
+						margin-left: 0;
+						margin-right: 20px;
+					}
 
+					.project-content {
 						.title {
-							text-align: center;
+							margin-top: 30px;
 						}
 
-						.title-en {
-							text-align: center;
-						}
-					}
-				}
-
-				.projects {
-					margin-top: 30px;
-
-					.project {
-						margin-bottom: 30px;
-						flex-wrap: wrap;
-
-						.project-img {
-							flex-basis: 100%;
+						.text {
+							margin-top: 15px;
 						}
 
-						.project-content {
-							flex-basis: 100%;
-							text-align: center;
-
-							.title {
-								margin-top: 30px;
-							}
-
-							.text {
-								margin-top: 15px;
-							}
-
-							.arror {
-								margin-top: 15px;
-							}
+						.arror {
+							margin-top: auto;
 						}
 					}
 				}
 			}
-
-			.content2 {}
-
-			.content3 {}
-
-			.content4 {}
-		}
-	}
-
-	@media screen and (min-width: 1080px) {
-		.comein {
-			.content1 {
-				margin: 20px auto 60px;
-				width: 70%;
-				min-width: 1000px;
-
-				.profile {
-					.profile-img {
-						margin: 0 2.5%;
-						flex-basis: 45%;
-					}
-
-					.profile-content {
-						margin: 0 2.5%;
-						flex-basis: 45%;
-					}
-				}
-
-				.row1 {
-					margin-top: 150px;
-				}
-
-				.projects {
-					margin-top: 60px;
-
-					.project {
-						margin-bottom: 40px;
-						margin-left: 15px;
-						margin-right: 0;
-						flex: 45%;
-
-						&.reverse {
-							flex-direction: row-reverse;
-							margin-left: 0;
-							margin-right: 15px;
-
-							.project-img {
-								margin-left: 20px;
-								margin-right: 0;
-							}
-
-							.project-content {
-								text-align: right;
-							}
-						}
-
-						.project-img {
-							flex-basis: 40%;
-							flex-shrink: 0;
-							margin-left: 0;
-							margin-right: 20px;
-						}
-
-						.project-content {
-							.title {
-								margin-top: 30px;
-							}
-
-							.text {
-								margin-top: 15px;
-							}
-
-							.arror {
-								margin-top: auto;
-							}
-						}
-					}
+			.modes {
+				margin-top: 60px;
+			}
+			.mode-img {
+				margin-top: 60px;
+			}
+			.sales {
+				margin-top: 60px;
+				.sale {
+					flex-basis: 28%;
 				}
 			}
+		}
 
-			.content2 {}
+		.content2 {
+		}
 
-			.content3 {}
+		.content3 {
+		}
 
-			.content4 {}
+		.content4 {
 		}
 	}
+}
 </style>
