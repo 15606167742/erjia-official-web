@@ -68,10 +68,154 @@
 				</div>
 			</div>
 		</div>
-		<div class="content2" v-else-if="activeTab === 2"></div>
-		<div class="content3" v-else-if="activeTab === 3"></div>
-		<div class="content4" v-else-if="activeTab === 4"></div>
-		<div class="content5" v-else-if="activeTab === 5"></div>
+		<div class="content2" v-else-if="activeTab === 2">
+			<div class="ad">
+				<el-image class="ad-img" :src="require('@/assets/img/comein/ad.png')" fit="contain"></el-image>
+				<el-image class="ad-play" :src="require('@/assets/img/comein/play1.png')" fit="contain"></el-image>
+			</div>
+			<div class="content">
+				<div class="row1">
+					<span class="row1_l">项目</span>
+					<span class="row1_r">视频</span>
+					<el-image class="row1_split" :src="require('@/assets/img/comein/line.png')" fit="contain"></el-image>
+				</div>
+				<div class="row2">Project video</div>
+				<div class="videos">
+					<div class="video" :key="vp.id" v-for="vp in videoProjectList">
+						<div class="box">
+							<el-image class="img" :src="vp.img" fit="contain"></el-image>
+							<el-image class="play" :src="require('@/assets/img/comein/play2.png')" fit="contain"></el-image>
+						</div>
+						<div class="title">
+							{{vp.title}}
+						</div>
+					</div>
+				</div>
+				<div class="row1">
+					<span class="row1_l">社群活动</span>
+					<span class="row1_r">视频</span>
+					<el-image class="row1_split" :src="require('@/assets/img/comein/line.png')" fit="contain"></el-image>
+				</div>
+				<div class="row2">Community activism video</div>
+				<div class="videos">
+					<div class="video" :key="va.id" v-for="va in videoActivityList">
+						<div class="box">
+							<el-image class="img" :src="va.img" fit="contain"></el-image>
+							<el-image class="play" :src="require('@/assets/img/comein/play2.png')" fit="contain"></el-image>
+						</div>
+						<div class="title">
+							{{va.title}}
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="content3" v-else-if="activeTab === 3">
+			<div class="row1">
+				<span class="row1_l">综合</span>
+				<span class="row1_r">管理</span>
+				<el-image class="row1_split" :src="require('@/assets/img/comein/line.png')" fit="contain"></el-image>
+			</div>
+			<div class="row2">Integrated management</div>
+			<div class="managements">
+				<div class="management" :key="integration.id" v-for="integration in integrationList">
+					<el-image class="img" :src="integration.img" fit="contain"></el-image>
+					<div class="name">
+						{{integration.name}}
+					</div>
+					<div class="job">
+						{{integration.job}}
+					</div>
+				</div>
+			</div>
+			<div class="row1">
+				<span class="row1_l">营销</span>
+				<span class="row1_r">中心</span>
+				<el-image class="row1_split" :src="require('@/assets/img/comein/line.png')" fit="contain"></el-image>
+			</div>
+			<div class="row2">marketing management</div>
+			<div class="managements">
+				<div class="management" :key="market.id" v-for="market in marketList">
+					<el-image class="img" :src="market.img" fit="contain"></el-image>
+					<div class="name">
+						{{market.name}}
+					</div>
+					<div class="job">
+						{{market.job}}
+					</div>
+				</div>
+			</div>
+			<div class="row1">
+				<span class="row1_l">商务</span>
+				<span class="row1_r">中心</span>
+				<el-image class="row1_split" :src="require('@/assets/img/comein/line.png')" fit="contain"></el-image>
+			</div>
+			<div class="row2">Business management</div>
+			<div class="managements">
+				<div class="management" :key="business.id" v-for="business in businessList">
+					<el-image class="img" :src="business.img" fit="contain"></el-image>
+					<div class="name">
+						{{business.name}}
+					</div>
+					<div class="job">
+						{{business.job}}
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="content4" v-else-if="activeTab === 4">
+			<div class="row1">
+				<span class="row1_l">EPCO</span>
+				<el-image class="row1_split" :src="require('@/assets/img/comein/line.png')" fit="contain"></el-image>
+			</div>
+			<div class="text">
+				将EPC(工程总承包)和om（委托运营）完成组合，满足运营导向下的全生命周期管理的需要，最大限度提升政府就去改造和城市更新项目投资效率的需要。
+			</div>
+			<div class="model">
+				<el-image class="model1" :src="require('@/assets/img/comein/model1.png')" fit="contain"></el-image>
+			</div>
+			<div class="row1">
+				<span class="row1_l">BFSO</span>
+				<el-image class="row1_split" :src="require('@/assets/img/comein/line.png')" fit="contain"></el-image>
+			</div>
+			<div class="text">
+				以全球业界标杆美国铁狮门的运营模式为框架，结合国内行业特点，深耕商业地产运营领域，研发出独特具尔家特色的BFSO活化运营模式，实现商业资本变现和持续增值。
+			</div>
+			<div class="model">
+				<el-image class="model2" :src="require('@/assets/img/comein/model2.png')" fit="contain"></el-image>
+			</div>
+		</div>
+		<div class="content5" v-else-if="activeTab === 5">
+			<div class="content">
+				<div class="dot up"></div>
+				<div class="dot down"></div>
+				<div class="box">
+					<div class="tip">
+						2009年<br />08月
+					</div>
+					<div class="title">
+						德实资本成立
+					</div>
+				</div>
+				<div class="box">
+					<div class="tip">
+						2016年<br />07月
+					</div>
+					<div class="title">
+						尔家酒店
+					</div>
+					<div class="text">
+						依托常州恐龙园，首创亲子主题酒店产品，入住率常年保持在80%以上。
+					</div>
+					<div class="title">
+						尔家公寓常州世茂项目
+					</div>
+					<div class="text">
+						全装修SOHO产品，出租率98%以上，租金高出周边价格30%左右。
+					</div>
+				</div>
+			</div>
+		</div>
 		<Footer></Footer>
 	</div>
 </template>
@@ -228,7 +372,131 @@ export default {
 					adj_en: 'Sweet & comfortable',
 					text: '小户型没有复式是惯例，尔家镇江宝龙复式设计是例外。'
 				}
-			]
+			],
+			videoProjectList: [
+				{
+					id: 1,
+					img: require('@/assets/img/comein/videoProject1.png'),
+					title: '无锡绿地观澜湾项目'
+				},
+				{
+					id: 2,
+					img: require('@/assets/img/comein/videoProject2.png'),
+					title: '无锡绿地观澜湾项目'
+				},
+				{
+					id: 3,
+					img: require('@/assets/img/comein/videoProject3.png'),
+					title: '无锡绿地观澜湾项目'
+				},
+				{
+					id: 4,
+					img: require('@/assets/img/comein/videoProject4.png'),
+					title: '无锡绿地观澜湾项目'
+				},
+				{
+					id: 5,
+					img: require('@/assets/img/comein/videoProject5.png'),
+					title: '无锡绿地观澜湾项目'
+				},
+				{
+					id: 6,
+					img: require('@/assets/img/comein/videoProject6.png'),
+					title: '无锡绿地观澜湾项目'
+				}
+			],
+			videoActivityList: [
+				{
+					id: 1,
+					img: require('@/assets/img/comein/videoActivity1.png'),
+					title: '燃爆盛夏 嗨翻全场｜尔家第三届百人龙虾节激情落幕！'
+				},
+				{
+					id: 2,
+					img: require('@/assets/img/comein/videoActivity2.png'),
+					title: '尔家龙虾节｜一年一度的龙虾节终于来了！'
+				},
+				{
+					id: 3,
+					img: require('@/assets/img/comein/videoActivity3.png'),
+					title: '父亲节｜晒照片赢888元现金红包！'
+				},
+				{
+					id: 4,
+					img: require('@/assets/img/comein/videoActivity4.png'),
+					title: '520交友派对｜解锁“新一代年轻人的交友”新方式！'
+				},
+				{
+					id: 5,
+					img: require('@/assets/img/comein/videoActivity5.png'),
+					title: '奇妙 · 扎染 手底生出来的花朵！'
+				},
+				{
+					id: 6,
+					img: require('@/assets/img/comein/videoActivity6.png'),
+					title: '爱心公益U时代，有你有我更精彩。'
+				}
+			],
+			integrationList: [
+				{
+					id: 1,
+					img: require('@/assets/img/comein/integration1.png'),
+					name: '张二干',
+					job: '集团执行董事'
+				},
+				{
+					id: 2,
+					img: require('@/assets/img/comein/integration2.png'),
+					name: '曹文银',
+					job: '财务管理部总监'
+				},
+				{
+					id: 3,
+					img: require('@/assets/img/comein/integration3.png'),
+					name: '杨磊',
+					job: '首席产品官'
+				},
+				{
+					id: 4,
+					img: require('@/assets/img/comein/integration4.png'),
+					name: '王秋菊',
+					job: '项目营销总监'
+				}
+			],
+			marketList: [
+				{
+					id: 1,
+					img: require('@/assets/img/comein/market1.png'),
+					name: '谈潭',
+					job: '成都城市公司总经理'
+				},
+				{
+					id: 2,
+					img: require('@/assets/img/comein/market2.png'),
+					name: '吕姚朔',
+					job: '人事行政部经理'
+				},
+				{
+					id: 3,
+					img: require('@/assets/img/comein/market3.png'),
+					name: '刘晓',
+					job: '产品工程总监'
+				}
+			],
+			businessList: [
+				{
+					id: 1,
+					img: require('@/assets/img/comein/business1.png'),
+					name: '刘璐铭',
+					job: '商管中心总经理'
+				},
+				{
+					id: 2,
+					img: require('@/assets/img/comein/business2.png'),
+					name: '张原浩',
+					job: '商管开发部经理'
+				}
+			],
 		};
 	},
 	mounted() {
@@ -308,39 +576,6 @@ export default {
 					color: #333333;
 				}
 			}
-		}
-
-		.row1 {
-			position: relative;
-			font-size: 3rem;
-			letter-spacing: 0.2rem;
-			font-weight: bold;
-			text-align: center;
-
-			.row1_l {
-				color: #666666;
-			}
-
-			.row1_r {
-				color: var(--color-t-active);
-			}
-
-			.row1_split {
-				width: 30%;
-				max-width: 520px;
-				min-width: 300px;
-				position: absolute;
-				top: 50%;
-				left: 50%;
-				transform: translateX(-50%);
-			}
-		}
-
-		.row2 {
-			margin-top: 15px;
-			font-size: 1.6rem;
-			text-align: center;
-			color: #333333;
 		}
 
 		.projects {
@@ -447,12 +682,156 @@ export default {
 	}
 
 	.content2 {
+		.ad{
+			position: relative;
+			.ad-img{
+				display: block;
+			}
+			.ad-play{
+				position: absolute;
+				top: 50%;
+				left: 50%;
+				transform: translate(-50%, -50%);
+				width: 5%;
+				min-width: 40px;
+				cursor: pointer;
+			}
+		}
+		
+		.videos{
+			display: flex;
+			flex-wrap: wrap;
+			justify-content: space-around;
+			.video{
+				.box{
+					position: relative;
+					.img{
+						display: block;
+					}
+					.play{
+						position: absolute;
+						top: 50%;
+						left: 50%;
+						transform: translate(-50%, -50%);
+						width: 15%;
+						min-width: 30px;
+						cursor: pointer;
+					}
+				}
+				.title{
+					margin-top: 25px;
+					padding: 0 10px;
+					font-size: 1.6rem;
+					line-height: 2.5rem;
+					color: #333333;
+				}
+			}
+		}
 	}
 
 	.content3 {
+		.managements{
+			display: flex;
+			flex-wrap: wrap;
+			justify-content: center;
+			.management{
+				padding: 15px;
+				box-shadow: 0 0 10px 0 #999999;
+				border-radius: 10px;
+				text-align: center;
+				.img{
+					display: block;
+				}
+				.name{
+					margin-top: 25px;
+					font-size: 2.4rem;
+					letter-spacing: 0.1rem;
+					color: var(--color-t-active);
+				}
+				.job{
+					margin: 15px 0;
+					font-size: 1.6rem;
+					color: #333333;
+				}
+			}
+		}
 	}
 
 	.content4 {
+		.text{
+			margin: 0 auto;
+			font-size: 2rem;
+			line-height: 3.5rem;
+			text-align: center;
+		}
+		.model{
+			text-align: center;
+		}
+	}
+	
+	.content5 {
+		.content{
+			position: relative;
+			border-left: 1px solid #EEEEEE;
+			.dot{
+				position: absolute;
+				left: 0;
+				width: 12px;
+				height: 12px;
+				border-radius: 50%;
+				background-color: #EEEEEE;
+			}
+			.box{
+				position: relative;
+				.tip{
+					position: absolute;
+				}
+				.title{
+					font-size: 2.4rem;
+					font-weight: bold;
+					letter-spacing: 0.1rem;
+					color: var(--color-t-active);
+				}
+				.text{
+					margin: 10px 0 20px;
+					font-size: 1.8rem;
+					color: #666666;
+				}
+			}
+		}
+	}
+	
+	.row1 {
+		position: relative;
+		font-size: 3rem;
+		letter-spacing: 0.2rem;
+		font-weight: bold;
+		text-align: center;
+	
+		.row1_l {
+			color: #666666;
+		}
+	
+		.row1_r {
+			color: var(--color-t-active);
+		}
+	
+		.row1_split {
+			width: 30%;
+			max-width: 520px;
+			min-width: 300px;
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			transform: translateX(-50%);
+		}
+	}
+	
+	.row2 {
+		margin-top: 15px;
+		font-size: 1.6rem;
+		text-align: center;
+		color: #333333;
 	}
 }
 
@@ -479,10 +858,6 @@ export default {
 						text-align: center;
 					}
 				}
-			}
-
-			.row1 {
-				margin-top: 50px;
 			}
 
 			.projects {
@@ -531,12 +906,45 @@ export default {
 		}
 
 		.content2 {
+			.videos{
+				margin-top: 30px;
+				.video{
+					flex-basis: 100%;
+					margin-bottom: 20px;
+				}
+			}
 		}
 
 		.content3 {
+			margin: 0 20px;
+			.managements{
+				margin-top: 30px;
+				.management{
+					margin-bottom: 30px;
+					flex-basis: 100%;
+				}
+			}
 		}
 
 		.content4 {
+			margin: 0 20px 60px;
+			.text{
+				margin-top: 40px;
+				width: 100%;
+			}
+			.model{
+				margin-top: 40px;
+				.model1{
+					width: 100%;
+				}
+				.model2{
+					width: 100%;
+				}
+			}
+		}
+		
+		.row1 {
+			margin-top: 50px;
 		}
 	}
 }
@@ -558,10 +966,6 @@ export default {
 					margin: 0 2.5%;
 					flex-basis: 45%;
 				}
-			}
-
-			.row1 {
-				margin-top: 150px;
 			}
 
 			.projects {
@@ -625,12 +1029,77 @@ export default {
 		}
 
 		.content2 {
+			.ad{
+				margin-top: 100px;
+			}
+			.content{
+				margin: 0 auto 100px;
+				width: 70%;
+				min-width: 1000px;
+				.videos{
+					margin-top: 80px;
+					.video{
+						flex-basis: 30%;
+						margin-bottom: 60px;
+					}
+				}
+			}
 		}
 
 		.content3 {
+			margin: 20px auto 100px;
+			width: 70%;
+			min-width: 1000px;
+			.managements{
+				margin-top: 60px;
+				.management{
+					margin: 0 2%;
+					flex-basis: 18%;
+				}
+			}
 		}
 
 		.content4 {
+			margin: 20px auto 100px;
+			width: 70%;
+			min-width: 1000px;
+			.text{
+				margin-top: 100px;
+				width: 80%;
+			}
+			.model{
+				margin-top: 100px;
+				.model1{
+					width: 60%;
+				}
+				.model2{
+					width: 100%;
+				}
+			}
+		}
+		
+		.content5{
+			margin: 20px auto 100px;
+			width: 60%;
+			min-width: 900px;
+			.content{
+				margin-left: 100px;
+				padding: 100px 150px;
+				.dot{
+					&.up{
+						top: 0;
+						transform: translate(-50%, -50%);
+					}
+					&.down{
+						bottom: 0;
+						transform: translate(-50%, 50%);
+					}
+				}
+			}
+		}
+		
+		.row1 {
+			margin-top: 150px;
 		}
 	}
 }
