@@ -86,9 +86,7 @@
 							<el-image class="img" :src="vp.img" fit="contain"></el-image>
 							<el-image class="play" :src="require('@/assets/img/comein/play2.png')" fit="contain"></el-image>
 						</div>
-						<div class="title">
-							{{vp.title}}
-						</div>
+						<div class="title">{{ vp.title }}</div>
 					</div>
 				</div>
 				<div class="row1">
@@ -103,9 +101,7 @@
 							<el-image class="img" :src="va.img" fit="contain"></el-image>
 							<el-image class="play" :src="require('@/assets/img/comein/play2.png')" fit="contain"></el-image>
 						</div>
-						<div class="title">
-							{{va.title}}
-						</div>
+						<div class="title">{{ va.title }}</div>
 					</div>
 				</div>
 			</div>
@@ -120,12 +116,8 @@
 			<div class="managements">
 				<div class="management" :key="integration.id" v-for="integration in integrationList">
 					<el-image class="img" :src="integration.img" fit="contain"></el-image>
-					<div class="name">
-						{{integration.name}}
-					</div>
-					<div class="job">
-						{{integration.job}}
-					</div>
+					<div class="name">{{ integration.name }}</div>
+					<div class="job">{{ integration.job }}</div>
 				</div>
 			</div>
 			<div class="row1">
@@ -137,12 +129,8 @@
 			<div class="managements">
 				<div class="management" :key="market.id" v-for="market in marketList">
 					<el-image class="img" :src="market.img" fit="contain"></el-image>
-					<div class="name">
-						{{market.name}}
-					</div>
-					<div class="job">
-						{{market.job}}
-					</div>
+					<div class="name">{{ market.name }}</div>
+					<div class="job">{{ market.job }}</div>
 				</div>
 			</div>
 			<div class="row1">
@@ -154,12 +142,8 @@
 			<div class="managements">
 				<div class="management" :key="business.id" v-for="business in businessList">
 					<el-image class="img" :src="business.img" fit="contain"></el-image>
-					<div class="name">
-						{{business.name}}
-					</div>
-					<div class="job">
-						{{business.job}}
-					</div>
+					<div class="name">{{ business.name }}</div>
+					<div class="job">{{ business.job }}</div>
 				</div>
 			</div>
 		</div>
@@ -168,22 +152,14 @@
 				<span class="row1_l">EPCO</span>
 				<el-image class="row1_split" :src="require('@/assets/img/comein/line.png')" fit="contain"></el-image>
 			</div>
-			<div class="text">
-				将EPC(工程总承包)和om（委托运营）完成组合，满足运营导向下的全生命周期管理的需要，最大限度提升政府就去改造和城市更新项目投资效率的需要。
-			</div>
-			<div class="model">
-				<el-image class="model1" :src="require('@/assets/img/comein/model1.png')" fit="contain"></el-image>
-			</div>
+			<div class="text">将EPC(工程总承包)和om（委托运营）完成组合，满足运营导向下的全生命周期管理的需要，最大限度提升政府就去改造和城市更新项目投资效率的需要。</div>
+			<div class="model"><el-image class="model1" :src="require('@/assets/img/comein/model1.png')" fit="contain"></el-image></div>
 			<div class="row1">
 				<span class="row1_l">BFSO</span>
 				<el-image class="row1_split" :src="require('@/assets/img/comein/line.png')" fit="contain"></el-image>
 			</div>
-			<div class="text">
-				以全球业界标杆美国铁狮门的运营模式为框架，结合国内行业特点，深耕商业地产运营领域，研发出独特具尔家特色的BFSO活化运营模式，实现商业资本变现和持续增值。
-			</div>
-			<div class="model">
-				<el-image class="model2" :src="require('@/assets/img/comein/model2.png')" fit="contain"></el-image>
-			</div>
+			<div class="text">以全球业界标杆美国铁狮门的运营模式为框架，结合国内行业特点，深耕商业地产运营领域，研发出独特具尔家特色的BFSO活化运营模式，实现商业资本变现和持续增值。</div>
+			<div class="model"><el-image class="model2" :src="require('@/assets/img/comein/model2.png')" fit="contain"></el-image></div>
 		</div>
 		<div class="content5" v-else-if="activeTab === 5">
 			<div class="content">
@@ -191,27 +167,79 @@
 				<div class="dot down"></div>
 				<div class="box">
 					<div class="tip">
-						2009年<br />08月
+						2009年
+						<br />
+						08月
 					</div>
-					<div class="title">
-						德实资本成立
+					<div class="title">德实资本成立</div>
+				</div>
+				<div class="box">
+					<div class="tip">
+						2016年
+						<br />
+						07月
+					</div>
+					<div class="title">尔家酒店</div>
+					<div class="text">依托常州恐龙园，首创亲子主题酒店产品，入住率常年保持在80%以上。</div>
+					<div class="title">尔家公寓常州世茂项目</div>
+					<div class="text">全装修SOHO产品，出租率98%以上，租金高出周边价格30%左右。</div>
+				</div>
+				<div class="box">
+					<div class="tip">
+						2017年
+						<br />
+						08月
+					</div>
+					<div class="title">上海尔家商业管理有限公司正式成立</div>
+					<div class="text">
+						2017年12月，尔家公寓无锡金科项目
+						<br />
+						华东区单体量最大的公寓项目，出租率98%以上，租金高出周边价格20%左右。
 					</div>
 				</div>
 				<div class="box">
 					<div class="tip">
-						2016年<br />07月
+						2018年
+						<br />
+						11月
 					</div>
-					<div class="title">
-						尔家酒店
+					<div class="title">尔家公寓镇江宝龙项目</div>
+					<div class="text">SOHO/LOFT/双钥匙多元化产品类型，颠覆镇江公寓市场价格，出租率99%以上。</div>
+				</div>
+				<div class="box">
+					<div class="tip">
+						2019年
+						<br />
+						03月
 					</div>
+					<div class="title">尔家雅寓无锡绿地观澜湾项目</div>
 					<div class="text">
-						依托常州恐龙园，首创亲子主题酒店产品，入住率常年保持在80%以上。
+						雅寓产品系开篇之作，品质全面升级，长短租运营相结合，无锡公寓市场抗鼎之作。
+						<br />
+						2019年07月
 					</div>
-					<div class="title">
-						尔家公寓常州世茂项目
-					</div>
+					<div class="title">尔家雅寓成都绿地GIC项目</div>
 					<div class="text">
-						全装修SOHO产品，出租率98%以上，租金高出周边价格30%左右。
+						从长三角走向中西部核心城市的战略部署，项目总货值30亿，引领成都公寓市场潮流。
+						<br />
+						2019年08月与国际知名服务式公寓品牌雅诗阁达成战略合作。
+					</div>
+				</div>
+				<div class="box">
+					<div class="tip">
+						2020年
+						<br />
+						07月
+					</div>
+					<div class="title">尔家雅寓无锡绿地天空树项目</div>
+					<div class="text">
+						上海尔家和绿地香港强强联合，以业内首创的全新商业模式，开辟公寓产品发展新方向！
+						<br />
+						2020年08月，作为无锡市梁溪区重大招商项目签约
+						<br />
+						2020年08月，与万科成都公司达成战略合作
+						<br />
+						2020年09月，尔家雅寓成都万科云城项目
 					</div>
 				</div>
 			</div>
@@ -496,7 +524,7 @@ export default {
 					name: '张原浩',
 					job: '商管开发部经理'
 				}
-			],
+			]
 		};
 	},
 	mounted() {
@@ -682,12 +710,12 @@ export default {
 	}
 
 	.content2 {
-		.ad{
+		.ad {
 			position: relative;
-			.ad-img{
+			.ad-img {
 				display: block;
 			}
-			.ad-play{
+			.ad-play {
 				position: absolute;
 				top: 50%;
 				left: 50%;
@@ -697,18 +725,18 @@ export default {
 				cursor: pointer;
 			}
 		}
-		
-		.videos{
+
+		.videos {
 			display: flex;
 			flex-wrap: wrap;
 			justify-content: space-around;
-			.video{
-				.box{
+			.video {
+				.box {
 					position: relative;
-					.img{
+					.img {
 						display: block;
 					}
-					.play{
+					.play {
 						position: absolute;
 						top: 50%;
 						left: 50%;
@@ -718,7 +746,7 @@ export default {
 						cursor: pointer;
 					}
 				}
-				.title{
+				.title {
 					margin-top: 25px;
 					padding: 0 10px;
 					font-size: 1.6rem;
@@ -730,25 +758,25 @@ export default {
 	}
 
 	.content3 {
-		.managements{
+		.managements {
 			display: flex;
 			flex-wrap: wrap;
 			justify-content: center;
-			.management{
+			.management {
 				padding: 15px;
 				box-shadow: 0 0 10px 0 #999999;
 				border-radius: 10px;
 				text-align: center;
-				.img{
+				.img {
 					display: block;
 				}
-				.name{
+				.name {
 					margin-top: 25px;
 					font-size: 2.4rem;
 					letter-spacing: 0.1rem;
 					color: var(--color-t-active);
 				}
-				.job{
+				.job {
 					margin: 15px 0;
 					font-size: 1.6rem;
 					color: #333333;
@@ -758,64 +786,87 @@ export default {
 	}
 
 	.content4 {
-		.text{
+		.text {
 			margin: 0 auto;
 			font-size: 2rem;
 			line-height: 3.5rem;
 			text-align: center;
 		}
-		.model{
+		.model {
 			text-align: center;
 		}
 	}
-	
+
 	.content5 {
-		.content{
+		.content {
 			position: relative;
-			border-left: 1px solid #EEEEEE;
-			.dot{
+			border-left: 1px solid #eeeeee;
+			.dot {
 				position: absolute;
 				left: 0;
 				width: 12px;
 				height: 12px;
 				border-radius: 50%;
-				background-color: #EEEEEE;
-			}
-			.box{
-				position: relative;
-				.tip{
-					position: absolute;
+				background-color: #eeeeee;
+				&.up {
+					top: 0;
+					transform: translate(-50%, -50%);
 				}
-				.title{
+				&.down {
+					bottom: 0;
+					transform: translate(-50%, 50%);
+				}
+			}
+			.box {
+				position: relative;
+				.tip {
+					position: absolute;
+					transform: translateX(-50%);
+					width: 100px;
+					height: 100px;
+					font-size: 1.8rem;
+					line-height: 2.5rem;
+					text-align: center;
+					color: var(--color-t-white);
+					background-image: url(../assets/img/comein/circle.png);
+					background-size: contain;
+					background-repeat: no-repeat;
+					background-position: center;
+					display: flex;
+					justify-content: center;
+					align-items: center;
+				}
+				.title {
 					font-size: 2.4rem;
 					font-weight: bold;
 					letter-spacing: 0.1rem;
 					color: var(--color-t-active);
 				}
-				.text{
+				.text {
 					margin: 10px 0 20px;
 					font-size: 1.8rem;
+					line-height: 3rem;
 					color: #666666;
 				}
 			}
 		}
 	}
-	
+
 	.row1 {
 		position: relative;
 		font-size: 3rem;
 		letter-spacing: 0.2rem;
 		font-weight: bold;
 		text-align: center;
-	
+
 		.row1_l {
 			color: #666666;
 		}
-	
+
 		.row1_r {
 			color: var(--color-t-active);
 		}
-	
+
 		.row1_split {
 			width: 30%;
 			max-width: 520px;
@@ -826,7 +877,7 @@ export default {
 			transform: translateX(-50%);
 		}
 	}
-	
+
 	.row2 {
 		margin-top: 15px;
 		font-size: 1.6rem;
@@ -906,9 +957,9 @@ export default {
 		}
 
 		.content2 {
-			.videos{
+			.videos {
 				margin-top: 30px;
-				.video{
+				.video {
 					flex-basis: 100%;
 					margin-bottom: 20px;
 				}
@@ -917,9 +968,9 @@ export default {
 
 		.content3 {
 			margin: 0 20px;
-			.managements{
+			.managements {
 				margin-top: 30px;
-				.management{
+				.management {
 					margin-bottom: 30px;
 					flex-basis: 100%;
 				}
@@ -928,21 +979,39 @@ export default {
 
 		.content4 {
 			margin: 0 20px 60px;
-			.text{
+			.text {
 				margin-top: 40px;
 				width: 100%;
 			}
-			.model{
+			.model {
 				margin-top: 40px;
-				.model1{
+				.model1 {
 					width: 100%;
 				}
-				.model2{
+				.model2 {
 					width: 100%;
 				}
 			}
 		}
-		
+
+		.content5 {
+			margin-bottom: 60px;
+			.content {
+				margin-left: 60px;
+				padding: 50px 20px 50px 80px;
+				.box {
+					margin-bottom: 90px;
+					&:last-child {
+						margin-bottom: 0;
+					}
+					.tip {
+						top: -30px;
+						left: -80px;
+					}
+				}
+			}
+		}
+
 		.row1 {
 			margin-top: 50px;
 		}
@@ -1029,16 +1098,16 @@ export default {
 		}
 
 		.content2 {
-			.ad{
+			.ad {
 				margin-top: 100px;
 			}
-			.content{
+			.content {
 				margin: 0 auto 100px;
 				width: 70%;
 				min-width: 1000px;
-				.videos{
+				.videos {
 					margin-top: 80px;
-					.video{
+					.video {
 						flex-basis: 30%;
 						margin-bottom: 60px;
 					}
@@ -1050,9 +1119,9 @@ export default {
 			margin: 20px auto 100px;
 			width: 70%;
 			min-width: 1000px;
-			.managements{
+			.managements {
 				margin-top: 60px;
-				.management{
+				.management {
 					margin: 0 2%;
 					flex-basis: 18%;
 				}
@@ -1063,41 +1132,41 @@ export default {
 			margin: 20px auto 100px;
 			width: 70%;
 			min-width: 1000px;
-			.text{
+			.text {
 				margin-top: 100px;
 				width: 80%;
 			}
-			.model{
+			.model {
 				margin-top: 100px;
-				.model1{
+				.model1 {
 					width: 60%;
 				}
-				.model2{
+				.model2 {
 					width: 100%;
 				}
 			}
 		}
-		
-		.content5{
+
+		.content5 {
 			margin: 20px auto 100px;
 			width: 60%;
 			min-width: 900px;
-			.content{
+			.content {
 				margin-left: 100px;
-				padding: 100px 150px;
-				.dot{
-					&.up{
-						top: 0;
-						transform: translate(-50%, -50%);
+				padding: 100px 50px 100px 150px;
+				.box {
+					margin-bottom: 90px;
+					&:last-child {
+						margin-bottom: 0;
 					}
-					&.down{
-						bottom: 0;
-						transform: translate(-50%, 50%);
+					.tip {
+						top: -30px;
+						left: -150px;
 					}
 				}
 			}
 		}
-		
+
 		.row1 {
 			margin-top: 150px;
 		}

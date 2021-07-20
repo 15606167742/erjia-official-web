@@ -21,7 +21,7 @@
 				<div class="label">关键字</div>
 				<el-input class="my-input" v-model="search.keyword" placeholder="请输入"></el-input>
 			</div>
-			<div class="search-cell"><div class="btn">点击搜索</div></div>
+			<div class="search-cell"><div class="btn" @click="handleSearch">点击搜索</div></div>
 		</div>
 		<el-image class="ad" :src="imgResource + '/home/advertisement1.png'" fit="contain"></el-image>
 		<div class="hot-house">
@@ -260,6 +260,14 @@ export default {
 					}
 				});
 			}
+		},
+		handleSearch() {
+			this.$router.push({
+				path: '/search',
+				query: {
+					search: this.search
+				}
+			});
 		}
 	}
 };
