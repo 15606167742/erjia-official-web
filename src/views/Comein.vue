@@ -48,7 +48,7 @@
 					<div class="text">{{ mode.text }}</div>
 				</div>
 			</div>
-			<el-image class="mode-img" :src="require('@/assets/img/comein/mode.png')" fit="contain"></el-image>
+			<el-image class="mode-img" :src="imgResource + '/comein/mode.png'" fit="contain"></el-image>
 			<div class="row1">
 				<span class="row1_l">在售</span>
 				<span class="row1_r">项目</span>
@@ -70,7 +70,7 @@
 		</div>
 		<div class="content2" v-else-if="activeTab === 2">
 			<div class="ad">
-				<el-image class="ad-img" :src="require('@/assets/img/comein/ad.png')" fit="contain"></el-image>
+				<el-image class="ad-img" :src="imgResource + '/comein/ad.png'" fit="contain"></el-image>
 				<el-image class="ad-play" :src="require('@/assets/img/comein/play1.png')" fit="contain"></el-image>
 			</div>
 			<div class="content">
@@ -315,29 +315,29 @@ export default {
 			projectList: [
 				{
 					id: 1,
-					img: require('@/assets/img/comein/project1.png'),
-					// img: WEBCONFIG.resource_url_img+'/comein/project1.png',
+					// img: require('@/assets/img/comein/project1.png'),
+					img: WEBCONFIG.resource_url_img+'/comein/project1.png',
 					title: '尔家雅寓\n无锡绿地天空树项目',
 					text: '48㎡全装托管地铁小户，超值投资\n跑赢通货膨胀'
 				},
 				{
 					id: 2,
-					img: require('@/assets/img/comein/project2.png'),
-					// img: WEBCONFIG.resource_url_img+'/comein/project2.png',
+					// img: require('@/assets/img/comein/project2.png'),
+					img: WEBCONFIG.resource_url_img+'/comein/project2.png',
 					title: '镇江宝龙项目',
 					text: '小户型没有复式的惯例，\n尔佳镇江暴龙复式设计是例外。'
 				},
 				{
 					id: 3,
-					img: require('@/assets/img/comein/project3.png'),
-					// img: WEBCONFIG.resource_url_img+'/comein/project1.png',
+					// img: require('@/assets/img/comein/project3.png'),
+					img: WEBCONFIG.resource_url_img+'/comein/project3.png',
 					title: '无锡金科米兰店',
 					text: '尔家馨寓金科米兰位于新吴区\n行创四路，区位配套完善，\n毗邻中央公园，环境优美，交通便利。'
 				},
 				{
 					id: 4,
-					img: require('@/assets/img/comein/project4.png'),
-					// img: WEBCONFIG.resource_url_img+'/comein/project1.png',
+					// img: require('@/assets/img/comein/project4.png'),
+					img: WEBCONFIG.resource_url_img+'/comein/project4.png',
 					title: '尔家雅寓绿地观澜湾店',
 					text: '尔家雅寓地处无锡核心地段，\n东拥市中心，西临古运河，\n坐拥无锡CBD。'
 				}
@@ -372,8 +372,8 @@ export default {
 			saleList: [
 				{
 					id: 1,
-					img: require('@/assets/img/comein/sale1.png'),
-					// img: WEBCONFIG.resource_url_img+'/comein/sale1.png',
+					// img: require('@/assets/img/comein/sale1.png'),
+					img: WEBCONFIG.resource_url_img+'/comein/sale1.png',
 					en: 'LOFT',
 					title: '镇江宝龙项目',
 					adj: '温馨舒适',
@@ -382,8 +382,8 @@ export default {
 				},
 				{
 					id: 2,
-					img: require('@/assets/img/comein/sale1.png'),
-					// img: WEBCONFIG.resource_url_img+'/comein/sale1.png',
+					// img: require('@/assets/img/comein/sale1.png'),
+					img: WEBCONFIG.resource_url_img+'/comein/sale1.png',
 					en: 'LOFT',
 					title: '镇江宝龙项目',
 					adj: '温馨舒适',
@@ -392,8 +392,8 @@ export default {
 				},
 				{
 					id: 3,
-					img: require('@/assets/img/comein/sale1.png'),
-					// img: WEBCONFIG.resource_url_img+'/comein/sale1.png',
+					// img: require('@/assets/img/comein/sale1.png'),
+					img: WEBCONFIG.resource_url_img+'/comein/sale1.png',
 					en: 'LOFT',
 					title: '镇江宝龙项目',
 					adj: '温馨舒适',
@@ -404,64 +404,76 @@ export default {
 			videoProjectList: [
 				{
 					id: 1,
-					img: require('@/assets/img/comein/videoProject1.png'),
+					// img: require('@/assets/img/comein/videoProject1.png'),
+					img: WEBCONFIG.resource_url_img+'/comein/videoProject1.png',
 					title: '无锡绿地观澜湾项目'
 				},
 				{
 					id: 2,
-					img: require('@/assets/img/comein/videoProject2.png'),
+					// img: require('@/assets/img/comein/videoProject2.png'),
+					img: WEBCONFIG.resource_url_img+'/comein/videoProject2.png',
 					title: '无锡绿地观澜湾项目'
 				},
 				{
 					id: 3,
-					img: require('@/assets/img/comein/videoProject3.png'),
+					// img: require('@/assets/img/comein/videoProject3.png'),
+					img: WEBCONFIG.resource_url_img+'/comein/videoProject3.png',
 					title: '无锡绿地观澜湾项目'
 				},
 				{
 					id: 4,
-					img: require('@/assets/img/comein/videoProject4.png'),
+					// img: require('@/assets/img/comein/videoProject4.png'),
+					img: WEBCONFIG.resource_url_img+'/comein/videoProject4.png',
 					title: '无锡绿地观澜湾项目'
 				},
 				{
 					id: 5,
-					img: require('@/assets/img/comein/videoProject5.png'),
+					// img: require('@/assets/img/comein/videoProject5.png'),
+					img: WEBCONFIG.resource_url_img+'/comein/videoProject5.png',
 					title: '无锡绿地观澜湾项目'
 				},
 				{
 					id: 6,
-					img: require('@/assets/img/comein/videoProject6.png'),
+					// img: require('@/assets/img/comein/videoProject6.png'),
+					img: WEBCONFIG.resource_url_img+'/comein/videoProject6.png',
 					title: '无锡绿地观澜湾项目'
 				}
 			],
 			videoActivityList: [
 				{
 					id: 1,
-					img: require('@/assets/img/comein/videoActivity1.png'),
+					// img: require('@/assets/img/comein/videoActivity1.png'),
+					img: WEBCONFIG.resource_url_img+'/comein/videoActivity1.png',
 					title: '燃爆盛夏 嗨翻全场｜尔家第三届百人龙虾节激情落幕！'
 				},
 				{
 					id: 2,
-					img: require('@/assets/img/comein/videoActivity2.png'),
+					// img: require('@/assets/img/comein/videoActivity2.png'),
+					img: WEBCONFIG.resource_url_img+'/comein/videoActivity2.png',
 					title: '尔家龙虾节｜一年一度的龙虾节终于来了！'
 				},
 				{
 					id: 3,
-					img: require('@/assets/img/comein/videoActivity3.png'),
+					// img: require('@/assets/img/comein/videoActivity3.png'),
+					img: WEBCONFIG.resource_url_img+'/comein/videoActivity3.png',
 					title: '父亲节｜晒照片赢888元现金红包！'
 				},
 				{
 					id: 4,
-					img: require('@/assets/img/comein/videoActivity4.png'),
+					// img: require('@/assets/img/comein/videoActivity4.png'),
+					img: WEBCONFIG.resource_url_img+'/comein/videoActivity4.png',
 					title: '520交友派对｜解锁“新一代年轻人的交友”新方式！'
 				},
 				{
 					id: 5,
-					img: require('@/assets/img/comein/videoActivity5.png'),
+					// img: require('@/assets/img/comein/videoActivity5.png'),
+					img: WEBCONFIG.resource_url_img+'/comein/videoActivity5.png',
 					title: '奇妙 · 扎染 手底生出来的花朵！'
 				},
 				{
 					id: 6,
-					img: require('@/assets/img/comein/videoActivity6.png'),
+					// img: require('@/assets/img/comein/videoActivity6.png'),
+					img: WEBCONFIG.resource_url_img+'/comein/videoActivity6.png',
 					title: '爱心公益U时代，有你有我更精彩。'
 				}
 			],
