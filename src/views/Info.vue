@@ -3,7 +3,7 @@
 		<Header></Header>
 		<top-banner :info="info" @change="handleChange"></top-banner>
 		<div class="content1" v-if="activeTab === 1 && !activeNews">
-			<div class="box" :key="news.id" v-for="news in newsList" @click="getNewsDetail(news.id)">
+			<div class="box" :key="index" v-for="(news, index) in newsList" @click="getNewsDetail(news.id)">
 				<el-image class="my-img" :src="news.img" fit="cover"></el-image>
 				<div class="text">
 					<div class="title">{{ news.title }}</div>
@@ -18,7 +18,7 @@
 				<div class="count">浏览次数：{{ activeNews.count }}</div>
 			</div>
 			<div class="line"></div>
-			<div class="content">
+			<div class="content" v-html="activeNews.content">
 				<p>
 					近日，绿地集团西南事业部总经理孙志文、绿地集团西南营销管理中心总经理戴咏春等人莅临上海尔家商业管理有限公司天空树雅寓营销中心、绿地观澜湾尔家雅寓（以下简称：尔家商业）进行考察交流。目的为双方就进一步盘活商办资产进行深度交流合作，同时探索商办资产开发商与尔家赋能的新模式。尔家商业总裁张二干、尔家商业成都城市公司总经理谈潭等人陪同接待。
 				</p>
@@ -32,14 +32,14 @@
 			</div>
 			<div class="line"></div>
 			<div class="page">
-				<div class="turn">
+				<div class="turn" @click="getNewsDetailPrev">
 					<el-image class="icon" :src="require('@/assets/img/info/up.png')" fit="contain"></el-image>
 					<div class="turn-text">
 						<div class="text-en">Previous</div>
 						<div class="text">上一页</div>
 					</div>
 				</div>
-				<div class="turn">
+				<div class="turn" @click="getNewsDetailNext">
 					<div class="turn-text">
 						<div class="text-en">Next</div>
 						<div class="text">下一页</div>
@@ -91,6 +91,8 @@
 import Header from '@/components/Header.vue';
 import TopBanner from '@/components/TopBanner.vue';
 import Footer from '@/components/Footer.vue';
+
+import { xinWenJuJiao, xinWenJuJiaoDetail, xinWenJuJiaoDetailPrev, xinWenJuJiaoDetailNext, sheQunHuoDong } from '@/network/info.js';
 
 export default {
 	name: 'Info',
@@ -288,6 +290,8 @@ export default {
 	},
 	mounted() {
 		this.jump();
+		this.getActivityList();
+		this.getNewsList();
 	},
 	watch: {
 		$route: {
@@ -318,16 +322,114 @@ export default {
 				}
 			});
 		},
+		getNewsList() {
+			xinWenJuJiao({ pageNum: 1, pageSize: 3 }).then(data => {
+				this.newsList.splice(0, this.newsList.length);
+				// this.newsList = data.data.map(item => {
+				// 	return {
+				// 		id: item.id,
+				// 		img: item.coverUrl,
+				// 		title: item.title,
+				// 		content: item.content.substr(22, 50) + '...'
+				// 	};
+				// });
+				data.data.forEach(item => {
+					this.newsList.push({
+						id: item.id,
+						img: item.coverUrl,
+						title: item.title,
+						content: item.content.substr(22, 50) + '...'
+					});
+				});
+				data.data.forEach((item, index) => {
+					if (index > 0) {
+						this.newsList.push({
+							id: item.id,
+							img: item.coverUrl,
+							title: item.title,
+							content: item.content.substr(22, 50) + '...'
+						});
+					}
+				});
+				data.data.forEach((item, index) => {
+					if (index == 0) {
+						this.newsList.push({
+							id: item.id,
+							img: item.coverUrl,
+							title: item.title,
+							content: item.content.substr(22, 50) + '...'
+						});
+					}
+				});
+				data.data.forEach((item, index) => {
+					if (index == 2) {
+						this.newsList.push({
+							id: item.id,
+							img: item.coverUrl,
+							title: item.title,
+							content: item.content.substr(22, 50) + '...'
+						});
+					}
+				});
+				data.data.forEach((item, index) => {
+					if (index < 2) {
+						this.newsList.push({
+							id: item.id,
+							img: item.coverUrl,
+							title: item.title,
+							content: item.content.substr(22, 50) + '...'
+						});
+					}
+				});
+			});
+		},
 		getNewsDetail(id) {
-			console.log('搜索新闻id为' + id + '的详情');
-			// this.info.banner = require('@/assets/img/info/banner2.png');
-			this.info.banner = WEBCONFIG.resource_url_img+'/info/banner2.png';
-			this.activeNews = {
-				id: 1,
-				datetime: '2021-06-11 12:02:52',
-				count: 11,
-				title: '考察交流｜绿地集团西南事业部与尔家商业就盘活商办类资产做深入交流'
-			};
+			xinWenJuJiaoDetail({ id }).then(data => {
+				// console.log(data)
+				this.info.banner = WEBCONFIG.resource_url_img + '/info/banner2.png';
+				this.activeNews = {
+					id: data.data.id,
+					datetime: data.data.updateTime,
+					count: data.data.viewTotal,
+					title: data.data.title,
+					content: data.data.content
+				};
+			});
+		},
+		getNewsDetailPrev() {
+			xinWenJuJiaoDetailPrev({ id: this.activeNews.id }).then(data => {
+				if (data.data) {
+					this.getNewsDetail(data.data);
+				} else {
+					this.$message('到头了');
+				}
+			});
+		},
+		getNewsDetailNext() {
+			xinWenJuJiaoDetailNext({ id: this.activeNews.id }).then(data => {
+				if (data.data) {
+					this.getNewsDetail(data.data);
+				} else {
+					this.$message('到头了');
+				}
+			});
+		},
+		getActivityList() {
+			sheQunHuoDong({ pageNum: 1, pageSize: 5 }).then(data => {
+				this.activityList.splice(0, this.activityList.length);
+				this.activityList = data.data.map(item => {
+					return {
+						id: item.id,
+						date: item.createTime
+							.slice(0, 10)
+							.split('-')
+							.join('.'),
+						img: item.coverUrl,
+						title: item.title,
+						content: item.content.slice(9, -11)
+					};
+				});
+			});
 		}
 	}
 };

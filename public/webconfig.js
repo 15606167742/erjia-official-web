@@ -1,4 +1,4 @@
 var WEBCONFIG = {
-	request_url_main: 'http://47.92.253.236:8082',
+	request_url_main: 'http://erjia-website-api.lootom-ai.com',
 	resource_url_img: 'https://ltzn.oss-cn-zhangjiakou.aliyuncs.com/erjia/img/websiteImg'
 };
