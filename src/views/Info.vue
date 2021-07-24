@@ -323,64 +323,64 @@ export default {
 			});
 		},
 		getNewsList() {
-			xinWenJuJiao({ pageNum: 1, pageSize: 3 }).then(data => {
+			xinWenJuJiao({ pageNum: 1, pageSize: 9 }).then(data => {
 				this.newsList.splice(0, this.newsList.length);
-				// this.newsList = data.data.map(item => {
-				// 	return {
-				// 		id: item.id,
-				// 		img: item.coverUrl,
-				// 		title: item.title,
-				// 		content: item.content.substr(22, 50) + '...'
-				// 	};
-				// });
-				data.data.forEach(item => {
-					this.newsList.push({
+				this.newsList = data.data.map(item => {
+					return {
 						id: item.id,
 						img: item.coverUrl,
 						title: item.title,
 						content: item.content.substr(22, 50) + '...'
-					});
+					};
 				});
-				data.data.forEach((item, index) => {
-					if (index > 0) {
-						this.newsList.push({
-							id: item.id,
-							img: item.coverUrl,
-							title: item.title,
-							content: item.content.substr(22, 50) + '...'
-						});
-					}
-				});
-				data.data.forEach((item, index) => {
-					if (index == 0) {
-						this.newsList.push({
-							id: item.id,
-							img: item.coverUrl,
-							title: item.title,
-							content: item.content.substr(22, 50) + '...'
-						});
-					}
-				});
-				data.data.forEach((item, index) => {
-					if (index == 2) {
-						this.newsList.push({
-							id: item.id,
-							img: item.coverUrl,
-							title: item.title,
-							content: item.content.substr(22, 50) + '...'
-						});
-					}
-				});
-				data.data.forEach((item, index) => {
-					if (index < 2) {
-						this.newsList.push({
-							id: item.id,
-							img: item.coverUrl,
-							title: item.title,
-							content: item.content.substr(22, 50) + '...'
-						});
-					}
-				});
+				// data.data.forEach(item => {
+				// 	this.newsList.push({
+				// 		id: item.id,
+				// 		img: item.coverUrl,
+				// 		title: item.title,
+				// 		content: item.content.substr(22, 50) + '...'
+				// 	});
+				// });
+				// data.data.forEach((item, index) => {
+				// 	if (index > 0) {
+				// 		this.newsList.push({
+				// 			id: item.id,
+				// 			img: item.coverUrl,
+				// 			title: item.title,
+				// 			content: item.content.substr(22, 50) + '...'
+				// 		});
+				// 	}
+				// });
+				// data.data.forEach((item, index) => {
+				// 	if (index == 0) {
+				// 		this.newsList.push({
+				// 			id: item.id,
+				// 			img: item.coverUrl,
+				// 			title: item.title,
+				// 			content: item.content.substr(22, 50) + '...'
+				// 		});
+				// 	}
+				// });
+				// data.data.forEach((item, index) => {
+				// 	if (index == 2) {
+				// 		this.newsList.push({
+				// 			id: item.id,
+				// 			img: item.coverUrl,
+				// 			title: item.title,
+				// 			content: item.content.substr(22, 50) + '...'
+				// 		});
+				// 	}
+				// });
+				// data.data.forEach((item, index) => {
+				// 	if (index < 2) {
+				// 		this.newsList.push({
+				// 			id: item.id,
+				// 			img: item.coverUrl,
+				// 			title: item.title,
+				// 			content: item.content.substr(22, 50) + '...'
+				// 		});
+				// 	}
+				// });
 			});
 		},
 		getNewsDetail(id) {
@@ -401,7 +401,7 @@ export default {
 				if (data.data) {
 					this.getNewsDetail(data.data);
 				} else {
-					this.$message('到头了');
+					this.$message('暂无上一页数据');
 				}
 			});
 		},
@@ -410,12 +410,12 @@ export default {
 				if (data.data) {
 					this.getNewsDetail(data.data);
 				} else {
-					this.$message('到头了');
+					this.$message('暂无下一页数据');
 				}
 			});
 		},
 		getActivityList() {
-			sheQunHuoDong({ pageNum: 1, pageSize: 5 }).then(data => {
+			sheQunHuoDong({ pageNum: 1, pageSize: 99 }).then(data => {
 				this.activityList.splice(0, this.activityList.length);
 				this.activityList = data.data.map(item => {
 					return {
