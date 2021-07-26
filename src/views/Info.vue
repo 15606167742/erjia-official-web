@@ -50,7 +50,7 @@
 		</div>
 		<div class="content2" v-else-if="activeTab === 2">
 			<div class="tree">
-				<div class="box" :key="activity.id" v-for="activity in activityList">
+				<div class="box" :key="activity.id" v-for="activity in activityList" @click="openUrl(activity.redirectUrl)">
 					<el-image class="my-img" :src="activity.img" fit="cover"></el-image>
 					<div class="text">
 						<div class="title">{{ activity.title }}</div>
@@ -426,10 +426,14 @@ export default {
 							.join('.'),
 						img: item.coverUrl,
 						title: item.title,
-						content: item.content.slice(9, -11)
+						content: item.content.slice(9, -11),
+						redirectUrl: item.redirectUrl
 					};
 				});
 			});
+		},
+		openUrl(url) {
+			window.open(url);
 		}
 	}
 };
@@ -531,6 +535,7 @@ export default {
 			.box {
 				position: relative;
 				border-bottom: 1px dashed #eeeeee;
+				cursor: pointer;
 
 				.text {
 					width: 100%;
