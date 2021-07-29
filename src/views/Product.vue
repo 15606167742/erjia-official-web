@@ -54,7 +54,7 @@
 					</div>
 				</div>
 			</div>
-			<div class="row1">
+			<!-- <div class="row1">
 				<span class="row1_l">尔家</span>
 				<span class="row1_r">馨寓</span>
 				<el-image class="row1_split" :src="require('@/assets/img/product/line.png')" fit="contain"></el-image>
@@ -71,7 +71,7 @@
 						</div>
 					</div>
 				</div>
-			</div>
+			</div> -->
 			<div class="row1">
 				<span class="row1_l">尔家</span>
 				<span class="row1_r">酒店</span>
@@ -233,6 +233,7 @@ export default {
 <style scoped lang="scss">
 .product {
 	background-color: var(--color-bg-default);
+	overflow-x: hidden;
 
 	.content1 {
 		display: flex;

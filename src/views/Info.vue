@@ -333,60 +333,11 @@ export default {
 						content: item.content.substr(22, 50) + '...'
 					};
 				});
-				// data.data.forEach(item => {
-				// 	this.newsList.push({
-				// 		id: item.id,
-				// 		img: item.coverUrl,
-				// 		title: item.title,
-				// 		content: item.content.substr(22, 50) + '...'
-				// 	});
-				// });
-				// data.data.forEach((item, index) => {
-				// 	if (index > 0) {
-				// 		this.newsList.push({
-				// 			id: item.id,
-				// 			img: item.coverUrl,
-				// 			title: item.title,
-				// 			content: item.content.substr(22, 50) + '...'
-				// 		});
-				// 	}
-				// });
-				// data.data.forEach((item, index) => {
-				// 	if (index == 0) {
-				// 		this.newsList.push({
-				// 			id: item.id,
-				// 			img: item.coverUrl,
-				// 			title: item.title,
-				// 			content: item.content.substr(22, 50) + '...'
-				// 		});
-				// 	}
-				// });
-				// data.data.forEach((item, index) => {
-				// 	if (index == 2) {
-				// 		this.newsList.push({
-				// 			id: item.id,
-				// 			img: item.coverUrl,
-				// 			title: item.title,
-				// 			content: item.content.substr(22, 50) + '...'
-				// 		});
-				// 	}
-				// });
-				// data.data.forEach((item, index) => {
-				// 	if (index < 2) {
-				// 		this.newsList.push({
-				// 			id: item.id,
-				// 			img: item.coverUrl,
-				// 			title: item.title,
-				// 			content: item.content.substr(22, 50) + '...'
-				// 		});
-				// 	}
-				// });
 			});
 		},
 		getNewsDetail(id) {
 			xinWenJuJiaoDetail({ id }).then(data => {
-				// console.log(data)
-				this.info.banner = WEBCONFIG.resource_url_img + '/info/banner2.png';
+				// this.info.banner = WEBCONFIG.resource_url_img + '/info/banner2.png';
 				this.activeNews = {
 					id: data.data.id,
 					datetime: data.data.updateTime,

@@ -584,7 +584,7 @@ export default {
 	.activity {
 		.title {
 			margin-top: 120px;
-			font-size: 5.8rem;
+			font-size: 4.8rem;
 			font-weight: bold;
 			text-align: center;
 			letter-spacing: 0.2rem;

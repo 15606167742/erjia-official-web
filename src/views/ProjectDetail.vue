@@ -117,11 +117,11 @@ export default {
 				// img: require('@/assets/img/project_detail/pic1.png'),
 				img: WEBCONFIG.resource_url_img+'/project_detail/pic1.png',
 				tip: require('@/assets/img/project_detail/tip1.png'),
-				name: '常州世茂项目',
+				name: '无锡绿地观澜湾项目',
 				area: '60m²',
 				type: '1室1厅1厨1卫',
 				price: '7340元/月起',
-				address: '常州市新北区太湖东路世贸广场5栋',
+				address: '无锡市梁溪区县前西街78号尔家雅寓',
 				description:
 					'尔家公寓位于常州市东北部金融商务中心区和恐龙园商圈，占据东京120路中心区位，北靠年人流量超500万的中华恐龙城，又向南依傍“城市绿肺”紫荆公园，三点共为一线，构筑了一条集旅游、生态、金融与一体的旅游线路。往西10分钟的车程可到达万达广场，往东5分钟到达青洋路高架，青洋路高架衔接了沪宁高速，青龙道口，大大缩短了城际及城区间的距离。',
 				facilityList: ['健身房', '书吧', '影音区', '台球室', '休闲会客区', '会议室'],
@@ -323,11 +323,11 @@ export default {
 				flex-direction: column;
 				justify-content: space-between;
 				.box1 {
-					background-color: #eeddbb;
+					background-color: #FFF6EC;
 					.text {
 						padding: 10px 20px;
 						font-size: 1.8rem;
-						color: #333333;
+						color: #975B15;
 					}
 					.name {
 						font-size: 2.4rem;
@@ -347,7 +347,8 @@ export default {
 				.box2 {
 					margin-top: 5px;
 					padding: 30px;
-					background-color: #eeddbb;
+					background-color: #FFF6EC;
+					color: #975B15;
 					.logo {
 						width: 120px;
 					}
@@ -355,7 +356,7 @@ export default {
 						margin-top: 20px;
 						font-size: 2.4rem;
 						font-weight: bold;
-						color: var(--color-t-active);
+						// color: var(--color-t-active);
 					}
 					.address {
 						margin-top: 15px;
@@ -368,14 +369,14 @@ export default {
 						.address-text {
 							margin-left: 8px;
 							font-size: 1.6rem;
-							color: var(--color-t-active);
+							// color: var(--color-t-active);
 						}
 					}
 					.description {
 						margin-top: 30px;
 						font-size: 1.6rem;
 						line-height: 2.5rem;
-						color: #333333;
+						// color: #333333;
 					}
 				}
 			}
@@ -384,7 +385,8 @@ export default {
 			position: relative;
 			margin-top: 20px;
 			padding: 20px 30px;
-			background-color: #ffffee;
+			background-color: #FFF6EC;
+			color: #975B15;
 			.icon {
 				position: absolute;
 				top: 0;
@@ -395,13 +397,13 @@ export default {
 			.title {
 				margin-bottom: 20px;
 				font-size: 30px;
-				color: #333333;
+				// color: #333333;
 			}
 			.line {
 				padding: 20px;
 				border-top: 2px solid #999999;
 				font-size: 1.8rem;
-				color: #333333;
+				// color: #333333;
 				display: flex;
 				flex-wrap: wrap;
 				.line-l {
@@ -426,7 +428,7 @@ export default {
 					.box-text {
 						font-size: 1.8rem;
 						text-align: center;
-						color: #333333;
+						// color: #333333;
 					}
 				}
 			}

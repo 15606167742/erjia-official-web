@@ -105,7 +105,7 @@
 					<div class="title">
 						<div class="title-row1">
 							<span class="num">05</span>
-							<span class="text">客服</span>
+							<span class="text">物业模块</span>
 						</div>
 						<div class="title-row2">
 							情系住户，维持千家万事通。
@@ -361,6 +361,7 @@ export default {
 <style scoped lang="scss">
 .service {
 	background-color: var(--color-bg-default);
+	overflow-x: hidden;
 
 	.content1 {
 		.box {

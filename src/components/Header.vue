@@ -161,6 +161,7 @@ export default {
 		};
 	},
 	mounted() {
+		this.handleScroll();
 		window.addEventListener('scroll', this.handleScroll);
 	},
 	methods: {
@@ -239,7 +240,7 @@ export default {
 				.anchors {
 					visibility: visible;
 					height: 80px;
-					transition: height 1s;
+					transition: height 0.5s;
 				}
 			}
 
