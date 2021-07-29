@@ -144,7 +144,7 @@ export default {
 						},
 						{
 							activeTab: 4,
-							text: '社区联盟运营'
+							text: '社群联盟运营'
 						}
 					]
 				},
@@ -158,7 +158,7 @@ export default {
 						},
 						{
 							activeTab: 2,
-							text: '尔家最新活动'
+							text: '社群活动'
 						},
 						{
 							activeTab: 3,
