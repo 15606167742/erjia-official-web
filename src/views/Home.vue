@@ -80,7 +80,7 @@
 			<el-image class="profile-img" :src="imgResource + '/home/profile.png'" fit="contain"></el-image>
 		</div>
 		<div class="activity">
-			<div class="title">尔家最新活动</div>
+			<div class="title">尔家最新动态</div>
 			<div class="projects">
 				<div class="project" :key="project.id" v-for="project in projectList">
 					<div class="project-img-box">
@@ -413,10 +413,40 @@ export default {
 			flex-wrap: wrap;
 
 			.house {
+				position: relative;
+				top: 0;
 				margin: 0 10px;
 				background-color: var(--color-bg-default);
 				box-shadow: 0 0 8px 0 #999999;
 				cursor: pointer;
+				
+				&:hover {
+					top: -20px;
+					background-color: var(--color-bg-main);
+					transition-duration: 1s;
+					
+					.info {
+						.house-tip {
+							color: var(--color-t-white);
+						}
+						
+						.house-name {
+							color: var(--color-t-white);
+						}
+						
+						.house-summary {
+							color: var(--color-t-white);
+						}
+						
+						.house-summary-en {
+							color: var(--color-t-white);
+						}
+						
+						.house-introduction {
+							color: var(--color-t-white);
+						}
+					}
+				}
 
 				.house-img {
 					display: block;
@@ -538,6 +568,13 @@ export default {
 		align-items: center;
 
 		.profile-img {
+			position: relative;
+			top: 0px;
+			
+			&:hover {
+				top: -30px;
+				transition-duration: 0.5s;
+			}
 		}
 
 		.profile-content {
@@ -577,6 +614,12 @@ export default {
 				color: #333333;
 				border: 10px solid #333333;
 				cursor: pointer;
+				
+				&:hover {
+					border-color: #FFFFFF;
+					background-color: #333333;
+					color: var(--color-t-white);
+				}
 			}
 		}
 	}

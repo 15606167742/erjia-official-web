@@ -397,7 +397,7 @@ export default {
 			.title {
 				margin-bottom: 20px;
 				font-size: 30px;
-				// color: #333333;
+				color: #333333;
 			}
 			.line {
 				padding: 20px;

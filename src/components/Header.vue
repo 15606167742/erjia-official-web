@@ -1,6 +1,7 @@
 <template>
 	<div class="top-menu" :class="{ scroll: scrollFlag }">
-		<el-image class="logo" :src="require('@/assets/img/header/logo.png')" fit="contain"></el-image>
+		<div class="logo"></div>
+		<!-- <el-image class="logo" :src="scrollFlag?require('@/assets/img/header/logo_scroll.png'):require('@/assets/img/header/logo.png')" fit="contain"></el-image> -->
 		<div class="tabs">
 			<div class="tab" :class="{ active: $route.path == tab.path }" :key="tab.path" v-for="tab in tabs" @click="gotoPath(tab.path)">
 				{{ tab.text }}
@@ -207,13 +208,22 @@ export default {
 	&.scroll,
 	&:hover {
 		background-color: var(--color-bg-default);
+		.logo {
+			background-image: url(../assets/img/header/logo_scroll.png);
+		}
+		
 		.tabs {
 			color: #333;
 		}
 	}
 
 	.logo {
+		width: 200px;
 		height: 50px;
+		background-image: url(../assets/img/header/logo.png);
+		background-position: center;
+		background-repeat: no-repeat;
+		background-size: contain;
 	}
 
 	.tabs {

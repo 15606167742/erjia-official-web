@@ -626,7 +626,7 @@ export default {
 
 			.project {
 				display: flex;
-
+				
 				.project-content {
 					white-space: pre;
 					display: flex;
@@ -688,7 +688,28 @@ export default {
 			flex-wrap: wrap;
 			justify-content: space-around;
 			.sale {
+				position: relative;
+				top: 0;
 				box-shadow: 0 0 10px 0 #999999;
+				&:hover {
+					top: -20px;
+					background-color: var(--color-bg-main);
+					transition-duration: 1s;
+					.content {
+						.en {
+							color: var(--color-t-white);
+						}
+						.title {
+							color: var(--color-t-white);
+						}
+						.text {
+							color: var(--color-t-white);
+						}
+						.text-en {
+							color: var(--color-t-white);
+						}
+					}
+				}
 				.my-img {
 					display: block;
 				}
@@ -1057,11 +1078,31 @@ export default {
 					margin-left: 15px;
 					margin-right: 0;
 					flex: 45%;
+					
+					&:hover {
+						animation: fly 3s;
+					}
+					
+					@keyframes fly {
+						50% {
+							transform: translateX(100px);
+						}
+					}
 
 					&.reverse {
 						flex-direction: row-reverse;
 						margin-left: 0;
 						margin-right: 15px;
+						
+						&:hover {
+							animation: fly-reverse 3s;
+						}
+						
+						@keyframes fly-reverse {
+							50% {
+								transform: translateX(-100px);
+							}
+						}
 
 						.project-img {
 							margin-left: 20px;
