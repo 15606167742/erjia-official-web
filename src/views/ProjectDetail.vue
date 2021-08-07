@@ -10,7 +10,10 @@
 		<div class="content">
 			<div class="row1">
 				<div class="row1-l">
-					<el-image class="img" :src="detail.img" fit="cover"></el-image>
+					<el-carousel class="my-img">
+						<el-carousel-item :key="index" v-for="(img, index) in detail.imgList"><el-image class="img" :src="img" fit="cover"></el-image></el-carousel-item>
+					</el-carousel>
+					<!-- <el-image class="img" :src="detail.img" fit="cover"></el-image> -->
 					<el-image class="tip" :src="detail.tip" fit="cover"></el-image>
 				</div>
 				<div class="row1-r">
@@ -56,9 +59,13 @@
 				<el-image class="icon" :src="require('@/assets/img/project_detail/icon_decrease.png')" fit="contain"></el-image>
 				<div class="title">家居配套</div>
 				<div class="line">
-					<div class="line-box" :key="value.name" v-for="value in detail.furniture">
+					<!-- <div class="line-box" :key="value.name" v-for="value in detail.furniture">
 						<el-image class="box-img" :src="value.img" fit="contain"></el-image>
 						<div class="box-text">{{ value.name }}</div>
+					</div> -->
+					<div class="line-box" :key="jiaJu.id" v-for="jiaJu in detail.jiaJuList">
+						<el-image class="box-img" :src="jiaJu.imgUrl" fit="contain"></el-image>
+						<div class="box-text">{{ jiaJu.name }}</div>
 					</div>
 				</div>
 			</div>
@@ -66,9 +73,13 @@
 				<el-image class="icon" :src="require('@/assets/img/project_detail/icon_decrease.png')" fit="contain"></el-image>
 				<div class="title">家电配套</div>
 				<div class="line">
-					<div class="line-box" :key="value.name" v-for="value in detail.electricity">
+					<!-- <div class="line-box" :key="value.name" v-for="value in detail.electricity">
 						<el-image class="box-img" :src="value.img" fit="contain"></el-image>
 						<div class="box-text">{{ value.name }}</div>
+					</div> -->
+					<div class="line-box" :key="jiaDian.id" v-for="jiaDian in detail.jiaDianList">
+						<el-image class="box-img" :src="jiaDian.imgUrl" fit="contain"></el-image>
+						<div class="box-text">{{ jiaDian.name }}</div>
 					</div>
 				</div>
 			</div>
@@ -80,7 +91,7 @@
 			<div class="row3">
 				<div class="title">项目房型</div>
 				<div class="items">
-					<div class="item" :key="item.id" v-for="item in itemList">
+					<div class="item" :key="item.id" v-for="item in itemList" @click="subscribeVisible = true">
 						<el-image class="item-img" :src="item.img" fit="contain"></el-image>
 						<div class="item-line">
 							<div class="name">{{ item.name }}</div>
@@ -90,6 +101,9 @@
 					</div>
 				</div>
 			</div>
+			<el-dialog custom-class="my-dialog" :visible="subscribeVisible" @close="subscribeVisible = false">
+				<el-image class="item-img" :src="require('@/assets/img/project_detail/subscribe.png')" fit="contain"></el-image>
+			</el-dialog>
 		</div>
 		<Footer></Footer>
 	</div>
@@ -98,6 +112,8 @@
 <script>
 import Header from '@/components/Header.vue';
 import Footer from '@/components/Footer.vue';
+
+import { projectDetail } from '@/network/project_detail.js';
 
 export default {
 	name: 'ProjectDetail',
@@ -115,13 +131,15 @@ export default {
 			},
 			detail: {
 				// img: require('@/assets/img/project_detail/pic1.png'),
-				img: WEBCONFIG.resource_url_img+'/project_detail/pic1.png',
+				imgList: [WEBCONFIG.resource_url_img+'/project_detail/pic1.png'],
 				tip: require('@/assets/img/project_detail/tip1.png'),
 				name: '无锡绿地观澜湾项目',
 				area: '60m²',
 				type: '1室1厅1厨1卫',
 				price: '7340元/月起',
 				address: '无锡市梁溪区县前西街78号尔家雅寓',
+				lat: '31.6593426421917',
+				lng: '120.24038366075673',
 				description:
 					'尔家公寓位于常州市东北部金融商务中心区和恐龙园商圈，占据东京120路中心区位，北靠年人流量超500万的中华恐龙城，又向南依傍“城市绿肺”紫荆公园，三点共为一线，构筑了一条集旅游、生态、金融与一体的旅游线路。往西10分钟的车程可到达万达广场，往东5分钟到达青洋路高架，青洋路高架衔接了沪宁高速，青龙道口，大大缩短了城际及城区间的距离。',
 				facilityList: ['健身房', '书吧', '影音区', '台球室', '休闲会客区', '会议室'],
@@ -209,7 +227,9 @@ export default {
 						img: require('@/assets/img/project_detail/stool.png'),
 						name: '智能马桶'
 					}
-				}
+				},
+				jiaJuList: [],
+				jiaDianList: []
 			},
 			map: {},
 			itemList: [
@@ -245,15 +265,48 @@ export default {
 					price: '12000元/月起',
 					description: '1室1厅1厨1卫 58㎡起'
 				}
-			]
+			],
+			subscribeVisible: false
 		};
 	},
 	mounted() {
+		this.getProjectDetail(this.$route.query.id)
 		this.$nextTick(() => {
 			this.initMap();
 		});
 	},
 	methods: {
+		getProjectDetail(id) {
+			projectDetail({ id }).then(data => {
+				// facilityList: ['健身房', '书吧', '影音区', '台球室', '休闲会客区', '会议室'],
+				// serviceList: ['24小时保安', '管家式服务', '人脸识别', 'wifi', '驻场维修', '公区保洁', '驻客活动'],
+				
+				this.detail.imgList = data.data.imgList;
+				this.detail.name = data.data.name;
+				this.detail.area = data.data.area + 'm²';
+				this.detail.type = data.data.houseType;
+				this.detail.price = data.data.rentStart + '元/月起';
+				this.detail.address = data.data.address;
+				this.detail.lng = data.data.lng;
+				this.detail.lat = data.data.lat;
+				this.detail.description = data.data.projectInfo;
+				this.detail.facilityList = data.data.facilitiesDes.split(' ');
+				this.detail.serviceList = data.data.serviceDes.split(' ');
+				this.detail.jiaJuList = data.data.tagJiaJuList;
+				this.detail.jiaDianList = data.data.tagJiaDianList;
+				this.itemList.splice(0, this.itemList.length);
+				this.itemList = data.data.houseTypeList.map(item => {
+					return {
+						id: item.id,
+						img: item.coverUrl,
+						name: item.name,
+						price: item.rentStart + '元/月起',
+						description: item.houseType
+					};
+				});
+				this.initMap();
+			})
+		},
 		// 生成地图
 		initMap() {
 			this.createMap(); //创建地图
@@ -262,7 +315,7 @@ export default {
 		},
 		createMap() {
 			let map = new BMap.Map('dituContent'); //在百度地图容器中创建一个地图
-			let point = new BMap.Point(120.313769, 31.599214); //定义一个中心点坐标
+			let point = new BMap.Point(this.detail.lng, this.detail.lat); //定义一个中心点坐标
 			map.centerAndZoom(point, 17); //设定地图的中心点和坐标并将地图显示在地图容器中
 			this.map = map; //将map变量存储在全局
 		},
@@ -309,11 +362,19 @@ export default {
 			justify-content: space-between;
 			.row1-l {
 				position: relative;
-				.img {
-					display: block;
+				.my-img {
+					height: 100%;
+					&::v-deep .el-carousel__container {
+						height: 100%;
+					}
+					.img {
+						width: 100%;
+						height: 100%;
+					}
 				}
 				.tip {
 					position: absolute;
+					z-index: 77;
 					top: 0;
 					left: 40px;
 				}
@@ -447,9 +508,9 @@ export default {
 				margin-top: 30px;
 				display: flex;
 				flex-wrap: wrap;
-				justify-content: space-between;
 				align-items: center;
 				.item {
+					cursor: pointer;
 					.item-img {
 						display: block;
 					}
@@ -473,6 +534,9 @@ export default {
 				}
 			}
 		}
+	}
+	::v-deep .my-dialog{
+		width: 200px;
 	}
 }
 
@@ -558,6 +622,7 @@ export default {
 				.items {
 					.item {
 						flex-basis: 23%;
+						margin-right: 2%;
 						.item-line {
 							margin-top: 20px;
 						}

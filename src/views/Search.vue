@@ -9,35 +9,43 @@
 						<div class="row1-l">房源筛选</div>
 						<div class="row1-c">
 							<div class="text1">您已选择：</div>
-							<div class="text2" :key="city.id" v-for="city in select.cityList" @click="removeCity(city)">
+							<div class="text2" @click="removeCity()" v-if="search.city">
+								{{search.city}}
+								<span class="close">×</span>
+							</div>
+							<div class="text2" @click="removeSeries()" v-if="search.series">
+								{{search.series == '1' ? '尔家雅寓' : '尔家酒店'}}
+								<span class="close">×</span>
+							</div>
+							<!-- <div class="text2" :key="city.id" v-for="city in select.cityList" @click="removeCity(city)">
 								{{city.label}}
 								<span class="close">×</span>
-							</div>
-							<div class="text2" :key="series.id" v-for="series in select.seriesList" @click="removeSeries(series)">
+							</div> -->
+							<!-- <div class="text2" :key="series.id" v-for="series in select.seriesList" @click="removeSeries(series)">
 								{{series.label}}
 								<span class="close">×</span>
-							</div>
+							</div> -->
 						</div>
 						<div class="row1-r">共 {{ total }} 个结果</div>
 					</div>
 					<div class="row2">
 						<div class="row2-l">城市</div>
 						<div class="row2-r">
-							<div class="text1" :key="city.id" v-for="city in cityList" @click="selectCity(city)">{{city.label}}</div>
+							<div class="text1" :key="city.value" v-for="city in cityList" @click="selectCity(city)">{{city.label}}</div>
 						</div>
 					</div>
 					<div class="row2">
 						<div class="row2-l">分类</div>
 						<div class="row2-r">
-							<div class="text1" :key="series.id" v-for="series in seriesList" @click="selectSeries(series)">{{series.label}}</div>
+							<div class="text1" :key="series.value" v-for="series in seriesList" @click="selectSeries(series)">{{series.label}}</div>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-		<div class="content">
-			<div class="project" :key="project.id" v-for="project in projectList">
-				<el-image class="img" :src="project.img" fit="contain"></el-image>
+		<div class="content" v-if="projectList.length > 0">
+			<div class="project" :key="project.id" v-for="project in projectList" @click="gotoDetail(project.id)">
+				<el-image class="img" :src="project.img" fit="cover"></el-image>
 				<div class="tip">
 					<div class="tip-name">{{project.name}}</div>
 					<div class="tip-address">
@@ -47,6 +55,7 @@
 				</div>
 			</div>
 		</div>
+		<el-empty v-else></el-empty>
 		<Footer></Footer>
 	</div>
 </template>
@@ -54,6 +63,8 @@
 <script>
 import Header from '@/components/Header.vue';
 import Footer from '@/components/Footer.vue';
+
+import { projectList } from '@/network/search.js';
 
 export default {
 	name: 'Search',
@@ -86,30 +97,30 @@ export default {
 			total: 117,
 			cityList: [
 				{
-					value: '1',
+					value: '常州',
 					label: '常州'
 				},
 				{
-					value: '2',
+					value: '成都',
 					label: '成都'
 				},
 				{
-					value: '3',
+					value: '无锡',
 					label: '无锡'
 				},
 				{
-					value: '4',
+					value: '镇江',
 					label: '镇江'
 				}
 			],
 			seriesList: [
 				{
-					value: 'Z001',
+					value: '1',
 					label: '尔家雅寓'
 				},
 				{
-					value: 'Z002',
-					label: '尔家馨寓'
+					value: '2',
+					label: '尔家酒店'
 				}
 			],
 			projectList: [
@@ -179,50 +190,91 @@ export default {
 			],
 		};
 	},
-	mounted() {},
+	mounted() {
+		this.search = JSON.parse(this.$route.query.search);
+		this.getProjectList();
+	},
 	methods: {
-		selectCity(city) {
-			let flag = true;
-			this.select.cityList.forEach(item => {
-				if (item.value == city.value) {
-					flag = false;
-				}
+		getProjectList() {
+			projectList({pageNum: 1, pageSize: 99, city: this.search.city, series: this.search.series, keyWord: this.search.keyword}).then(data=>{
+				this. total = data.count;
+				this.projectList.splice(0, this.projectList.length);
+				this.projectList = data.data.map(item => {
+					return {
+						id: item.id,
+						img: item.coverUrl,
+						name: item.name,
+						address: item.city + '·' + item.qu
+					};
+				});
 			})
-			if (flag) {
-				this.select.cityList.push(city);
-			}
+		},
+		selectCity(city) {
+			this.search.city = city.value;
+			this.getProjectList();
 		},
 		selectSeries(series) {
-			let flag = true;
-			this.select.seriesList.forEach(item => {
-				if (item.value == series.value) {
-					flag = false;
-				}
-			})
-			if (flag) {
-				this.select.seriesList.push(series);
-			}
+			this.search.series = series.value;
+			this.getProjectList();
 		},
-		removeCity(city) {
-			let i;
-			this.select.cityList.forEach((item, index) => {
-				if (item.value == city.value) {
-					i = index;
-					return;
-				}
-			})
-			this.select.cityList.splice(i, 1)
+		removeCity() {
+			this.search.city = '';
+			this.getProjectList();
 		},
-		removeSeries(series) {
-			let i;
-			this.select.seriesList.forEach((item, index) => {
-				if (item.value == series.value) {
-					i = index;
-					return;
+		removeSeries() {
+			this.search.series = '';
+			this.getProjectList();
+		},
+		gotoDetail(id) {
+			this.$router.push({
+				path: '/project_detail',
+				query: {
+					id
 				}
-			})
-			this.select.seriesList.splice(i, 1)
-		}
+			});
+		},
+		// selectCity(city) {
+		// 	let flag = true;
+		// 	this.select.cityList.forEach(item => {
+		// 		if (item.value == city.value) {
+		// 			flag = false;
+		// 		}
+		// 	})
+		// 	if (flag) {
+		// 		this.select.cityList.push(city);
+		// 	}
+		// },
+		// selectSeries(series) {
+		// 	let flag = true;
+		// 	this.select.seriesList.forEach(item => {
+		// 		if (item.value == series.value) {
+		// 			flag = false;
+		// 		}
+		// 	})
+		// 	if (flag) {
+		// 		this.select.seriesList.push(series);
+		// 	}
+		// },
+		// removeCity(city) {
+		// 	let i;
+		// 	this.select.cityList.forEach((item, index) => {
+		// 		if (item.value == city.value) {
+		// 			i = index;
+		// 			return;
+		// 		}
+		// 	})
+		// 	this.select.cityList.splice(i, 1)
+		// },
+		// removeSeries(series) {
+		// 	let i;
+		// 	this.select.seriesList.forEach((item, index) => {
+		// 		if (item.value == series.value) {
+		// 			i = index;
+		// 			return;
+		// 		}
+		// 	})
+		// 	this.select.seriesList.splice(i, 1)
+		// }
 	}
 };
 </script>
@@ -312,10 +364,12 @@ export default {
 	.content {
 		display: flex;
 		flex-wrap: wrap;
-		justify-content: space-around;
 		.project {
 			position: relative;
 			margin-bottom: 20px;
+			border-radius: 8px;
+			overflow: hidden;
+			cursor: pointer;
 			.img {
 				display: block;
 			}
@@ -327,6 +381,7 @@ export default {
 				box-sizing: border-box;
 				width: 100%;
 				color: var(--color-t-white);
+				background-color: #33333366;
 				display: flex;
 				flex-wrap: wrap;
 				.tip-name {
@@ -417,6 +472,7 @@ export default {
 			min-width: 1000px;
 			.project {
 				flex-basis: 32%;
+				margin: 0 0.5% 30px;
 				.tip {
 					justify-content: space-between;
 				}

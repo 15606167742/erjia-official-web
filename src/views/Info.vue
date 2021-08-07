@@ -69,19 +69,22 @@
 			</div>
 		</div>
 		<div class="content3" v-else-if="activeTab === 3">
-			<div class="sale" :key="sale.id" v-for="sale in saleList">
-				<div class="box">
-					<el-image class="my-img" :src="sale.img" fit="contain"></el-image>
-					<div class="row1">
-						<div class="title">{{ sale.title }}</div>
-						<div class="date">{{ sale.date }}</div>
+			<template v-if="saleList.length > 0">
+				<div class="sale" :key="sale.id" v-for="sale in saleList">
+					<div class="box">
+						<el-image class="my-img" :src="sale.img" fit="contain"></el-image>
+						<div class="row1">
+							<div class="title">{{ sale.title }}</div>
+							<div class="date">{{ sale.date }}</div>
+						</div>
+					</div>
+					<div class="row2">
+						<div class="introduction">{{ sale.introduction }}</div>
+						<div class="price">¥{{ sale.price }}/m²</div>
 					</div>
 				</div>
-				<div class="row2">
-					<div class="introduction">{{ sale.introduction }}</div>
-					<div class="price">¥{{ sale.price }}/m²</div>
-				</div>
-			</div>
+			</template>
+			<el-image class="empty" :src="require('@/assets/img/info/empty.png')" fit="contain" v-else></el-image>
 		</div>
 		<Footer></Footer>
 	</div>
@@ -290,6 +293,7 @@ export default {
 	},
 	mounted() {
 		this.jump();
+		this.saleList.splice(0, this.saleList.length);
 		this.getActivityList();
 		this.getNewsList();
 	},
@@ -585,6 +589,9 @@ export default {
 				}
 			}
 		}
+		.empty {
+			box-shadow: 0 0 10px 0 #CCCCCC;
+		}
 	}
 }
 
@@ -715,6 +722,10 @@ export default {
 						margin-top: 10px;
 					}
 				}
+			}
+			.empty {
+				flex-basis: 100%;
+				margin: 0 20px 30px;
 			}
 		}
 	}
@@ -853,6 +864,11 @@ export default {
 				.row2 {
 					margin-left: 30px;
 				}
+			}
+			.empty {
+				flex-basis: 25%;
+				margin-right: auto;
+				margin-bottom: 70px;
 			}
 		}
 	}

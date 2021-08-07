@@ -43,8 +43,8 @@
 			</div>
 			<div class="row2">即使在镶金石银盛行的时代，品味也没有失去它的光辉</div>
 			<div class="row3">
-				<div class="box" :key="house.id" v-for="house in houseList" @click="gotoDetail(house.id)">
-					<el-image class="my-img" :src="house.img" fit="contain"></el-image>
+				<div class="box" :key="house.id" v-for="house in houseList1" @click="gotoDetail(house.id)">
+					<el-image class="my-img" :src="house.img" fit="cover"></el-image>
 					<div class="text">
 						<div class="name">{{ house.name }}</div>
 						<div class="location">
@@ -54,24 +54,6 @@
 					</div>
 				</div>
 			</div>
-			<!-- <div class="row1">
-				<span class="row1_l">尔家</span>
-				<span class="row1_r">馨寓</span>
-				<el-image class="row1_split" :src="require('@/assets/img/product/line.png')" fit="contain"></el-image>
-			</div>
-			<div class="row2">即使在镶金石银盛行的时代，品味也没有失去它的光辉</div>
-			<div class="row3">
-				<div class="box" :key="house.id" v-for="house in houseList" @click="gotoDetail(house.id)">
-					<el-image class="my-img" :src="house.img" fit="contain"></el-image>
-					<div class="text">
-						<div class="name">{{ house.name }}</div>
-						<div class="location">
-							<el-image class="location-icon" :src="require('@/assets/img/product/location.png')" fit="contain"></el-image>
-							<div class="location-text">{{ house.location }}</div>
-						</div>
-					</div>
-				</div>
-			</div> -->
 			<div class="row1">
 				<span class="row1_l">尔家</span>
 				<span class="row1_r">酒店</span>
@@ -79,8 +61,8 @@
 			</div>
 			<div class="row2">即使在镶金石银盛行的时代，品味也没有失去它的光辉</div>
 			<div class="row3">
-				<div class="box" :key="house.id" v-for="house in houseList" @click="gotoDetail(house.id)">
-					<el-image class="my-img" :src="house.img" fit="contain"></el-image>
+				<div class="box" :key="house.id" v-for="house in houseList2" @click="gotoDetail(house.id)">
+					<el-image class="my-img" :src="house.img" fit="cover"></el-image>
 					<div class="text">
 						<div class="name">{{ house.name }}</div>
 						<div class="location">
@@ -92,8 +74,8 @@
 			</div>
 		</div>
 		<div class="content3" v-else-if="activeTab === 3">
-			<div class="box" :key="item.id" v-for="item in itemList">
-				<el-image class="my-img" :src="item.img" fit="contain"></el-image>
+			<div class="box" :key="item.id" v-for="item in itemList" @click="gotoDetail(item.id)">
+				<el-image class="my-img" :src="item.img" fit="cover"></el-image>
 				<div class="content">
 					<div class="en">{{ item.en }}</div>
 					<div class="title">{{ item.title }}</div>
@@ -109,6 +91,8 @@
 import Header from '@/components/Header.vue';
 import TopBanner from '@/components/TopBanner.vue';
 import Footer from '@/components/Footer.vue';
+
+import { projectList } from '@/network/project.js';
 
 export default {
 	name: 'Product',
@@ -153,7 +137,30 @@ export default {
 				]
 			},
 			activeTab: 1,
-			houseList: [
+			houseList1: [
+				{
+					id: 1,
+					// img: require('@/assets/img/product/house1.png'),
+					img: WEBCONFIG.resource_url_img + '/product/house1.png',
+					name: '无锡绿地观澜湾项目',
+					location: '无锡·梁溪区'
+				},
+				{
+					id: 2,
+					// img: require('@/assets/img/product/house2.png'),
+					img: WEBCONFIG.resource_url_img + '/product/house2.png',
+					name: '成都绿地GIC项目',
+					location: '成都·梁溪区'
+				},
+				{
+					id: 3,
+					// img: require('@/assets/img/product/house3.png'),
+					img: WEBCONFIG.resource_url_img + '/product/house3.png',
+					name: '无锡绿地天空树项目',
+					location: '成都·梁溪区'
+				}
+			],
+			houseList2: [
 				{
 					id: 1,
 					// img: require('@/assets/img/product/house1.png'),
@@ -190,6 +197,9 @@ export default {
 	},
 	mounted() {
 		this.jump();
+		this.getProjectList1();
+		this.getProjectList2();
+		this.getProjectList3();
 	},
 	watch: {
 		$route: {
@@ -218,11 +228,51 @@ export default {
 				}
 			});
 		},
-		gotoDetail(projectId) {
+		getProjectList1() {
+			projectList({pageNum: 1, pageSize: 3, series: 1}).then(data=>{
+				this.houseList1.splice(0, this.houseList1.length);
+				this.houseList1 = data.data.map(item => {
+					return {
+						id: item.id,
+						img: item.coverUrl,
+						name: item.name,
+						location: item.city + '·' + item.qu
+					};
+				});
+			})
+		},
+		getProjectList2() {
+			projectList({pageNum: 1, pageSize: 3, series: 2}).then(data=>{
+				this.houseList2.splice(0, this.houseList2.length);
+				this.houseList2 = data.data.map(item => {
+					return {
+						id: item.id,
+						img: item.coverUrl,
+						name: item.name,
+						location: item.city + '·' + item.qu
+					};
+				});
+			})
+		},
+		getProjectList3() {
+			projectList({pageNum: 1, pageSize: 3, showType: 4}).then(data=>{
+				this.itemList.splice(0, this.itemList.length);
+				this.itemList = data.data.map(item => {
+					return {
+						id: item.id,
+						img: item.coverUrl,
+						en: 'TOD',
+						title: item.name,
+						text: item.indexBrief
+					};
+				});
+			})
+		},
+		gotoDetail(id) {
 			this.$router.push({
 				path: '/project_detail',
 				query: {
-					projectId
+					id
 				}
 			});
 		}
@@ -307,6 +357,7 @@ export default {
 				cursor: pointer;
 				.my-img {
 					display: block;
+					border-radius: 8px;
 				}
 				.text {
 					margin-top: 40px;
@@ -343,6 +394,7 @@ export default {
 		justify-content: space-between;
 		.box {
 			box-shadow: 0 0 10px 0 #999999;
+			cursor: pointer;
 			.my-img {
 				display: block;
 			}
@@ -412,6 +464,9 @@ export default {
 				.box {
 					margin-top: 30px;
 					flex-basis: 100%;
+					.my-img {
+						height: 200px;
+					}
 					.text {
 						.name {
 							margin-top: 20px;
@@ -431,6 +486,9 @@ export default {
 			.box {
 				margin-bottom: 30px;
 				flex-basis: 100%;
+				.my-img {
+					height: 200px;
+				}
 			}
 		}
 	}
@@ -505,6 +563,9 @@ export default {
 				margin-bottom: 140px;
 				.box {
 					flex-basis: 30%;
+					.my-img {
+						height: 300px;
+					}
 					.text {
 						.name {
 							margin-bottom: 10px;
@@ -523,6 +584,9 @@ export default {
 			min-width: 1000px;
 			.box {
 				flex-basis: 25%;
+				.my-img {
+					height: 250px;
+				}
 			}
 		}
 	}

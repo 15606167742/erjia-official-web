@@ -28,11 +28,11 @@
 			<div class="row2">Project introduction</div>
 			<div class="projects">
 				<div class="project" :class="{ reverse: index % 2 == 0 }" :key="project.id" v-for="(project, index) in projectList">
-					<el-image class="project-img" :src="project.img" fit="contain"></el-image>
+					<el-image class="project-img" :src="project.img" fit="cover"></el-image>
 					<div class="project-content">
 						<div class="title">{{ project.title }}</div>
 						<div class="text">{{ project.text }}</div>
-						<div class="arror"><el-image class="arror-img" :src="require('@/assets/img/comein/arror.png')" fit="contain"></el-image></div>
+						<div class="arror"><el-image class="arror-img" :src="require('@/assets/img/comein/arror.png')" fit="contain" @click="gotoDetail(project.id)"></el-image></div>
 					</div>
 				</div>
 			</div>
@@ -56,8 +56,8 @@
 			</div>
 			<div class="row2">Items on sale</div>
 			<div class="sales">
-				<div class="sale" :key="sale.id" v-for="sale in saleList">
-					<el-image class="my-img" :src="sale.img" fit="contain"></el-image>
+				<div class="sale" :key="sale.id" v-for="sale in saleList" @click="gotoDetail(sale.id)">
+					<el-image class="my-img" :src="sale.img" fit="cover"></el-image>
 					<div class="content">
 						<div class="en">{{ sale.en }}</div>
 						<div class="title">{{ sale.title }}</div>
@@ -252,6 +252,8 @@
 import Header from '@/components/Header.vue';
 import TopBanner from '@/components/TopBanner.vue';
 import Footer from '@/components/Footer.vue';
+
+import { projectList } from '@/network/comein.js';
 
 export default {
 	name: 'Comein',
@@ -541,6 +543,8 @@ export default {
 	},
 	mounted() {
 		this.jump();
+		this.getProjectList1();
+		this.getProjectList2();
 	},
 	watch: {
 		$route: {
@@ -567,7 +571,44 @@ export default {
 					tab.active = false;
 				}
 			});
-		}
+		},
+		getProjectList1() {
+			projectList({pageNum: 1, pageSize: 4, showType: 2}).then(data=>{
+				this.projectList.splice(0, this.projectList.length);
+				this.projectList = data.data.map(item => {
+					return {
+						id: item.id,
+						img: item.coverUrl,
+						title: item.name,
+						text: item.indexBrief
+					};
+				});
+			})
+		},
+		getProjectList2() {
+			projectList({pageNum: 1, pageSize: 3, showType: 3}).then(data=>{
+				this.saleList.splice(0, this.saleList.length);
+				this.saleList = data.data.map(item => {
+					return {
+						id: item.id,
+						img: item.coverUrl,
+						en: 'loft',
+						title: item.name,
+						adj: item.indexRecommendationCn,
+						adj_en: item.indexRecommendationEn,
+						text: item.indexBrief
+					};
+				});
+			})
+		},
+		gotoDetail(id) {
+			this.$router.push({
+				path: '/project_detail',
+				query: {
+					id
+				}
+			});
+		},
 	}
 };
 </script>
@@ -628,7 +669,7 @@ export default {
 				display: flex;
 				
 				.project-content {
-					white-space: pre;
+					// white-space: normal;
 					display: flex;
 					flex-direction: column;
 
@@ -647,6 +688,7 @@ export default {
 						.arror-img {
 							width: 38px;
 							height: 38px;
+							cursor: pointer;
 						}
 					}
 				}
@@ -691,6 +733,7 @@ export default {
 				position: relative;
 				top: 0;
 				box-shadow: 0 0 10px 0 #999999;
+				cursor: pointer;
 				&:hover {
 					top: -20px;
 					background-color: var(--color-bg-main);
@@ -953,6 +996,7 @@ export default {
 
 					.project-img {
 						flex-basis: 100%;
+						height: 180px;
 					}
 
 					.project-content {
@@ -985,6 +1029,9 @@ export default {
 				.sale {
 					margin-bottom: 30px;
 					flex-basis: 100%;
+					.my-img {
+						height: 200px;
+					}
 				}
 			}
 		}
@@ -1119,6 +1166,7 @@ export default {
 						flex-shrink: 0;
 						margin-left: 0;
 						margin-right: 20px;
+						height: 200px;
 					}
 
 					.project-content {
@@ -1146,6 +1194,9 @@ export default {
 				margin-top: 60px;
 				.sale {
 					flex-basis: 28%;
+					.my-img {
+						height: 300px;
+					}
 				}
 			}
 		}

@@ -120,6 +120,7 @@
 		<div class="content4" v-else-if="activeTab === 4">
 			<div class="row1">
 				<span class="row1_l">社群</span>
+				<span class="row1_r">圈子</span>
 				<el-image class="row1_split" :src="require('@/assets/img/service/line.png')" fit="contain"></el-image>
 			</div>
 			<div class="row2">Community</div>
@@ -162,6 +163,8 @@
 import Header from '@/components/Header.vue';
 import TopBanner from '@/components/TopBanner.vue';
 import Footer from '@/components/Footer.vue';
+
+import { sheQunHuoDong } from '@/network/service.js';
 
 export default {
 	name: 'Service',
@@ -327,6 +330,7 @@ export default {
 	},
 	mounted() {
 		this.jump();
+		this.getActivityList();
 	},
 	watch: {
 		$route: {
@@ -353,7 +357,22 @@ export default {
 					tab.active = false;
 				}
 			});
-		}
+		},
+		getActivityList() {
+			sheQunHuoDong({ pageNum: 1, pageSize: 3 }).then(data => {
+				this.activityList.splice(0, this.activityList.length);
+				this.activityList = data.data.map(item => {
+					return {
+						id: item.id,
+						date: item.createTime
+							.slice(0, 10),
+						img: item.coverUrl,
+						title: item.title,
+						content: item.content.slice(9, -11),
+					};
+				});
+			});
+		},
 	}
 };
 </script>

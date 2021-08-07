@@ -104,6 +104,8 @@
 import Header from '@/components/Header.vue';
 import Footer from '@/components/Footer.vue';
 
+import { projectList, sheQunHuoDong } from '@/network/home.js';
+
 export default {
 	name: 'Home',
 	components: {
@@ -122,30 +124,30 @@ export default {
 			},
 			cityList: [
 				{
-					value: '1',
+					value: '常州',
 					label: '常州'
 				},
 				{
-					value: '2',
+					value: '成都',
 					label: '成都'
 				},
 				{
-					value: '3',
+					value: '无锡',
 					label: '无锡'
 				},
 				{
-					value: '4',
+					value: '镇江',
 					label: '镇江'
 				}
 			],
 			seriesList: [
 				{
-					value: 'Z001',
+					value: '1',
 					label: '尔家雅寓'
 				},
 				{
-					value: 'Z002',
-					label: '尔家馨寓'
+					value: '2',
+					label: '尔家酒店'
 				}
 			],
 			hotHouseList: [
@@ -242,13 +244,50 @@ export default {
 			]
 		};
 	},
+	mounted() {
+		this.getProjectList();
+		this.getActivityList();
+	},
 	methods: {
-		gotoDetail(projectId) {
+		getProjectList() {
+			projectList({pageNum: 1, pageSize: 3, showType: 1}).then(data=>{
+				this.hotHouseList.splice(0, this.hotHouseList.length);
+				this.hotHouseList = data.data.map(item => {
+					return {
+						id: item.id,
+						img: item.coverUrl,
+						tip: 'loft',
+						name: item.name,
+						summary: item.indexRecommendationCn,
+						summary_en: item.indexRecommendationEn,
+						introduction: item.indexBrief
+					};
+				});
+			})
+		},
+		gotoDetail(id) {
 			this.$router.push({
 				path: '/project_detail',
 				query: {
-					projectId
+					id
 				}
+			});
+		},
+		getActivityList() {
+			sheQunHuoDong({ pageNum: 1, pageSize: 3 }).then(data => {
+				this.projectList.splice(0, this.projectList.length);
+				this.projectList = data.data.map(item => {
+					return {
+						id: item.id,
+						date: item.createTime
+							.slice(0, 10)
+							.split('-')
+							.join('.'),
+						img: item.coverUrl,
+						title: item.title,
+						content: item.content.slice(9, -11),
+					};
+				});
 			});
 		},
 		gotoPath(path, activeTab) {
@@ -265,10 +304,10 @@ export default {
 			this.$router.push({
 				path: '/search',
 				query: {
-					search: this.search
+					search: JSON.stringify(this.search)
 				}
 			});
-		}
+		},
 	}
 };
 </script>
@@ -725,6 +764,10 @@ export default {
 				.house {
 					flex-basis: 100%;
 					margin-bottom: 20px;
+					
+					.house-img {
+						height: 200px;
+					}
 				}
 			}
 		}
@@ -812,6 +855,10 @@ export default {
 			.houses {
 				.house {
 					flex-basis: 20%;
+					
+					.house-img {
+						height: 300px;
+					}
 				}
 			}
 		}
@@ -871,6 +918,9 @@ export default {
 				.project {
 					flex-basis: 20%;
 					margin: 0 10px;
+					.project-title{
+						height: 7.5rem;
+					}
 				}
 			}
 		}
