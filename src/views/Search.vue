@@ -10,11 +10,11 @@
 						<div class="row1-c">
 							<div class="text1">您已选择：</div>
 							<div class="text2" @click="removeCity()" v-if="search.city">
-								{{search.city}}
+								{{ search.city }}
 								<span class="close">×</span>
 							</div>
 							<div class="text2" @click="removeSeries()" v-if="search.series">
-								{{search.series == '1' ? '尔家雅寓' : '尔家酒店'}}
+								{{ search.series == '1' ? '尔家雅寓' : '尔家酒店' }}
 								<span class="close">×</span>
 							</div>
 							<!-- <div class="text2" :key="city.id" v-for="city in select.cityList" @click="removeCity(city)">
@@ -31,13 +31,13 @@
 					<div class="row2">
 						<div class="row2-l">城市</div>
 						<div class="row2-r">
-							<div class="text1" :key="city.value" v-for="city in cityList" @click="selectCity(city)">{{city.label}}</div>
+							<div class="text1" :key="city.value" v-for="city in cityList" @click="selectCity(city)">{{ city.label }}</div>
 						</div>
 					</div>
 					<div class="row2">
 						<div class="row2-l">分类</div>
 						<div class="row2-r">
-							<div class="text1" :key="series.value" v-for="series in seriesList" @click="selectSeries(series)">{{series.label}}</div>
+							<div class="text1" :key="series.value" v-for="series in seriesList" @click="selectSeries(series)">{{ series.label }}</div>
 						</div>
 					</div>
 				</div>
@@ -47,10 +47,10 @@
 			<div class="project" :key="project.id" v-for="project in projectList" @click="gotoDetail(project.id)">
 				<el-image class="img" :src="project.img" fit="cover"></el-image>
 				<div class="tip">
-					<div class="tip-name">{{project.name}}</div>
+					<div class="tip-name">{{ project.name }}</div>
 					<div class="tip-address">
 						<el-image class="location" :src="require('@/assets/img/search/location.png')" fit="contain"></el-image>
-						{{project.address}}
+						{{ project.address }}
 					</div>
 				</div>
 			</div>
@@ -127,67 +127,67 @@ export default {
 				{
 					id: 1,
 					// img: require('@/assets/img/search/project1.png'),
-					img: WEBCONFIG.resource_url_img+'/search/project1.png',
+					img: WEBCONFIG.resource_url_img + '/search/project1.png',
 					name: '无锡绿地观澜湾项目',
 					address: '无锡·梁溪区'
 				},
 				{
 					id: 2,
 					// img: require('@/assets/img/search/project2.png'),
-					img: WEBCONFIG.resource_url_img+'/search/project2.png',
+					img: WEBCONFIG.resource_url_img + '/search/project2.png',
 					name: '成都绿地GIC项目',
 					address: '成都·梁溪区'
 				},
 				{
 					id: 3,
 					// img: require('@/assets/img/search/project3.png'),
-					img: WEBCONFIG.resource_url_img+'/search/project3.png',
+					img: WEBCONFIG.resource_url_img + '/search/project3.png',
 					name: '无锡绿地天空树项目',
 					address: '无锡·梁溪区'
 				},
 				{
 					id: 4,
 					// img: require('@/assets/img/search/project4.png'),
-					img: WEBCONFIG.resource_url_img+'/search/project4.png',
+					img: WEBCONFIG.resource_url_img + '/search/project4.png',
 					name: '无锡金科米兰项目',
 					address: '无锡·梁溪区'
 				},
 				{
 					id: 5,
 					// img: require('@/assets/img/search/project5.png'),
-					img: WEBCONFIG.resource_url_img+'/search/project5.png',
+					img: WEBCONFIG.resource_url_img + '/search/project5.png',
 					name: '镇江宝龙项目',
 					address: '镇江·梁溪区'
 				},
 				{
 					id: 6,
 					// img: require('@/assets/img/search/project6.png'),
-					img: WEBCONFIG.resource_url_img+'/search/project6.png',
+					img: WEBCONFIG.resource_url_img + '/search/project6.png',
 					name: '常州世茂项目',
 					address: '常州·梁溪区'
 				},
 				{
 					id: 7,
 					// img: require('@/assets/img/search/project4.png'),
-					img: WEBCONFIG.resource_url_img+'/search/project4.png',
+					img: WEBCONFIG.resource_url_img + '/search/project4.png',
 					name: '无锡金科米兰项目',
 					address: '无锡·梁溪区'
 				},
 				{
 					id: 8,
 					// img: require('@/assets/img/search/project5.png'),
-					img: WEBCONFIG.resource_url_img+'/search/project5.png',
+					img: WEBCONFIG.resource_url_img + '/search/project5.png',
 					name: '镇江宝龙项目',
 					address: '镇江·梁溪区'
 				},
 				{
 					id: 9,
 					// img: require('@/assets/img/search/project6.png'),
-					img: WEBCONFIG.resource_url_img+'/search/project6.png',
+					img: WEBCONFIG.resource_url_img + '/search/project6.png',
 					name: '常州世茂项目',
 					address: '常州·梁溪区'
-				},
-			],
+				}
+			]
 		};
 	},
 	mounted() {
@@ -196,8 +196,8 @@ export default {
 	},
 	methods: {
 		getProjectList() {
-			projectList({pageNum: 1, pageSize: 99, city: this.search.city, series: this.search.series, keyWord: this.search.keyword}).then(data=>{
-				this. total = data.count;
+			projectList({ pageNum: 1, pageSize: 99, city: this.search.city, series: this.search.series, keyWord: this.search.keyword }).then(data => {
+				this.total = data.count;
 				this.projectList.splice(0, this.projectList.length);
 				this.projectList = data.data.map(item => {
 					return {
@@ -207,7 +207,7 @@ export default {
 						address: item.city + '·' + item.qu
 					};
 				});
-			})
+			});
 		},
 		selectCity(city) {
 			this.search.city = city.value;
@@ -232,7 +232,7 @@ export default {
 					id
 				}
 			});
-		},
+		}
 		// selectCity(city) {
 		// 	let flag = true;
 		// 	this.select.cityList.forEach(item => {

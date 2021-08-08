@@ -590,7 +590,7 @@ export default {
 			}
 		}
 		.empty {
-			box-shadow: 0 0 10px 0 #CCCCCC;
+			box-shadow: 0 0 10px 0 #cccccc;
 		}
 	}
 }

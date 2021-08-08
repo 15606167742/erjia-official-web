@@ -229,7 +229,7 @@ export default {
 			});
 		},
 		getProjectList1() {
-			projectList({pageNum: 1, pageSize: 3, series: 1}).then(data=>{
+			projectList({ pageNum: 1, pageSize: 3, series: 1 }).then(data => {
 				this.houseList1.splice(0, this.houseList1.length);
 				this.houseList1 = data.data.map(item => {
 					return {
@@ -239,10 +239,10 @@ export default {
 						location: item.city + '·' + item.qu
 					};
 				});
-			})
+			});
 		},
 		getProjectList2() {
-			projectList({pageNum: 1, pageSize: 3, series: 2}).then(data=>{
+			projectList({ pageNum: 1, pageSize: 3, series: 2 }).then(data => {
 				this.houseList2.splice(0, this.houseList2.length);
 				this.houseList2 = data.data.map(item => {
 					return {
@@ -252,10 +252,10 @@ export default {
 						location: item.city + '·' + item.qu
 					};
 				});
-			})
+			});
 		},
 		getProjectList3() {
-			projectList({pageNum: 1, pageSize: 3, showType: 4}).then(data=>{
+			projectList({ pageNum: 1, pageSize: 3, showType: 4 }).then(data => {
 				this.itemList.splice(0, this.itemList.length);
 				this.itemList = data.data.map(item => {
 					return {
@@ -266,7 +266,7 @@ export default {
 						text: item.indexBrief
 					};
 				});
-			})
+			});
 		},
 		gotoDetail(id) {
 			this.$router.push({

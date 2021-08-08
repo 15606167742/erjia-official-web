@@ -125,13 +125,13 @@ export default {
 		return {
 			info: {
 				// banner: require('@/assets/img/project_detail/banner.png'),
-				banner: WEBCONFIG.resource_url_img+'/project_detail/banner.png',
+				banner: WEBCONFIG.resource_url_img + '/project_detail/banner.png',
 				title: '项目详情',
 				title_en: 'Business cooperation'
 			},
 			detail: {
 				// img: require('@/assets/img/project_detail/pic1.png'),
-				imgList: [WEBCONFIG.resource_url_img+'/project_detail/pic1.png'],
+				imgList: [WEBCONFIG.resource_url_img + '/project_detail/pic1.png'],
 				tip: require('@/assets/img/project_detail/tip1.png'),
 				name: '无锡绿地观澜湾项目',
 				area: '60m²',
@@ -236,7 +236,7 @@ export default {
 				{
 					id: 1,
 					// img: require('@/assets/img/project_detail/item1.png'),
-					img: WEBCONFIG.resource_url_img+'/project_detail/item1.png',
+					img: WEBCONFIG.resource_url_img + '/project_detail/item1.png',
 					name: '豪华一居室',
 					price: '12000元/月起',
 					description: '1室1厅1厨1卫 58㎡起'
@@ -244,7 +244,7 @@ export default {
 				{
 					id: 2,
 					// img: require('@/assets/img/project_detail/item2.png'),
-					img: WEBCONFIG.resource_url_img+'/project_detail/item2.png',
+					img: WEBCONFIG.resource_url_img + '/project_detail/item2.png',
 					name: '豪华一居室',
 					price: '12000元/月起',
 					description: '1室1厅1厨1卫 58㎡起'
@@ -252,7 +252,7 @@ export default {
 				{
 					id: 3,
 					// img: require('@/assets/img/project_detail/item3.png'),
-					img: WEBCONFIG.resource_url_img+'/project_detail/item3.png',
+					img: WEBCONFIG.resource_url_img + '/project_detail/item3.png',
 					name: '豪华一居室',
 					price: '12000元/月起',
 					description: '1室1厅1厨1卫 58㎡起'
@@ -260,7 +260,7 @@ export default {
 				{
 					id: 4,
 					// img: require('@/assets/img/project_detail/item4.png'),
-					img: WEBCONFIG.resource_url_img+'/project_detail/item4.png',
+					img: WEBCONFIG.resource_url_img + '/project_detail/item4.png',
 					name: '豪华一居室',
 					price: '12000元/月起',
 					description: '1室1厅1厨1卫 58㎡起'
@@ -270,7 +270,7 @@ export default {
 		};
 	},
 	mounted() {
-		this.getProjectDetail(this.$route.query.id)
+		this.getProjectDetail(this.$route.query.id);
 		this.$nextTick(() => {
 			this.initMap();
 		});
@@ -280,7 +280,7 @@ export default {
 			projectDetail({ id }).then(data => {
 				// facilityList: ['健身房', '书吧', '影音区', '台球室', '休闲会客区', '会议室'],
 				// serviceList: ['24小时保安', '管家式服务', '人脸识别', 'wifi', '驻场维修', '公区保洁', '驻客活动'],
-				
+
 				this.detail.imgList = data.data.imgList;
 				this.detail.name = data.data.name;
 				this.detail.area = data.data.area + 'm²';
@@ -305,7 +305,7 @@ export default {
 					};
 				});
 				this.initMap();
-			})
+			});
 		},
 		// 生成地图
 		initMap() {
@@ -384,11 +384,11 @@ export default {
 				flex-direction: column;
 				justify-content: space-between;
 				.box1 {
-					background-color: #FFF6EC;
+					background-color: #fff6ec;
 					.text {
 						padding: 10px 20px;
 						font-size: 1.8rem;
-						color: #975B15;
+						color: #975b15;
 					}
 					.name {
 						font-size: 2.4rem;
@@ -408,8 +408,8 @@ export default {
 				.box2 {
 					margin-top: 5px;
 					padding: 30px;
-					background-color: #FFF6EC;
-					color: #975B15;
+					background-color: #fff6ec;
+					color: #975b15;
 					.logo {
 						width: 120px;
 					}
@@ -446,8 +446,8 @@ export default {
 			position: relative;
 			margin-top: 20px;
 			padding: 20px 30px;
-			background-color: #FFF6EC;
-			color: #975B15;
+			background-color: #fff6ec;
+			color: #975b15;
 			.icon {
 				position: absolute;
 				top: 0;
@@ -535,7 +535,7 @@ export default {
 			}
 		}
 	}
-	::v-deep .my-dialog{
+	::v-deep .my-dialog {
 		width: 200px;
 	}
 }

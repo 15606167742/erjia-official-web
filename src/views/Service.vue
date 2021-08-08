@@ -178,7 +178,7 @@ export default {
 			imgResource: WEBCONFIG.resource_url_img,
 			info: {
 				// banner: require('@/assets/img/service/banner1.png'),
-				banner: WEBCONFIG.resource_url_img+'/service/banner1.png',
+				banner: WEBCONFIG.resource_url_img + '/service/banner1.png',
 				title: '运营服务',
 				title_en: 'Operation services',
 				tabList: [
@@ -221,35 +221,35 @@ export default {
 				{
 					id: 1,
 					// img: require('@/assets/img/service/hotel1.png'),
-					img: WEBCONFIG.resource_url_img+'/service/hotel1.png',
+					img: WEBCONFIG.resource_url_img + '/service/hotel1.png',
 					title: '维保服务',
 					introduction: '公区保洁、室内精保、熨烫衣物、室内维修服务、家电清洗服务'
 				},
 				{
 					id: 2,
 					// img: require('@/assets/img/service/hotel2.png'),
-					img: WEBCONFIG.resource_url_img+'/service/hotel2.png',
+					img: WEBCONFIG.resource_url_img + '/service/hotel2.png',
 					title: '安防服务',
 					introduction: '24小时保安、全梯控覆盖、楼层24小时监控、智能安全门锁'
 				},
 				{
 					id: 3,
 					// img: require('@/assets/img/service/hotel3.png'),
-					img: WEBCONFIG.resource_url_img+'/service/hotel3.png',
+					img: WEBCONFIG.resource_url_img + '/service/hotel3.png',
 					title: '交通服务',
 					introduction: '出租车预定、车辆租赁、停车设施（免费停车位）'
 				},
 				{
 					id: 4,
 					// img: require('@/assets/img/service/hotel4.png'),
-					img: WEBCONFIG.resource_url_img+'/service/hotel4.png',
+					img: WEBCONFIG.resource_url_img + '/service/hotel4.png',
 					title: '餐饮服务',
 					introduction: '简餐（早餐）、咖啡、甜点'
 				},
 				{
 					id: 5,
 					// img: require('@/assets/img/service/hotel5.png'),
-					img: WEBCONFIG.resource_url_img+'/service/hotel5.png',
+					img: WEBCONFIG.resource_url_img + '/service/hotel5.png',
 					title: '商务服务',
 					introduction: '复印/打印、快递中心、商务会议'
 				}
@@ -258,28 +258,28 @@ export default {
 				{
 					id: 1,
 					// img: require('@/assets/img/service/keeper1.png'),
-					img: WEBCONFIG.resource_url_img+'/service/keeper1.png',
+					img: WEBCONFIG.resource_url_img + '/service/keeper1.png',
 					title: '私人秘书',
 					title_en: 'Private secretary'
 				},
 				{
 					id: 2,
 					// img: require('@/assets/img/service/keeper2.png'),
-					img: WEBCONFIG.resource_url_img+'/service/keeper2.png',
+					img: WEBCONFIG.resource_url_img + '/service/keeper2.png',
 					title: '室内特色场景布置',
 					title_en: 'Indoor characteristic\n scene layout'
 				},
 				{
 					id: 3,
 					// img: require('@/assets/img/service/keeper3.png'),
-					img: WEBCONFIG.resource_url_img+'/service/keeper3.png',
+					img: WEBCONFIG.resource_url_img + '/service/keeper3.png',
 					title: '代办个人事宜',
 					title_en: 'Personal affairs'
 				},
 				{
 					id: 4,
 					// img: require('@/assets/img/service/keeper4.png'),
-					img: WEBCONFIG.resource_url_img+'/service/keeper4.png',
+					img: WEBCONFIG.resource_url_img + '/service/keeper4.png',
 					title: '代充水电',
 					title_en: 'Daichong hydropower'
 				}
@@ -288,14 +288,14 @@ export default {
 				{
 					id: 1,
 					// img: require('@/assets/img/service/operation1.png'),
-					img: WEBCONFIG.resource_url_img+'/service/operation1.png',
+					img: WEBCONFIG.resource_url_img + '/service/operation1.png',
 					title: '私人秘书',
 					date: '2021-02-02'
 				},
 				{
 					id: 2,
 					// img: require('@/assets/img/service/operation2.png'),
-					img: WEBCONFIG.resource_url_img+'/service/operation2.png',
+					img: WEBCONFIG.resource_url_img + '/service/operation2.png',
 					title: '室内特色场景布置',
 					date: '2021-02-02'
 				}
@@ -364,15 +364,14 @@ export default {
 				this.activityList = data.data.map(item => {
 					return {
 						id: item.id,
-						date: item.createTime
-							.slice(0, 10),
+						date: item.createTime.slice(0, 10),
 						img: item.coverUrl,
 						title: item.title,
-						content: item.content.slice(9, -11),
+						content: item.content.slice(9, -11)
 					};
 				});
 			});
-		},
+		}
 	}
 };
 </script>

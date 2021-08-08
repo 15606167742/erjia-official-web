@@ -18,12 +18,17 @@
 						<el-image class="img" :src="activeJob === job.id ? require('@/assets/img/connect/arrow2.png') : require('@/assets/img/connect/arrow1.png')" fit="contain"></el-image>
 					</div>
 				</div>
-				<div class="text" :class="{ hidden: activeJob !== job.id }" v-html="job.text"></div>
+				<div class="text" :class="{ hidden: activeJob !== job.id }">
+					<div class="text_title">岗位要求</div>
+					<div class="text_content" v-html="job.gwRequire"></div>
+					<div class="text_title">职位要求</div>
+					<div class="text_content" v-html="job.zwRequire"></div>
+				</div>
 			</div>
 		</div>
 		<div class="content2" v-else-if="activeTab === 2">
 			<div class="form">
-				<div class="form-item" :class="{ 'form-item-row': form.key == 'content' }" :key="index" v-for="(form, index) in formList">
+				<div class="form-item" :class="{ 'form-item-row': form.key == 'des' }" :key="index" v-for="(form, index) in formList">
 					<div class="label">
 						<span>{{ form.label }}</span>
 						<span class="red">*</span>
@@ -31,7 +36,7 @@
 					<el-input class="my-input" v-model="form.value" :prefix-icon="form.icon"></el-input>
 				</div>
 			</div>
-			<div class="row"><div class="btn">提交</div></div>
+			<div class="row"><div class="btn" @click="submit">提交</div></div>
 			<div class="map" id="dituContent"></div>
 		</div>
 		<Footer></Footer>
@@ -42,6 +47,8 @@
 import Header from '@/components/Header.vue';
 import TopBanner from '@/components/TopBanner.vue';
 import Footer from '@/components/Footer.vue';
+
+import { jobList, submitContact } from '@/network/connect.js';
 
 export default {
 	name: 'Connect',
@@ -83,50 +90,10 @@ export default {
 					name: '创意设计师',
 					date: '2021-04-20',
 					address: '上海',
-					text: `<p><strong><span style="font-size:18px;color:#333333;">岗位要求：</span></strong>
-						</p>
-						<p>
-							<span style="font-size:18px;"><span style="font-size:16px;color:#333333;">1. 主要负责公司业务拓展工作，完成公司业务指标。</span><br />
-						<span style="font-size:16px;color:#333333;">2. 负责执行线下活动，保证活动质量。</span><br />
-						<span style="font-size:16px;color:#333333;">3. 负责定期梳理市场情况，研究营销策略，提出优化建议。</span><br />
-						<span style="font-size:16px;color:#333333;">4. 开发公司提供的优质客户资源。</span><br />
-						<span style="font-size:16px;color:#333333;">5. 协助其他部门，对客户进行定期维护，与客户保持长期合作关系。</span></span>
-						</p>
-						<p>
-							<span style="font-size:18px;"><span style="font-size:16px;"><span style="font-size:18px;color:#333333;"><strong>职位要求</strong></span><span style="font-size:18px;color:#333333;"><strong>：</strong></span></span></span>
-						</p>
-						<p>
-							<span style="font-size:18px;"><span style="font-size:16px;"><span style="font-size:18px;"><span style="font-size:16px;color:#333333;">1. 大专或以上学历，相关美术专业毕业，有良好的手绘能力</span><br />
-						<span style="font-size:16px;color:#333333;">2. 身体健康、精力充沛，能承受较强的工作压力；</span><br />
-						<span style="font-size:16px;color:#333333;">3. 对家具设计有独到的见解和分析，善于沟通，表达能力强，有执行力</span><br />
-						<span style="font-size:16px;color:#333333;">4. 2年以上家具行业设计工作经验，了解各种家具风格，具备敏锐的市场洞察力及流行趋势的捕捉能力</span></span></span><br />
-						</span>
-						</p>`
-				},
-				{
-					id: 2,
-					name: '创意设计师',
-					date: '2021-04-20',
-					address: '上海',
-					text: `<p><strong><span style="font-size:18px;color:#333333;">岗位要求：</span></strong>
-						</p>
-						<p>
-							<span style="font-size:18px;"><span style="font-size:16px;color:#333333;">1. 主要负责公司业务拓展工作，完成公司业务指标。</span><br />
-						<span style="font-size:16px;color:#333333;">2. 负责执行线下活动，保证活动质量。</span><br />
-						<span style="font-size:16px;color:#333333;">3. 负责定期梳理市场情况，研究营销策略，提出优化建议。</span><br />
-						<span style="font-size:16px;color:#333333;">4. 开发公司提供的优质客户资源。</span><br />
-						<span style="font-size:16px;color:#333333;">5. 协助其他部门，对客户进行定期维护，与客户保持长期合作关系。</span></span>
-						</p>
-						<p>
-							<span style="font-size:18px;"><span style="font-size:16px;"><span style="font-size:18px;color:#333333;"><strong>职位要求</strong></span><span style="font-size:18px;color:#333333;"><strong>：</strong></span></span></span>
-						</p>
-						<p>
-							<span style="font-size:18px;"><span style="font-size:16px;"><span style="font-size:18px;"><span style="font-size:16px;color:#333333;">1. 大专或以上学历，相关美术专业毕业，有良好的手绘能力</span><br />
-						<span style="font-size:16px;color:#333333;">2. 身体健康、精力充沛，能承受较强的工作压力；</span><br />
-						<span style="font-size:16px;color:#333333;">3. 对家具设计有独到的见解和分析，善于沟通，表达能力强，有执行力</span><br />
-						<span style="font-size:16px;color:#333333;">4. 2年以上家具行业设计工作经验，了解各种家具风格，具备敏锐的市场洞察力及流行趋势的捕捉能力</span></span></span><br />
-						</span>
-						</p>`
+					gwRequire:
+						'<p><span>1. 主要负责公司业务拓展工作，完成公司业务指标。</span></p><p><span>2. 主要负责公司业务拓展工作，完成公司业务指标。</span></p><p><span>3. 主要负责公司业务拓展工作，完成公司业务指标。</span></p>',
+					zwRequire:
+						'<p>1. 主要负责公司业务拓展工作，完成公司业务指标。</p><p>2. 主要负责公司业务拓展工作，完成公司业务指标。</p><p>3. 主要负责公司业务拓展工作，完成公司业务指标。</p>'
 				}
 			],
 			activeJob: 1,
@@ -146,7 +113,7 @@ export default {
 				{
 					label: '邮箱',
 					icon: 'el-icon-message',
-					key: 'mail',
+					key: 'email',
 					value: ''
 				},
 				{
@@ -158,7 +125,7 @@ export default {
 				{
 					label: '内容',
 					icon: 'el-icon-document',
-					key: 'content',
+					key: 'des',
 					value: ''
 				}
 			],
@@ -184,6 +151,7 @@ export default {
 	},
 	mounted() {
 		this.jump();
+		this.getJobList();
 	},
 	watch: {
 		$route: {
@@ -224,6 +192,38 @@ export default {
 				this.activeJob = null;
 			} else {
 				this.activeJob = id;
+			}
+		},
+		getJobList() {
+			jobList().then(data => {
+				this.jobList.splice(0, this.jobList.length);
+				this.jobList = data.data.map(item => {
+					return {
+						id: item.id,
+						name: item.name,
+						date: item.createTime.slice(0, 10),
+						address: item.workCity,
+						gwRequire: item.gwRequire,
+						zwRequire: item.zwRequire
+					};
+				});
+			});
+		},
+		submit() {
+			let flag = this.formList.some(item => !item.value);
+			if (flag) {
+				this.$alert('必填项不能为空');
+			} else {
+				let form = {};
+				this.formList.forEach(item => {
+					form[item.key] = item.value;
+				});
+				submitContact(form).then(() => {
+					this.$alert('提交成功');
+					this.formList.forEach(item => {
+						item.value = '';
+					});
+				});
 			}
 		},
 		// 生成地图
@@ -364,7 +364,17 @@ export default {
 		}
 
 		.text {
+			color: #333333;
 			background-color: var(--color-bg-default);
+			.text_title {
+				font-size: 1.6rem;
+				line-height: 3rem;
+				font-weight: bold;
+			}
+			.text_content {
+				font-size: 1.4rem;
+				line-height: 2.5rem;
+			}
 
 			&.hidden {
 				display: none;

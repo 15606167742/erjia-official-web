@@ -250,7 +250,7 @@ export default {
 	},
 	methods: {
 		getProjectList() {
-			projectList({pageNum: 1, pageSize: 3, showType: 1}).then(data=>{
+			projectList({ pageNum: 1, pageSize: 3, showType: 1 }).then(data => {
 				this.hotHouseList.splice(0, this.hotHouseList.length);
 				this.hotHouseList = data.data.map(item => {
 					return {
@@ -263,7 +263,7 @@ export default {
 						introduction: item.indexBrief
 					};
 				});
-			})
+			});
 		},
 		gotoDetail(id) {
 			this.$router.push({
@@ -285,7 +285,7 @@ export default {
 							.join('.'),
 						img: item.coverUrl,
 						title: item.title,
-						content: item.content.slice(9, -11),
+						content: item.content.slice(9, -11)
 					};
 				});
 			});
@@ -307,7 +307,7 @@ export default {
 					search: JSON.stringify(this.search)
 				}
 			});
-		},
+		}
 	}
 };
 </script>
@@ -458,29 +458,29 @@ export default {
 				background-color: var(--color-bg-default);
 				box-shadow: 0 0 8px 0 #999999;
 				cursor: pointer;
-				
+
 				&:hover {
 					top: -20px;
 					background-color: var(--color-bg-main);
 					transition-duration: 1s;
-					
+
 					.info {
 						.house-tip {
 							color: var(--color-t-white);
 						}
-						
+
 						.house-name {
 							color: var(--color-t-white);
 						}
-						
+
 						.house-summary {
 							color: var(--color-t-white);
 						}
-						
+
 						.house-summary-en {
 							color: var(--color-t-white);
 						}
-						
+
 						.house-introduction {
 							color: var(--color-t-white);
 						}
@@ -609,7 +609,7 @@ export default {
 		.profile-img {
 			position: relative;
 			top: 0px;
-			
+
 			&:hover {
 				top: -30px;
 				transition-duration: 0.5s;
@@ -653,9 +653,9 @@ export default {
 				color: #333333;
 				border: 10px solid #333333;
 				cursor: pointer;
-				
+
 				&:hover {
-					border-color: #FFFFFF;
+					border-color: #ffffff;
 					background-color: #333333;
 					color: var(--color-t-white);
 				}
@@ -764,7 +764,7 @@ export default {
 				.house {
 					flex-basis: 100%;
 					margin-bottom: 20px;
-					
+
 					.house-img {
 						height: 200px;
 					}
@@ -855,7 +855,7 @@ export default {
 			.houses {
 				.house {
 					flex-basis: 20%;
-					
+
 					.house-img {
 						height: 300px;
 					}
@@ -918,7 +918,7 @@ export default {
 				.project {
 					flex-basis: 20%;
 					margin: 0 10px;
-					.project-title{
+					.project-title {
 						height: 7.5rem;
 					}
 				}

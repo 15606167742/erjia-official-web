@@ -15,7 +15,7 @@
 				邮箱: uhome shg@erjiashangye.com
 			</div>
 			<div class="form">
-				<div class="form-item" :class="{ 'form-item-row': form.key == 'content' }" :key="index" v-for="(form, index) in formList">
+				<div class="form-item" :class="{ 'form-item-row': form.key == 'des' }" :key="index" v-for="(form, index) in formList">
 					<div class="label">
 						<span>{{ form.label }}</span>
 						<span class="red">*</span>
@@ -23,7 +23,7 @@
 					<el-input class="my-input" v-model="form.value" :prefix-icon="form.icon"></el-input>
 				</div>
 			</div>
-			<div class="row3"><div class="btn">提交</div></div>
+			<div class="row3"><div class="btn" @click="submit">提交</div></div>
 		</div>
 		<div class="content2" v-else-if="activeTab === 2">
 			<div class="row1">
@@ -63,6 +63,8 @@
 import Header from '@/components/Header.vue';
 import TopBanner from '@/components/TopBanner.vue';
 import Footer from '@/components/Footer.vue';
+
+import { submitTouGao, enterpriseList } from '@/network/cooperation.js';
 
 export default {
 	name: 'Cooperation',
@@ -115,7 +117,7 @@ export default {
 				{
 					label: '内容',
 					icon: 'el-icon-document',
-					key: 'content',
+					key: 'des',
 					value: ''
 				}
 			],
@@ -176,6 +178,7 @@ export default {
 	},
 	mounted() {
 		this.jump();
+		this.getEnterpriseList();
 	},
 	watch: {
 		$route: {
@@ -203,6 +206,38 @@ export default {
 				} else {
 					tab.active = false;
 				}
+			});
+		},
+		submit() {
+			let flag = this.formList.some(item => !item.value);
+			if (flag) {
+				this.$alert('必填项不能为空');
+			} else {
+				let form = {};
+				this.formList.forEach(item => {
+					form[item.key] = item.value;
+				});
+				submitTouGao(form).then(() => {
+					this.$alert('提交成功');
+					this.formList.forEach(item => {
+						item.value = '';
+					});
+				});
+			}
+		},
+		getEnterpriseList() {
+			enterpriseList().then(data => {
+				this.enterpriseList.splice(0, this.enterpriseList.length);
+				this.enterpriseList = data.data.map(item => {
+					return {
+						id: item.id,
+						img: item.imgUrl,
+						name: item.name,
+						phone: item.mobile,
+						mail: item.email,
+						address: item.address
+					};
+				});
 			});
 		}
 	}

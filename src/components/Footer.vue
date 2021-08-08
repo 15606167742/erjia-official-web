@@ -60,25 +60,25 @@ export default {
 					id: 1,
 					img: require('@/assets/img/footer/share1.png'),
 					pop: require('@/assets/img/footer/pop1.png'),
-					tip: '微博扫码, 关注公众号'
+					tip: '微博扫码，了解尔家'
 				},
 				{
 					id: 2,
 					img: require('@/assets/img/footer/share2.png'),
 					pop: require('@/assets/img/footer/pop2.png'),
-					tip: '微信扫码, 关注公众号'
+					tip: '公众号扫码，了解尔家信息'
 				},
 				{
 					id: 3,
 					img: require('@/assets/img/footer/share3.png'),
 					pop: require('@/assets/img/footer/pop3.png'),
-					tip: '小红书扫码, 关注公众号'
+					tip: '小红书扫码，了解尔家生活'
 				},
 				{
 					id: 4,
 					img: require('@/assets/img/footer/share4.png'),
 					pop: require('@/assets/img/footer/pop4.png'),
-					tip: '抖音扫码, 关注公众号'
+					tip: '抖音扫码，参与尔家互动'
 				}
 			],
 			menuList: [

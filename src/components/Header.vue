@@ -211,7 +211,7 @@ export default {
 		.logo {
 			background-image: url(../assets/img/header/logo_scroll.png);
 		}
-		
+
 		.tabs {
 			color: #333;
 		}

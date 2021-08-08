@@ -70,8 +70,8 @@
 		</div>
 		<div class="content2" v-else-if="activeTab === 2">
 			<div class="ad">
-				<el-image class="ad-img" :src="imgResource + '/comein/ad.png'" fit="contain"></el-image>
-				<el-image class="ad-play" :src="require('@/assets/img/comein/play1.png')" fit="contain"></el-image>
+				<el-image class="ad-img" :src="adVideo.img" fit="cover"></el-image>
+				<el-image class="ad-play" :src="require('@/assets/img/comein/play1.png')" fit="contain" @click="playVideo(adVideo.video)"></el-image>
 			</div>
 			<div class="content">
 				<div class="row1">
@@ -81,9 +81,9 @@
 				</div>
 				<div class="row2">Project video</div>
 				<div class="videos">
-					<div class="video" :key="vp.id" v-for="vp in videoProjectList">
+					<div class="video" :key="vp.id" v-for="vp in videoProjectList" @click="playVideo(vp.video)">
 						<div class="box">
-							<el-image class="img" :src="vp.img" fit="contain"></el-image>
+							<el-image class="img" :src="vp.img" fit="cover"></el-image>
 							<el-image class="play" :src="require('@/assets/img/comein/play2.png')" fit="contain"></el-image>
 						</div>
 						<div class="title">{{ vp.title }}</div>
@@ -96,15 +96,16 @@
 				</div>
 				<div class="row2">Community activism video</div>
 				<div class="videos">
-					<div class="video" :key="va.id" v-for="va in videoActivityList">
+					<div class="video" :key="va.id" v-for="va in videoActivityList" @click="playVideo(va.video)">
 						<div class="box">
-							<el-image class="img" :src="va.img" fit="contain"></el-image>
+							<el-image class="img" :src="va.img" fit="cover"></el-image>
 							<el-image class="play" :src="require('@/assets/img/comein/play2.png')" fit="contain"></el-image>
 						</div>
 						<div class="title">{{ va.title }}</div>
 					</div>
 				</div>
 			</div>
+			<el-dialog custom-class="my-dialog" :visible="videoVisible" @close="closeVideo"><video ref="myVideo" class="my-video" :src="myVideo" controls="controls"></video></el-dialog>
 		</div>
 		<div class="content3" v-else-if="activeTab === 3">
 			<div class="row1">
@@ -253,7 +254,7 @@ import Header from '@/components/Header.vue';
 import TopBanner from '@/components/TopBanner.vue';
 import Footer from '@/components/Footer.vue';
 
-import { projectList } from '@/network/comein.js';
+import { projectList, indexVideo, projectVideoList, activityVideoList } from '@/network/comein.js';
 
 export default {
 	name: 'Comein',
@@ -318,28 +319,28 @@ export default {
 				{
 					id: 1,
 					// img: require('@/assets/img/comein/project1.png'),
-					img: WEBCONFIG.resource_url_img+'/comein/project1.png',
+					img: WEBCONFIG.resource_url_img + '/comein/project1.png',
 					title: '尔家雅寓\n无锡绿地天空树项目',
 					text: '48㎡全装托管地铁小户，超值投资\n跑赢通货膨胀'
 				},
 				{
 					id: 2,
 					// img: require('@/assets/img/comein/project2.png'),
-					img: WEBCONFIG.resource_url_img+'/comein/project2.png',
+					img: WEBCONFIG.resource_url_img + '/comein/project2.png',
 					title: '镇江宝龙项目',
 					text: '小户型没有复式的惯例，\n尔佳镇江暴龙复式设计是例外。'
 				},
 				{
 					id: 3,
 					// img: require('@/assets/img/comein/project3.png'),
-					img: WEBCONFIG.resource_url_img+'/comein/project3.png',
+					img: WEBCONFIG.resource_url_img + '/comein/project3.png',
 					title: '无锡金科米兰店',
 					text: '尔家馨寓金科米兰位于新吴区\n行创四路，区位配套完善，\n毗邻中央公园，环境优美，交通便利。'
 				},
 				{
 					id: 4,
 					// img: require('@/assets/img/comein/project4.png'),
-					img: WEBCONFIG.resource_url_img+'/comein/project4.png',
+					img: WEBCONFIG.resource_url_img + '/comein/project4.png',
 					title: '尔家雅寓绿地观澜湾店',
 					text: '尔家雅寓地处无锡核心地段，\n东拥市中心，西临古运河，\n坐拥无锡CBD。'
 				}
@@ -375,7 +376,7 @@ export default {
 				{
 					id: 1,
 					// img: require('@/assets/img/comein/sale1.png'),
-					img: WEBCONFIG.resource_url_img+'/comein/sale1.png',
+					img: WEBCONFIG.resource_url_img + '/comein/sale1.png',
 					en: 'LOFT',
 					title: '镇江宝龙项目',
 					adj: '温馨舒适',
@@ -385,7 +386,7 @@ export default {
 				{
 					id: 2,
 					// img: require('@/assets/img/comein/sale1.png'),
-					img: WEBCONFIG.resource_url_img+'/comein/sale1.png',
+					img: WEBCONFIG.resource_url_img + '/comein/sale1.png',
 					en: 'LOFT',
 					title: '镇江宝龙项目',
 					adj: '温馨舒适',
@@ -395,7 +396,7 @@ export default {
 				{
 					id: 3,
 					// img: require('@/assets/img/comein/sale1.png'),
-					img: WEBCONFIG.resource_url_img+'/comein/sale1.png',
+					img: WEBCONFIG.resource_url_img + '/comein/sale1.png',
 					en: 'LOFT',
 					title: '镇江宝龙项目',
 					adj: '温馨舒适',
@@ -403,41 +404,47 @@ export default {
 					text: '小户型没有复式是惯例，尔家镇江宝龙复式设计是例外。'
 				}
 			],
+			videoVisible: false,
+			myVideo: '',
+			adVideo: {
+				img: WEBCONFIG.resource_url_img + '/comein/ad.png',
+				video: 'https://ltzn.oss-cn-zhangjiakou.aliyuncs.com/cms//03adaf36-00ac-4b8c-b8a1-1566263d0543.mp4'
+			},
 			videoProjectList: [
 				{
 					id: 1,
 					// img: require('@/assets/img/comein/videoProject1.png'),
-					img: WEBCONFIG.resource_url_img+'/comein/videoProject1.png',
+					img: WEBCONFIG.resource_url_img + '/comein/videoProject1.png',
 					title: '无锡绿地观澜湾项目'
 				},
 				{
 					id: 2,
 					// img: require('@/assets/img/comein/videoProject2.png'),
-					img: WEBCONFIG.resource_url_img+'/comein/videoProject2.png',
+					img: WEBCONFIG.resource_url_img + '/comein/videoProject2.png',
 					title: '无锡绿地观澜湾项目'
 				},
 				{
 					id: 3,
 					// img: require('@/assets/img/comein/videoProject3.png'),
-					img: WEBCONFIG.resource_url_img+'/comein/videoProject3.png',
+					img: WEBCONFIG.resource_url_img + '/comein/videoProject3.png',
 					title: '无锡绿地观澜湾项目'
 				},
 				{
 					id: 4,
 					// img: require('@/assets/img/comein/videoProject4.png'),
-					img: WEBCONFIG.resource_url_img+'/comein/videoProject4.png',
+					img: WEBCONFIG.resource_url_img + '/comein/videoProject4.png',
 					title: '无锡绿地观澜湾项目'
 				},
 				{
 					id: 5,
 					// img: require('@/assets/img/comein/videoProject5.png'),
-					img: WEBCONFIG.resource_url_img+'/comein/videoProject5.png',
+					img: WEBCONFIG.resource_url_img + '/comein/videoProject5.png',
 					title: '无锡绿地观澜湾项目'
 				},
 				{
 					id: 6,
 					// img: require('@/assets/img/comein/videoProject6.png'),
-					img: WEBCONFIG.resource_url_img+'/comein/videoProject6.png',
+					img: WEBCONFIG.resource_url_img + '/comein/videoProject6.png',
 					title: '无锡绿地观澜湾项目'
 				}
 			],
@@ -445,37 +452,37 @@ export default {
 				{
 					id: 1,
 					// img: require('@/assets/img/comein/videoActivity1.png'),
-					img: WEBCONFIG.resource_url_img+'/comein/videoActivity1.png',
+					img: WEBCONFIG.resource_url_img + '/comein/videoActivity1.png',
 					title: '燃爆盛夏 嗨翻全场｜尔家第三届百人龙虾节激情落幕！'
 				},
 				{
 					id: 2,
 					// img: require('@/assets/img/comein/videoActivity2.png'),
-					img: WEBCONFIG.resource_url_img+'/comein/videoActivity2.png',
+					img: WEBCONFIG.resource_url_img + '/comein/videoActivity2.png',
 					title: '尔家龙虾节｜一年一度的龙虾节终于来了！'
 				},
 				{
 					id: 3,
 					// img: require('@/assets/img/comein/videoActivity3.png'),
-					img: WEBCONFIG.resource_url_img+'/comein/videoActivity3.png',
+					img: WEBCONFIG.resource_url_img + '/comein/videoActivity3.png',
 					title: '父亲节｜晒照片赢888元现金红包！'
 				},
 				{
 					id: 4,
 					// img: require('@/assets/img/comein/videoActivity4.png'),
-					img: WEBCONFIG.resource_url_img+'/comein/videoActivity4.png',
+					img: WEBCONFIG.resource_url_img + '/comein/videoActivity4.png',
 					title: '520交友派对｜解锁“新一代年轻人的交友”新方式！'
 				},
 				{
 					id: 5,
 					// img: require('@/assets/img/comein/videoActivity5.png'),
-					img: WEBCONFIG.resource_url_img+'/comein/videoActivity5.png',
+					img: WEBCONFIG.resource_url_img + '/comein/videoActivity5.png',
 					title: '奇妙 · 扎染 手底生出来的花朵！'
 				},
 				{
 					id: 6,
 					// img: require('@/assets/img/comein/videoActivity6.png'),
-					img: WEBCONFIG.resource_url_img+'/comein/videoActivity6.png',
+					img: WEBCONFIG.resource_url_img + '/comein/videoActivity6.png',
 					title: '爱心公益U时代，有你有我更精彩。'
 				}
 			],
@@ -545,6 +552,9 @@ export default {
 		this.jump();
 		this.getProjectList1();
 		this.getProjectList2();
+		this.getIndexVideo();
+		this.getProjectVideoList();
+		this.getActivityVideoList();
 	},
 	watch: {
 		$route: {
@@ -573,7 +583,7 @@ export default {
 			});
 		},
 		getProjectList1() {
-			projectList({pageNum: 1, pageSize: 4, showType: 2}).then(data=>{
+			projectList({ pageNum: 1, pageSize: 4, showType: 2 }).then(data => {
 				this.projectList.splice(0, this.projectList.length);
 				this.projectList = data.data.map(item => {
 					return {
@@ -583,10 +593,10 @@ export default {
 						text: item.indexBrief
 					};
 				});
-			})
+			});
 		},
 		getProjectList2() {
-			projectList({pageNum: 1, pageSize: 3, showType: 3}).then(data=>{
+			projectList({ pageNum: 1, pageSize: 3, showType: 3 }).then(data => {
 				this.saleList.splice(0, this.saleList.length);
 				this.saleList = data.data.map(item => {
 					return {
@@ -599,7 +609,7 @@ export default {
 						text: item.indexBrief
 					};
 				});
-			})
+			});
 		},
 		gotoDetail(id) {
 			this.$router.push({
@@ -609,6 +619,59 @@ export default {
 				}
 			});
 		},
+		getIndexVideo() {
+			indexVideo().then(data => {
+				this.adVideo.img = data.data.coverUrl;
+				this.adVideo.video = data.data.videoUrl;
+			});
+		},
+		getProjectVideoList() {
+			projectVideoList().then(data => {
+				this.videoProjectList.splice(0, this.videoProjectList.length);
+				this.videoProjectList = data.data.map(item => {
+					return {
+						id: item.id,
+						img: item.coverUrl,
+						video: item.videoUrl,
+						title: item.name
+					};
+				});
+			});
+		},
+		getActivityVideoList() {
+			activityVideoList().then(data => {
+				this.videoActivityList.splice(0, this.videoActivityList.length);
+				this.videoActivityList = data.data.map(item => {
+					return {
+						id: item.id,
+						img: item.coverUrl,
+						video: item.videoUrl,
+						title: item.name
+					};
+				});
+			});
+		},
+		playVideo(video) {
+			if (!video) {
+				this.myVideo = '';
+				this.videoVisible = true;
+			} else if (this.myVideo == video) {
+				this.videoVisible = true;
+				this.$refs.myVideo.play();
+			} else {
+				this.myVideo = video;
+				this.videoVisible = true;
+				this.$nextTick(() => {
+					this.$refs.myVideo.addEventListener('loadeddata', () => {
+						this.$refs.myVideo.play();
+					});
+				});
+			}
+		},
+		closeVideo() {
+			this.$refs.myVideo.pause();
+			this.videoVisible = false;
+		}
 	}
 };
 </script>
@@ -667,7 +730,7 @@ export default {
 
 			.project {
 				display: flex;
-				
+
 				.project-content {
 					// white-space: normal;
 					display: flex;
@@ -805,7 +868,6 @@ export default {
 		.videos {
 			display: flex;
 			flex-wrap: wrap;
-			justify-content: space-around;
 			.video {
 				.box {
 					position: relative;
@@ -829,6 +891,12 @@ export default {
 					line-height: 2.5rem;
 					color: #333333;
 				}
+			}
+		}
+
+		::v-deep .my-dialog {
+			.my-video {
+				width: 100%;
 			}
 		}
 	}
@@ -1037,12 +1105,25 @@ export default {
 		}
 
 		.content2 {
+			.ad {
+				.ad-img {
+					height: 250px;
+				}
+			}
 			.videos {
 				margin-top: 30px;
 				.video {
 					flex-basis: 100%;
 					margin-bottom: 20px;
+					.box {
+						.img {
+							height: 200px;
+						}
+					}
 				}
+			}
+			::v-deep .my-dialog {
+				width: 90%;
 			}
 		}
 
@@ -1125,11 +1206,11 @@ export default {
 					margin-left: 15px;
 					margin-right: 0;
 					flex: 45%;
-					
+
 					&:hover {
 						animation: fly 3s;
 					}
-					
+
 					@keyframes fly {
 						50% {
 							transform: translateX(100px);
@@ -1140,11 +1221,11 @@ export default {
 						flex-direction: row-reverse;
 						margin-left: 0;
 						margin-right: 15px;
-						
+
 						&:hover {
 							animation: fly-reverse 3s;
 						}
-						
+
 						@keyframes fly-reverse {
 							50% {
 								transform: translateX(-100px);
@@ -1204,6 +1285,9 @@ export default {
 		.content2 {
 			.ad {
 				margin-top: 100px;
+				.ad-img {
+					height: 450px;
+				}
 			}
 			.content {
 				margin: 0 auto 100px;
@@ -1213,7 +1297,13 @@ export default {
 					margin-top: 80px;
 					.video {
 						flex-basis: 30%;
+						margin: 0 1.5%;
 						margin-bottom: 60px;
+						.box {
+							.img {
+								height: 200px;
+							}
+						}
 					}
 				}
 			}
