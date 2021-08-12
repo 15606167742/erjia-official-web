@@ -312,6 +312,7 @@ export default {
 			this.createMap(); //创建地图
 			this.setMapEvent(); //设置地图事件
 			this.addMapControl(); //向地图添加控件
+			this.addMarker(); //向地图中添加marker
 		},
 		createMap() {
 			let map = new BMap.Map('dituContent'); //在百度地图容器中创建一个地图
@@ -325,7 +326,44 @@ export default {
 			this.map.enableDoubleClickZoom(); //启用鼠标双击放大，默认启用(可不写)
 			this.map.enableKeyboard(); //启用键盘上下左右键移动地图
 		},
-		addMapControl() {}
+		addMapControl() {},
+		addMarker() {
+			let markerArr = [
+				{
+					title: '',
+					content: '',
+					point: this.detail.lng + '|' + this.detail.lat,
+					isOpen: 0,
+					icon: {
+						w: 23,
+						h: 25,
+						l: 46,
+						t: 21,
+						x: 9,
+						lb: 12
+					}
+				}
+			]
+			for (let i = 0; i < markerArr.length; i++) {
+				let json = markerArr[i];
+				let p0 = json.point.split('|')[0];
+				let p1 = json.point.split('|')[1];
+				let point = new BMap.Point(p0, p1);
+				let iconImg = this.createIcon(json.icon);
+				let marker = new BMap.Marker(point, {
+					icon: iconImg
+				});
+				this.map.addOverlay(marker);
+			}
+		},
+		createIcon(json) {
+			let icon = new BMap.Icon('http://api.map.baidu.com/lbsapi/creatmap/images/us_mk_icon.png', new BMap.Size(json.w, json.h), {
+				imageOffset: new BMap.Size(-json.l, -json.t),
+				infoWindowOffset: new BMap.Size(json.lb + 5, 1),
+				offset: new BMap.Size(json.x, json.h)
+			});
+			return icon;
+		}
 	}
 };
 </script>
