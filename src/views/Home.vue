@@ -92,7 +92,7 @@
 					</div>
 					<div class="project-title">{{ project.title }}</div>
 					<div class="project-content">{{ project.content }}</div>
-					<div class="project-more">查看更多</div>
+					<div class="project-more" @click="openUrl(project.redirectUrl)">查看更多</div>
 				</div>
 			</div>
 		</div>
@@ -285,7 +285,8 @@ export default {
 							.join('.'),
 						img: item.coverUrl,
 						title: item.title,
-						content: item.content.slice(9, -11)
+						content: item.content.slice(9, -11),
+						redirectUrl: item.redirectUrl
 					};
 				});
 			});
@@ -307,6 +308,9 @@ export default {
 					search: JSON.stringify(this.search)
 				}
 			});
+		},
+		openUrl(url) {
+			window.open(url);
 		}
 	}
 };
