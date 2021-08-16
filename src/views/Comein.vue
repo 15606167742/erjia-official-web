@@ -602,7 +602,7 @@ export default {
 					return {
 						id: item.id,
 						img: item.coverUrl,
-						en: 'loft',
+						en: item.indexTag,
 						title: item.name,
 						adj: item.indexRecommendationCn,
 						adj_en: item.indexRecommendationEn,

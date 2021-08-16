@@ -261,7 +261,7 @@ export default {
 					return {
 						id: item.id,
 						img: item.coverUrl,
-						en: 'TOD',
+						en: item.indexTag,
 						title: item.name,
 						text: item.indexBrief
 					};
