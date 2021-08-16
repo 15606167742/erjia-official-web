@@ -256,7 +256,7 @@ export default {
 					return {
 						id: item.id,
 						img: item.coverUrl,
-						tip: 'loft',
+						tip: item.indexTag,
 						name: item.name,
 						summary: item.indexRecommendationCn,
 						summary_en: item.indexRecommendationEn,
