@@ -835,6 +835,10 @@ export default {
 				.project {
 					margin-top: 20px;
 					flex-basis: 100%;
+					
+					.project-img {
+						height: 200px;
+					}
 				}
 			}
 		}
@@ -922,6 +926,11 @@ export default {
 				.project {
 					flex-basis: 20%;
 					margin: 0 10px;
+					
+					.project-img {
+						height: 250px;
+					}
+					
 					.project-title {
 						height: 7.5rem;
 					}

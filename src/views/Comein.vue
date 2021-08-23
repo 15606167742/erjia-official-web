@@ -90,7 +90,7 @@
 					</div>
 				</div>
 				<div class="row1">
-					<span class="row1_l">社群活动</span>
+					<span class="row1_l">尔家</span>
 					<span class="row1_r">视频</span>
 					<el-image class="row1_split" :src="require('@/assets/img/comein/line.png')" fit="contain"></el-image>
 				</div>
