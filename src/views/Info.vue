@@ -400,7 +400,6 @@ export default {
 
 	.content1 {
 		display: flex;
-		flex-direction: column;
 		flex-wrap: wrap;
 		align-content: space-around;
 
@@ -602,6 +601,10 @@ export default {
 
 			.box {
 				width: 100%;
+				
+				.my-img {
+					height: 150px;
+				}
 
 				.text {
 					padding: 20px;
@@ -741,10 +744,19 @@ export default {
 
 			.box {
 				width: 30%;
+				margin: 0 1% 20px;
+				
+				.my-img {
+					height: 250px;
+				}
 
 				.text {
 					padding: 30px;
 					height: 250px;
+					
+					.title {
+						height: 9rem;
+					}
 				}
 			}
 		}

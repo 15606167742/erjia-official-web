@@ -59,7 +59,7 @@
 				<span class="row1_r">酒店</span>
 				<el-image class="row1_split" :src="require('@/assets/img/product/line.png')" fit="contain"></el-image>
 			</div>
-			<div class="row2">即使在镶金石银盛行的时代，品味也没有失去它的光辉</div>
+			<div class="row2">绝佳的游玩地理位置，是您来常州的不二之选</div>
 			<div class="row3">
 				<div class="box" :key="house.id" v-for="house in houseList2" @click="gotoDetail(house.id)">
 					<el-image class="my-img" :src="house.img" fit="cover"></el-image>
@@ -229,7 +229,7 @@ export default {
 			});
 		},
 		getProjectList1() {
-			projectList({ pageNum: 1, pageSize: 3, series: 1 }).then(data => {
+			projectList({ pageNum: 1, pageSize: 999, series: 1 }).then(data => {
 				this.houseList1.splice(0, this.houseList1.length);
 				this.houseList1 = data.data.map(item => {
 					return {
@@ -242,7 +242,7 @@ export default {
 			});
 		},
 		getProjectList2() {
-			projectList({ pageNum: 1, pageSize: 3, series: 2 }).then(data => {
+			projectList({ pageNum: 1, pageSize: 999, series: 2 }).then(data => {
 				this.houseList2.splice(0, this.houseList2.length);
 				this.houseList2 = data.data.map(item => {
 					return {
@@ -351,7 +351,6 @@ export default {
 		.row3 {
 			display: flex;
 			flex-wrap: wrap;
-			justify-content: space-around;
 			align-items: center;
 			.box {
 				cursor: pointer;
@@ -563,6 +562,7 @@ export default {
 				margin-bottom: 140px;
 				.box {
 					flex-basis: 30%;
+					margin: 0 1.5% 50px;
 					.my-img {
 						height: 300px;
 					}
