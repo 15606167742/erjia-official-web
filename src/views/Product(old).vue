@@ -3,14 +3,6 @@
 		<Header></Header>
 		<top-banner :info="info" @change="handleChange"></top-banner>
 		<div class="content1" v-if="activeTab === 1">
-			<div class="introduction">
-				<div class="row1">
-					<span class="row1_l">商务</span>
-					<span class="row1_r">中心</span>
-					<el-image class="row1_split" :src="require('@/assets/img/product/line.png')" fit="contain"></el-image>
-				</div>
-				<div class="row2">Business management</div>
-			</div>
 			<div class="bg"></div>
 			<div class="box1">
 				<div class="title">
@@ -81,6 +73,16 @@
 				</div>
 			</div>
 		</div>
+		<div class="content3" v-else-if="activeTab === 3">
+			<div class="box" :key="item.id" v-for="item in itemList" @click="gotoDetail(item.id)">
+				<el-image class="my-img" :src="item.img" fit="cover"></el-image>
+				<div class="content">
+					<div class="en">{{ item.en }}</div>
+					<div class="title">{{ item.title }}</div>
+					<div class="text">{{ item.text }}</div>
+				</div>
+			</div>
+		</div>
 		<Footer></Footer>
 	</div>
 </template>
@@ -123,6 +125,14 @@ export default {
 						img: require('@/assets/img/product/tab2.png'),
 						name: '产品系列',
 						name_en: 'Product line'
+					},
+					{
+						id: 3,
+						active: false,
+						banner: '/product/banner1.png',
+						img: require('@/assets/img/product/tab3.png'),
+						name: '新售项目',
+						name_en: 'New items'
 					}
 				]
 			},
@@ -172,6 +182,16 @@ export default {
 					name: '无锡绿地天空树项目',
 					location: '成都·梁溪区'
 				}
+			],
+			itemList: [
+				{
+					id: 1,
+					// img: require('@/assets/img/product/item1.png'),
+					img: WEBCONFIG.resource_url_img + '/product/item1.png',
+					en: 'TOD',
+					title: '尔家雅寓无锡绿地天空树项目',
+					text: '48m²全装托管地铁小户,超值投资,跑赢通货膨胀'
+				}
 			]
 		};
 	},
@@ -179,6 +199,7 @@ export default {
 		this.jump();
 		this.getProjectList1();
 		this.getProjectList2();
+		this.getProjectList3();
 	},
 	watch: {
 		$route: {
@@ -229,6 +250,20 @@ export default {
 						img: item.coverUrl,
 						name: item.name,
 						location: item.city + '·' + item.qu
+					};
+				});
+			});
+		},
+		getProjectList3() {
+			projectList({ pageNum: 1, pageSize: 3, showType: 4 }).then(data => {
+				this.itemList.splice(0, this.itemList.length);
+				this.itemList = data.data.map(item => {
+					return {
+						id: item.id,
+						img: item.coverUrl,
+						en: item.indexTag,
+						title: item.name,
+						text: item.indexBrief
 					};
 				});
 			});
@@ -352,37 +387,38 @@ export default {
 		}
 	}
 
-	.row1 {
-		position: relative;
-		font-size: 3rem;
-		letter-spacing: 0.2rem;
-		font-weight: bold;
-		text-align: center;
-
-		.row1_l {
-			color: #666666;
+	.content3 {
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: space-between;
+		.box {
+			box-shadow: 0 0 10px 0 #999999;
+			cursor: pointer;
+			.my-img {
+				display: block;
+			}
+			.content {
+				padding: 30px;
+				height: 250px;
+				.en {
+					font-size: 1.8rem;
+					font-weight: bold;
+					color: var(--color-t-active);
+				}
+				.title {
+					margin-top: 5px;
+					font-size: 2.8rem;
+					line-height: 3.5rem;
+					color: #cccccc;
+				}
+				.text {
+					margin-top: 20px;
+					font-size: 1.8rem;
+					line-height: 2.5rem;
+					color: #666666;
+				}
+			}
 		}
-
-		.row1_r {
-			color: var(--color-t-active);
-		}
-
-		.row1_split {
-			width: 30%;
-			max-width: 520px;
-			min-width: 300px;
-			position: absolute;
-			top: 50%;
-			left: 50%;
-			transform: translateX(-50%);
-		}
-	}
-
-	.row2 {
-		margin-top: 15px;
-		font-size: 1.6rem;
-		text-align: center;
-		color: #333333;
 	}
 }
 
@@ -443,9 +479,17 @@ export default {
 				}
 			}
 		}
-	}
-	.row1 {
-		margin-top: 50px;
+
+		.content3 {
+			margin: 20px 20px 60px;
+			.box {
+				margin-bottom: 30px;
+				flex-basis: 100%;
+				.my-img {
+					height: 200px;
+				}
+			}
+		}
 	}
 }
 
@@ -533,9 +577,18 @@ export default {
 				}
 			}
 		}
-	}
-	.row1 {
-		margin-top: 150px;
+
+		.content3 {
+			margin: 20px auto 60px;
+			width: 70%;
+			min-width: 1000px;
+			.box {
+				flex-basis: 25%;
+				.my-img {
+					height: 250px;
+				}
+			}
+		}
 	}
 }
 </style>

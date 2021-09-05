@@ -130,20 +130,45 @@
 		</div>
 		<div class="content3" v-else-if="activeTab === 3">
 			<div class="row1">
-				<span class="row1_l">EPCO</span>
+				<span class="row1_l">在售</span>
+				<span class="row1_r">项目</span>
 				<el-image class="row1_split" :src="require('@/assets/img/comein/line.png')" fit="contain"></el-image>
 			</div>
-			<div class="text">将EPC(工程总承包)和om（委托运营）完成组合，满足运营导向下的全生命周期管理的需要，最大限度提升政府就去改造和城市更新项目投资效率的需要。</div>
-			<div class="model">
-				<el-image class="model1" :src="require('@/assets/img/comein/model1.png')" fit="contain"></el-image>
+			<div class="row2">Items on sale</div>
+			<div class="sales">
+				<div class="sale" :key="sale.id" v-for="sale in saleList">
+					<el-image class="my-img" :src="sale.img" fit="cover"></el-image>
+					<div class="content">
+						<div class="row">
+							<div class="box">
+								<div class="title">{{ sale.title }}</div>
+								<div class="adj">{{ sale.adj }}</div>
+							</div>
+							<div class="more" @click="gotoDetail(sale.id)">了解更多</div>
+						</div>
+						<div class="price">{{ sale.price }}</div>
+					</div>
+				</div>
 			</div>
 			<div class="row1">
-				<span class="row1_l">BFSO</span>
+				<span class="row1_l">在运营</span>
+				<span class="row1_r">项目</span>
 				<el-image class="row1_split" :src="require('@/assets/img/comein/line.png')" fit="contain"></el-image>
 			</div>
-			<div class="text">以全球业界标杆美国铁狮门的运营模式为框架，结合国内行业特点，深耕商业地产运营领域，研发出独特具尔家特色的BFSO活化运营模式，实现商业资本变现和持续增值。</div>
-			<div class="model">
-				<el-image class="model2" :src="require('@/assets/img/comein/model2.png')" fit="contain"></el-image>
+			<div class="row2">Projects in operation</div>
+			<div class="sales">
+				<div class="sale" :key="running.id" v-for="running in runningList">
+					<el-image class="my-img" :src="running.img" fit="cover"></el-image>
+					<div class="content">
+						<div class="row">
+							<div class="box">
+								<div class="title">{{ running.title }}</div>
+								<div class="adj">{{ running.adj }}</div>
+							</div>
+							<div class="more" @click="gotoDetail(running.id)">了解更多</div>
+						</div>
+					</div>
+				</div>
 			</div>
 		</div>
 		<Footer></Footer>
@@ -156,9 +181,8 @@
 	import Footer from '@/components/Footer.vue';
 
 	import {
+		projectList,
 		indexVideo,
-		// projectVideoList,
-		// activityVideoList
 	} from '@/network/comein.js';
 
 	export default {
@@ -297,80 +321,6 @@
 						}]
 					},
 				],
-				// videoProjectList: [{
-				// 		id: 1,
-				// 		// img: require('@/assets/img/comein/videoProject1.png'),
-				// 		img: WEBCONFIG.resource_url_img + '/comein/videoProject1.png',
-				// 		title: '无锡绿地观澜湾项目'
-				// 	},
-				// 	{
-				// 		id: 2,
-				// 		// img: require('@/assets/img/comein/videoProject2.png'),
-				// 		img: WEBCONFIG.resource_url_img + '/comein/videoProject2.png',
-				// 		title: '无锡绿地观澜湾项目'
-				// 	},
-				// 	{
-				// 		id: 3,
-				// 		// img: require('@/assets/img/comein/videoProject3.png'),
-				// 		img: WEBCONFIG.resource_url_img + '/comein/videoProject3.png',
-				// 		title: '无锡绿地观澜湾项目'
-				// 	},
-				// 	{
-				// 		id: 4,
-				// 		// img: require('@/assets/img/comein/videoProject4.png'),
-				// 		img: WEBCONFIG.resource_url_img + '/comein/videoProject4.png',
-				// 		title: '无锡绿地观澜湾项目'
-				// 	},
-				// 	{
-				// 		id: 5,
-				// 		// img: require('@/assets/img/comein/videoProject5.png'),
-				// 		img: WEBCONFIG.resource_url_img + '/comein/videoProject5.png',
-				// 		title: '无锡绿地观澜湾项目'
-				// 	},
-				// 	{
-				// 		id: 6,
-				// 		// img: require('@/assets/img/comein/videoProject6.png'),
-				// 		img: WEBCONFIG.resource_url_img + '/comein/videoProject6.png',
-				// 		title: '无锡绿地观澜湾项目'
-				// 	}
-				// ],
-				// videoActivityList: [{
-				// 		id: 1,
-				// 		// img: require('@/assets/img/comein/videoActivity1.png'),
-				// 		img: WEBCONFIG.resource_url_img + '/comein/videoActivity1.png',
-				// 		title: '燃爆盛夏 嗨翻全场｜尔家第三届百人龙虾节激情落幕！'
-				// 	},
-				// 	{
-				// 		id: 2,
-				// 		// img: require('@/assets/img/comein/videoActivity2.png'),
-				// 		img: WEBCONFIG.resource_url_img + '/comein/videoActivity2.png',
-				// 		title: '尔家龙虾节｜一年一度的龙虾节终于来了！'
-				// 	},
-				// 	{
-				// 		id: 3,
-				// 		// img: require('@/assets/img/comein/videoActivity3.png'),
-				// 		img: WEBCONFIG.resource_url_img + '/comein/videoActivity3.png',
-				// 		title: '父亲节｜晒照片赢888元现金红包！'
-				// 	},
-				// 	{
-				// 		id: 4,
-				// 		// img: require('@/assets/img/comein/videoActivity4.png'),
-				// 		img: WEBCONFIG.resource_url_img + '/comein/videoActivity4.png',
-				// 		title: '520交友派对｜解锁“新一代年轻人的交友”新方式！'
-				// 	},
-				// 	{
-				// 		id: 5,
-				// 		// img: require('@/assets/img/comein/videoActivity5.png'),
-				// 		img: WEBCONFIG.resource_url_img + '/comein/videoActivity5.png',
-				// 		title: '奇妙 · 扎染 手底生出来的花朵！'
-				// 	},
-				// 	{
-				// 		id: 6,
-				// 		// img: require('@/assets/img/comein/videoActivity6.png'),
-				// 		img: WEBCONFIG.resource_url_img + '/comein/videoActivity6.png',
-				// 		title: '爱心公益U时代，有你有我更精彩。'
-				// 	}
-				// ],
 				integrationList: [{
 						id: 1,
 						img: require('@/assets/img/comein/integration1.png'),
@@ -427,14 +377,33 @@
 						name: '张原浩',
 						job: '商管开发部经理'
 					}
-				]
+				],
+				saleList: [
+					{
+						id: 1,
+						// img: require('@/assets/img/comein/sale1.png'),
+						img: WEBCONFIG.resource_url_img + '/comein/sale1.png',
+						title: '无锡天空树尔家雅寓',
+						adj: 'LOFT 户型 紧跟潮流',
+						price: '￥18000/㎡'
+					},
+				],
+				runningList: [
+					{
+						id: 1,
+						// img: require('@/assets/img/comein/sale1.png'),
+						img: WEBCONFIG.resource_url_img + '/comein/sale1.png',
+						title: '无锡天空树尔家雅寓',
+						adj: 'LOFT 户型 紧跟潮流',
+					},
+				],
 			};
 		},
 		mounted() {
 			this.jump();
 			this.getIndexVideo();
-			this.getProjectVideoList();
-			this.getActivityVideoList();
+			this.getProjectList1();
+			this.getProjectList2();
 		},
 		watch: {
 			$route: {
@@ -462,46 +431,12 @@
 					}
 				});
 			},
-			gotoDetail(id) {
-				this.$router.push({
-					path: '/project_detail',
-					query: {
-						id
-					}
-				});
-			},
 			getIndexVideo() {
 				indexVideo().then(data => {
 					this.introduction.img = data.data.coverUrl;
 					this.introduction.video = data.data.videoUrl;
 				});
 			},
-			// getProjectVideoList() {
-			// 	projectVideoList().then(data => {
-			// 		this.videoProjectList.splice(0, this.videoProjectList.length);
-			// 		this.videoProjectList = data.data.map(item => {
-			// 			return {
-			// 				id: item.id,
-			// 				img: item.coverUrl,
-			// 				video: item.videoUrl,
-			// 				title: item.name
-			// 			};
-			// 		});
-			// 	});
-			// },
-			// getActivityVideoList() {
-			// 	activityVideoList().then(data => {
-			// 		this.videoActivityList.splice(0, this.videoActivityList.length);
-			// 		this.videoActivityList = data.data.map(item => {
-			// 			return {
-			// 				id: item.id,
-			// 				img: item.coverUrl,
-			// 				video: item.videoUrl,
-			// 				title: item.name
-			// 			};
-			// 		});
-			// 	});
-			// },
 			playVideo(video) {
 				if (!video) {
 					this.myVideo = '';
@@ -522,7 +457,42 @@
 			closeVideo() {
 				this.$refs.myVideo.pause();
 				this.videoVisible = false;
-			}
+			},
+			getProjectList1() {
+				projectList({ pageNum: 1, pageSize: 3, showType: 3 }).then(data => {
+					this.saleList.splice(0, this.saleList.length);
+					this.saleList = data.data.map(item => {
+						return {
+							id: item.id,
+							img: item.coverUrl,
+							title: item.name,
+							adj: item.indexTag,
+							price: item.rentStart
+						};
+					});
+				});
+			},
+			getProjectList2() {
+				projectList({ pageNum: 1, pageSize: 3, showType: 3 }).then(data => {
+					this.runningList.splice(0, this.runningList.length);
+					this.runningList = data.data.map(item => {
+						return {
+							id: item.id,
+							img: item.coverUrl,
+							title: item.name,
+							adj: item.indexTag,
+						};
+					});
+				});
+			},
+			gotoDetail(id) {
+				this.$router.push({
+					path: '/project_detail',
+					query: {
+						id
+					}
+				});
+			},
 		}
 	};
 </script>
@@ -718,6 +688,7 @@
 					}
 
 					.dh-dot {
+						flex-shrink: 0;
 						width: 12px;
 						height: 12px;
 						border-radius: 50%;
@@ -791,15 +762,108 @@
 		}
 
 		.content3 {
-			.text {
-				margin: 0 auto;
-				font-size: 2rem;
-				line-height: 3.5rem;
-				text-align: center;
-			}
-
-			.model {
-				text-align: center;
+			.sales {
+				display: flex;
+				flex-wrap: wrap;
+				justify-content: space-around;
+				.sale {
+					position: relative;
+					top: 0;
+					box-shadow: 0 0 10px 0 #999999;
+					// &:hover {
+					// 	top: -20px;
+					// 	background-color: var(--color-bg-main);
+					// 	transition-duration: 1s;
+					// 	.content {
+					// 		.en {
+					// 			color: var(--color-t-white);
+					// 		}
+					// 		.title {
+					// 			color: var(--color-t-white);
+					// 		}
+					// 		.text {
+					// 			color: var(--color-t-white);
+					// 		}
+					// 		.text-en {
+					// 			color: var(--color-t-white);
+					// 		}
+					// 	}
+					// }
+					.my-img {
+						display: block;
+					}
+					.content {
+						padding: 30px 10px;
+						.row {
+							display: flex;
+							align-items: center;
+							.box{
+								.title{
+									font-size: 2.4rem;
+									line-height: 3.5rem;
+									font-weight: bold;
+									color: #333333;
+								}
+								.adj{
+									margin-top: 5px;
+									font-size: 2rem;
+									line-height: 3rem;
+									color: #333333;
+								}
+							}
+							.more{
+								flex-shrink: 0;
+								padding: 11px 22px;
+								font-size: 1.6rem;
+								color: var(--color-t-white);
+								background-color: var(--color-bg-main);
+								border-radius: 22px;
+								box-sizing: border-box;
+								cursor: pointer;
+								&:hover{
+									color: var(--color-t-active);
+									background-color: var(--color-bg-default);
+									border: 1px solid var(--color-bg-main);
+								}
+							}
+						}
+						.price{
+							display: inline-block;
+							margin-top: 15px;
+							margin-left: 10px;
+							padding: 12px 27px;
+							font-size: 1.6rem;
+							color: var(--color-t-active);
+							border: 2px solid var(--color-bg-main);
+							border-radius: 24px;
+						}
+						
+						
+						
+						// .en {
+						// 	font-size: 1.8rem;
+						// 	font-weight: bold;
+						// 	color: var(--color-t-active);
+						// }
+						// .title {
+						// 	margin-top: 5px;
+						// 	font-size: 2.8rem;
+						// 	line-height: 3.5rem;
+						// 	color: #cccccc;
+						// }
+						// .text {
+						// 	margin-top: 20px;
+						// 	font-size: 1.8rem;
+						// 	line-height: 2.5rem;
+						// 	color: #333333;
+						// }
+						// .text-en {
+						// 	margin-top: 5px;
+						// 	font-size: 1.4rem;
+						// 	color: #333333;
+						// }
+					}
+				}
 			}
 		}
 
@@ -944,20 +1008,26 @@
 			.content3 {
 				margin: 0 20px 60px;
 
-				.text {
-					margin-top: 40px;
-					width: 100%;
-				}
-
-				.model {
-					margin-top: 40px;
-
-					.model1 {
-						width: 100%;
-					}
-
-					.model2 {
-						width: 100%;
+				.sales {
+					margin-top: 30px;
+					.sale {
+						margin-bottom: 30px;
+						flex-basis: 100%;
+						.my-img {
+							height: 200px;
+						}
+						.content{
+							.row{
+								flex-wrap: wrap;
+								.box{
+									flex-basis: 100%;
+								}
+								.more{
+									margin-top: 20px;
+									margin-left: auto;
+								}
+							}
+						}
 					}
 				}
 			}
@@ -1090,20 +1160,21 @@
 				width: 70%;
 				min-width: 1000px;
 
-				.text {
-					margin-top: 100px;
-					width: 80%;
-				}
-
-				.model {
-					margin-top: 100px;
-
-					.model1 {
-						width: 60%;
-					}
-
-					.model2 {
-						width: 100%;
+				.sales {
+					margin-top: 60px;
+					.sale {
+						flex-basis: 30%;
+						.my-img {
+							height: 300px;
+						}
+						.content{
+							.row{
+								justify-content: space-between;
+								.more {
+									margin-left: 5px;
+								}
+							}
+						}
 					}
 				}
 			}
