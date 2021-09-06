@@ -32,7 +32,7 @@
 					<el-image class="row1_split" :src="require('@/assets/img/product/line.png')" fit="contain"></el-image>
 				</div>
 				<div class="row2">Four product advantages</div>
-				<div class="box" :key="index" v-for="(advantage, index) in advantages">
+				<div class="box" :class="{'reverse':index==1, 'bg-grey':index==2, 'col':index==3}" :key="index" v-for="(advantage, index) in advantages">
 					<div class="content">
 						<div class="line1">
 							<div class="num">
@@ -372,6 +372,56 @@ export default {
 				}
 			}
 		}
+		.advantage{
+			.box{
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				.content{
+					.line1{
+						display: flex;
+						align-items: center;
+						.num{
+							font-size: 7.2rem;
+							color: #F0E0D1;
+							font-weight: bold;
+						}
+						.title{
+							margin-left: 2rem;
+							font-size: 3.6rem;
+							letter-spacing: 0.2rem;
+							color: var(--color-t-active);
+							font-weight: bold;
+						}
+					}
+					.line2{
+						margin-left: 12rem;
+						font-size: 1.8rem;
+						color: #333333;
+						line-height: 5rem;
+						white-space: pre-line;
+					}
+				}
+			}
+			.reverse{
+				flex-direction: row-reverse;
+			}
+			.bg-grey{
+				background-color: #F7F7F7;
+			}
+			.col{
+				flex-direction: column;
+				.content{
+					text-align: center;
+					.line1{
+						justify-content: center;
+					}
+					.line2{
+						margin-left: 0;
+					}
+				}
+			}
+		}
 	}
 
 	.content2 {
@@ -490,6 +540,22 @@ export default {
 					margin: 50px 10px;
 				}
 			}
+			.advantage{
+				.box{
+					padding: 30px 10px;
+					flex-direction: column;
+					.content{
+						text-align: center;
+						.line2{
+							margin-top: 20px;
+							margin-left: 0;
+						}
+					}
+					.my-img{
+						margin-top: 20px;
+					}
+				}
+			}
 		}
 
 		.content2 {
@@ -536,6 +602,39 @@ export default {
 					margin: 50px auto;
 					width: 50%;
 					min-width: 800px;
+				}
+			}
+			.advantage{
+				.box{
+					margin-top: 60px;
+					padding: 60px 0 120px;
+					.content{
+						.line2{
+							margin-top: 30px;
+						}
+					}
+					.my-img{
+						margin-left: 120px;
+					}
+				}
+				.reverse{
+					.my-img{
+						margin-left: 0;
+						margin-right: 120px;
+					}
+				}
+				.col{
+					.content{
+						width: 50%;
+						min-width: 600px;
+						.line2{
+							margin-top: 40px;
+						}
+					}
+					.my-img{
+						margin-left: 0;
+						margin-top: 120px;
+					}
 				}
 			}
 		}
