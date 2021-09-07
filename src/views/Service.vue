@@ -10,6 +10,14 @@
 				</div>
 				<div class="title-line"></div>
 			</div>
+			<div class="maintenances">
+				<div class="maintenance" :key="index" v-for="(maintenance, index) in maintenanceList">
+					<el-image class="my-img" :src="maintenance.img" fit="contain"></el-image>
+					<div class="name">
+						{{maintenance.name}}
+					</div>
+				</div>
+			</div>
 		</div>
 		<div class="content2" v-else-if="activeTab === 2">
 			<div class="col">
@@ -225,7 +233,33 @@ export default {
 				]
 			},
 			activeTab: 1,
-			
+			maintenanceList: [
+				{
+					img: require('@/assets/img/service/maintenance1.png'),
+					// img: WEBCONFIG.resource_url_img + '/service/maintenance1.png',
+					name: '公区保洁'
+				},
+				{
+					img: require('@/assets/img/service/maintenance2.png'),
+					// img: WEBCONFIG.resource_url_img + '/service/maintenance2.png',
+					name: '室内精保'
+				},
+				{
+					img: require('@/assets/img/service/maintenance3.png'),
+					// img: WEBCONFIG.resource_url_img + '/service/maintenance3.png',
+					name: '熨烫衣物'
+				},
+				{
+					img: require('@/assets/img/service/maintenance4.png'),
+					// img: WEBCONFIG.resource_url_img + '/service/maintenance4.png',
+					name: '室内维修服务'
+				},
+				{
+					img: require('@/assets/img/service/maintenance5.png'),
+					// img: WEBCONFIG.resource_url_img + '/service/maintenance5.png',
+					name: '家电清洗服务'
+				},
+			],
 			keeperList: [
 				{
 					id: 1,
@@ -374,6 +408,21 @@ export default {
 			}
 			.title-text{
 				color: #555555;
+			}
+		}
+		.maintenances{
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			.maintenance{
+				.my-img{
+					display: block;
+				}
+				.name{
+					font-size: 2.4rem;
+					color: var(--color-t-active);
+					text-align: center;
+				}
 			}
 		}
 	}
@@ -591,6 +640,17 @@ export default {
 					letter-spacing: 0.1rem;
 				}
 			}
+			.maintenances{
+				margin: 30px 10px;
+				flex-wrap: wrap;
+				.maintenance{
+					margin: 20px 3%;
+					width: 43%;
+					.name{
+						margin-top: 20px;
+					}
+				}
+			}
 		}
 
 		.content2 {
@@ -735,6 +795,18 @@ export default {
 				margin: 100px auto 130px;
 				width: 50%;
 				min-width: 600px;
+			}
+			.maintenances{
+				margin: 100px auto 130px;
+				width: 70%;
+				min-width: 900px;
+				.maintenance{
+					width: 15%;
+					margin: 2%;
+					.name{
+						margin-top: 30px;
+					}
+				}
 			}
 		}
 
