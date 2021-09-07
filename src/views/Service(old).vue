@@ -3,12 +3,12 @@
 		<Header></Header>
 		<top-banner :info="info" @change="handleChange"></top-banner>
 		<div class="content1" v-if="activeTab === 1">
-			<div class="title black">
-				<div class="title-line"></div>
-				<div class="title-text">
-					维保服务
+			<div class="box" :class="{ reverse: index % 2 === 0 }" :key="hotel.id" v-for="(hotel, index) in hotelList">
+				<el-image class="my-img" :src="hotel.img" fit="contain"></el-image>
+				<div class="content">
+					<div class="title">{{ hotel.title }}</div>
+					<div class="introduction">{{ hotel.introduction }}</div>
 				</div>
-				<div class="title-line"></div>
 			</div>
 		</div>
 		<div class="content2" v-else-if="activeTab === 2">
@@ -213,19 +213,47 @@ export default {
 						img: require('@/assets/img/service/tab4.png'),
 						name: '社群联盟运营',
 						name_en: 'Community Alliance operation'
-					},
-					{
-						id: 5,
-						active: false,
-						banner: '/service/banner1.png',
-						img: require('@/assets/img/service/tab5.png'),
-						name: '信息化管理',
-						name_en: 'Information management'
 					}
 				]
 			},
 			activeTab: 1,
-			
+			hotelList: [
+				{
+					id: 1,
+					// img: require('@/assets/img/service/hotel1.png'),
+					img: WEBCONFIG.resource_url_img + '/service/hotel1.png',
+					title: '维保服务',
+					introduction: '公区保洁、室内精保、熨烫衣物、室内维修服务、家电清洗服务'
+				},
+				{
+					id: 2,
+					// img: require('@/assets/img/service/hotel2.png'),
+					img: WEBCONFIG.resource_url_img + '/service/hotel2.png',
+					title: '安防服务',
+					introduction: '24小时保安、全梯控覆盖、楼层24小时监控、智能安全门锁'
+				},
+				{
+					id: 3,
+					// img: require('@/assets/img/service/hotel3.png'),
+					img: WEBCONFIG.resource_url_img + '/service/hotel3.png',
+					title: '交通服务',
+					introduction: '出租车预定、车辆租赁、停车设施（免费停车位）'
+				},
+				{
+					id: 4,
+					// img: require('@/assets/img/service/hotel4.png'),
+					img: WEBCONFIG.resource_url_img + '/service/hotel4.png',
+					title: '餐饮服务',
+					introduction: '简餐（早餐）、咖啡、甜点'
+				},
+				{
+					id: 5,
+					// img: require('@/assets/img/service/hotel5.png'),
+					img: WEBCONFIG.resource_url_img + '/service/hotel5.png',
+					title: '商务服务',
+					introduction: '复印/打印、快递中心、商务会议'
+				}
+			],
 			keeperList: [
 				{
 					id: 1,
@@ -354,26 +382,25 @@ export default {
 	overflow-x: hidden;
 
 	.content1 {
-		.title{
+		.box {
 			display: flex;
+			flex-wrap: wrap;
 			justify-content: space-around;
 			align-items: center;
-			.title-line{
-				width: 12%;
-				height: 3px;
-			}
-			.title-text{
-				font-size: 6rem;
-				font-weight: bold;
-				letter-spacing: 0.5rem;
-			}
-		}
-		.black{
-			.title-line{
-				background-color: #555555;
-			}
-			.title-text{
-				color: #555555;
+
+			.content {
+				color: #444444;
+
+				.title {
+					font-size: 3rem;
+					letter-spacing: 0.2rem;
+				}
+
+				.introduction {
+					font-size: 1.8rem;
+					letter-spacing: 0.1rem;
+					line-height: 2.5rem;
+				}
 			}
 		}
 	}
@@ -585,10 +612,22 @@ export default {
 @media screen and (max-width: 1080px) {
 	.service {
 		.content1 {
-			.title{
-				.title-text{
-					font-size: 4rem;
-					letter-spacing: 0.1rem;
+			margin: 30px 20px;
+
+			.box {
+				margin-bottom: 30px;
+			}
+
+			.my-img {
+				flex-basis: 100%;
+			}
+
+			.content {
+				flex-basis: 100%;
+				margin-top: 10px;
+
+				.introduction {
+					margin-top: 10px;
 				}
 			}
 		}
@@ -731,10 +770,30 @@ export default {
 @media screen and (min-width: 1080px) {
 	.service {
 		.content1 {
-			.title{
-				margin: 100px auto 130px;
-				width: 50%;
-				min-width: 600px;
+			margin: 20px auto 60px;
+			width: 60%;
+			min-width: 900px;
+
+			.box {
+				margin-bottom: 10px;
+
+				&.reverse {
+					flex-direction: row-reverse;
+				}
+
+				.my-img {
+					flex-basis: 45%;
+				}
+
+				.content {
+					box-sizing: border-box;
+					padding: 30px 60px 30px 30px;
+					flex-basis: 45%;
+
+					.introduction {
+						margin-top: 25px;
+					}
+				}
 			}
 		}
 

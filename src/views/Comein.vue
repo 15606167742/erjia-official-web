@@ -837,31 +837,6 @@
 							border: 2px solid var(--color-bg-main);
 							border-radius: 24px;
 						}
-						
-						
-						
-						// .en {
-						// 	font-size: 1.8rem;
-						// 	font-weight: bold;
-						// 	color: var(--color-t-active);
-						// }
-						// .title {
-						// 	margin-top: 5px;
-						// 	font-size: 2.8rem;
-						// 	line-height: 3.5rem;
-						// 	color: #cccccc;
-						// }
-						// .text {
-						// 	margin-top: 20px;
-						// 	font-size: 1.8rem;
-						// 	line-height: 2.5rem;
-						// 	color: #333333;
-						// }
-						// .text-en {
-						// 	margin-top: 5px;
-						// 	font-size: 1.4rem;
-						// 	color: #333333;
-						// }
 					}
 				}
 			}
