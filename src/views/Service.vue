@@ -18,6 +18,24 @@
 					</div>
 				</div>
 			</div>
+			<!-- <div class="security" :style="{'background-image':'url('+imgResource + '/service/security_bg.png)'}"> -->
+			<div class="security" :style="{'background-image':'url('+require('@/assets/img/service/security_bg.png')+')'}">
+				<div class="title white">
+					<div class="title-line"></div>
+					<div class="title-text">
+						安防服务
+					</div>
+					<div class="title-line"></div>
+				</div>
+				<div class="boxs">
+					<div class="box" :class="{lt:index==0,rt:index==1,lb:index==2,rb:index==3}" :key="index" v-for="(security, index) in securityList">
+						<el-image class="my-img" :src="security.img" fit="contain"></el-image>
+						<div class="name">
+							{{security.name}}
+						</div>
+					</div>
+				</div>
+			</div>
 		</div>
 		<div class="content2" v-else-if="activeTab === 2">
 			<div class="col">
@@ -236,29 +254,42 @@ export default {
 			maintenanceList: [
 				{
 					img: require('@/assets/img/service/maintenance1.png'),
-					// img: WEBCONFIG.resource_url_img + '/service/maintenance1.png',
 					name: '公区保洁'
 				},
 				{
 					img: require('@/assets/img/service/maintenance2.png'),
-					// img: WEBCONFIG.resource_url_img + '/service/maintenance2.png',
 					name: '室内精保'
 				},
 				{
 					img: require('@/assets/img/service/maintenance3.png'),
-					// img: WEBCONFIG.resource_url_img + '/service/maintenance3.png',
 					name: '熨烫衣物'
 				},
 				{
 					img: require('@/assets/img/service/maintenance4.png'),
-					// img: WEBCONFIG.resource_url_img + '/service/maintenance4.png',
 					name: '室内维修服务'
 				},
 				{
 					img: require('@/assets/img/service/maintenance5.png'),
-					// img: WEBCONFIG.resource_url_img + '/service/maintenance5.png',
 					name: '家电清洗服务'
 				},
+			],
+			securityList: [
+				{
+					img: require('@/assets/img/service/security1.png'),
+					name: '24小时保安'
+				},
+				{
+					img: require('@/assets/img/service/security2.png'),
+					name: '全梯控覆盖'
+				},
+				{
+					img: require('@/assets/img/service/security3.png'),
+					name: '楼层24小时监控'
+				},
+				{
+					img: require('@/assets/img/service/security4.png'),
+					name: '智能安全门锁'
+				}
 			],
 			keeperList: [
 				{
@@ -410,6 +441,14 @@ export default {
 				color: #555555;
 			}
 		}
+		.white{
+			.title-line{
+				background-color: #FFFFFF;
+			}
+			.title-text{
+				color: #FFFFFF;
+			}
+		}
 		.maintenances{
 			display: flex;
 			justify-content: center;
@@ -422,6 +461,34 @@ export default {
 					font-size: 2.4rem;
 					color: var(--color-t-active);
 					text-align: center;
+				}
+			}
+		}
+		.security{
+			overflow: hidden;
+			background-position: center;
+			background-repeat: no-repeat;
+			background-size: cover;
+			.boxs{
+				display: flex;
+				flex-wrap: wrap;
+				justify-content: center;
+				align-items: center;
+				.box{
+					display: flex;
+					flex-direction: column;
+					flex-wrap: wrap;
+					justify-content: center;
+					align-items: center;
+					.my-img{
+						width: 75px;
+						height: 80px;
+					}
+					.name{
+						font-size: 3rem;
+						font-weight: bold;
+						color: var(--color-t-white);
+					}
 				}
 			}
 		}
@@ -805,6 +872,50 @@ export default {
 					margin: 2%;
 					.name{
 						margin-top: 30px;
+					}
+				}
+			}
+			.security{
+				.boxs{
+					margin: 140px auto;
+					width: 40%;
+					min-width: 500px;
+					.box{
+						box-sizing: border-box;
+						flex-basis: 50%;
+						.my-img{
+							width: 75px;
+							height: 80px;
+							margin-top: 30px;
+						}
+						.name{
+							margin-top: 30px;
+							margin-bottom: 50px;
+						}
+					}
+					.lt{
+						background-image: linear-gradient(to top, #FFFFFF, #FFFFFF00), linear-gradient(to left, #FFFFFF, #FFFFFF00);
+						background-repeat: no-repeat;
+						background-size: 1px 100%, 100% 1px;
+						background-position: right, bottom;
+					}
+					.rt{
+						background-image: linear-gradient(to top, #FFFFFF, #FFFFFF00), linear-gradient(to right, #FFFFFF, #FFFFFF00);
+						background-repeat: no-repeat;
+						background-size: 1px 100%, 100% 1px;
+						background-position: left, bottom;
+					}
+					.lb{
+						background-image: linear-gradient(to bottom, #FFFFFF, #FFFFFF00), linear-gradient(to left, #FFFFFF, #FFFFFF00);
+						background-repeat: no-repeat;
+						background-size: 1px 100%, 100% 1px;
+						background-position: right, top;
+					}
+					.rb{
+						background-image: linear-gradient(to bottom, #FFFFFF, #FFFFFF00), linear-gradient(to right, #FFFFFF, #FFFFFF00);
+						background-repeat: no-repeat;
+						background-size: 1px 100%, 100% 1px;
+						background-position: left, top;
 					}
 				}
 			}
