@@ -88,23 +88,15 @@ export default {
 					anchorList: [
 						{
 							activeTab: 1,
-							text: '公司介绍'
+							text: '尔家介绍'
 						},
 						{
 							activeTab: 2,
-							text: '公司视频'
-						},
-						{
-							activeTab: 3,
 							text: '管理团队'
 						},
 						{
-							activeTab: 4,
-							text: '商业模式'
-						},
-						{
-							activeTab: 5,
-							text: '发展历程'
+							activeTab: 3,
+							text: '项目介绍'
 						}
 					]
 				},
@@ -119,10 +111,6 @@ export default {
 						{
 							activeTab: 2,
 							text: '产品系列'
-						},
-						{
-							activeTab: 3,
-							text: '新售项目'
 						}
 					]
 				},
@@ -145,6 +133,10 @@ export default {
 						{
 							activeTab: 4,
 							text: '社群联盟运营'
+						},
+						{
+							activeTab: 5,
+							text: '信息化管理'
 						}
 					]
 				},

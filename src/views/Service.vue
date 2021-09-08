@@ -36,6 +36,35 @@
 					</div>
 				</div>
 			</div>
+			<div class="title blank">
+				<div class="title-line"></div>
+				<div class="title-text">
+					交通服务
+				</div>
+				<div class="title-line"></div>
+			</div>
+			<div class="traffic">
+				<div class="box left">
+					<el-image class="my-img" :src="trafficList[0].img" fit="contain"></el-image>
+					<div class="name">
+						{{trafficList[0].name}}
+					</div>
+				</div>
+				<div class="right">
+					<div class="box up">
+						<el-image class="my-img" :src="trafficList[1].img" fit="contain"></el-image>
+						<div class="name">
+							{{trafficList[1].name}}
+						</div>
+					</div>
+					<div class="box down">
+						<el-image class="my-img" :src="trafficList[2].img" fit="contain"></el-image>
+						<div class="name">
+							{{trafficList[2].name}}
+						</div>
+					</div>
+				</div>
+			</div>
 		</div>
 		<div class="content2" v-else-if="activeTab === 2">
 			<div class="col">
@@ -291,6 +320,20 @@ export default {
 					name: '智能安全门锁'
 				}
 			],
+			trafficList: [
+				{
+					img: require('@/assets/img/service/traffic1.png'),
+					name: '出租车预定'
+				},
+				{
+					img: require('@/assets/img/service/traffic2.png'),
+					name: '车辆租赁'
+				},
+				{
+					img: require('@/assets/img/service/traffic3.png'),
+					name: '停车设施(免费停车位)'
+				}
+			],
 			keeperList: [
 				{
 					id: 1,
@@ -449,6 +492,14 @@ export default {
 				color: #FFFFFF;
 			}
 		}
+		.blank{
+			.title-line{
+				background-color: var(--color-t-active);
+			}
+			.title-text{
+				color: var(--color-t-active);
+			}
+		}
 		.maintenances{
 			display: flex;
 			justify-content: center;
@@ -490,6 +541,26 @@ export default {
 						color: var(--color-t-white);
 					}
 				}
+			}
+		}
+		.traffic{
+			display: flex;
+			justify-content: center;
+			.box{
+				position: relative;
+				.name{
+					position: absolute;
+					bottom: 0;
+					font-size: 2.4rem;
+					font-weight: bold;
+					color: var(--color-t-white);
+				}
+			}
+			.right{
+				display: flex;
+				flex-direction: column;
+				justify-content: space-between;
+				
 			}
 		}
 	}
@@ -702,6 +773,7 @@ export default {
 	.service {
 		.content1 {
 			.title{
+				margin: 50px auto 60px;
 				.title-text{
 					font-size: 4rem;
 					letter-spacing: 0.1rem;
@@ -715,6 +787,17 @@ export default {
 					width: 43%;
 					.name{
 						margin-top: 20px;
+					}
+				}
+			}
+			.security{
+				.boxs{
+					margin: 50px 10px;
+					.box{
+						flex-basis: 100%;
+						.name{
+							margin: 20px auto 40px;
+						}
 					}
 				}
 			}
