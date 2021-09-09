@@ -29,8 +29,8 @@
 			</div>
 			<el-image class="epco-img epco-img1" :src="epco.img1" fit="contain"></el-image>
 			<el-image class="epco-img epco-img2" :src="epco.img2" fit="contain"></el-image>
-			<!-- <div class="bfso" :style="{'background-image':'url('+imgResource + '/comein/bfso_bg.png)'}"> -->
-			<div class="bfso" :style="{'background-image':'url('+require('@/assets/img/comein/bfso_bg.png')+')'}">
+			<div class="bfso" :style="{'background-image':'url('+imgResource + '/comein/bfso_bg.png)'}">
+			<!-- <div class="bfso" :style="{'background-image':'url('+require('@/assets/img/comein/bfso_bg.png')+')'}"> -->
 				<div class="row1">
 					<span class="row1_l">BFSO</span>
 					<el-image class="row1_split" :src="require('@/assets/img/comein/line.png')" fit="contain">
@@ -238,14 +238,16 @@
 					text2: '尔家产品以Box设计理念、立体集成化原则，\n严格执行人体工程学原理，\n为居住者定制最舒适的家居尺度，\n设计最合理的收纳空间，'
 				},
 				companyInfo: {
-					img: require('@/assets/img/comein/info.png'),
-					// img: WEBCONFIG.resource_url_img + '/comein/info.png',
+					// img: require('@/assets/img/comein/info.png'),
+					img: WEBCONFIG.resource_url_img + '/comein/info.png',
 					content: '<p>上海尔家商业管理有限公司（以下简称尔家商业）成立于2017年，隶属德实资本，是一家集商业资产盘活、运营为一体的专业化资产管理公司，主要业务范围有尔家公寓、尔家酒店、尔家民宿、尔家商场的管理运营，其中致力于打造服务式公寓标杆的尔家公寓为企业战略发展的核心业务。</p><p>依托德实资本20多亿元管理资本的雄厚实力，尔家商业成功运作多个上市地产公司旗下商业地产项目，布局上海、苏州、无锡、常州、镇江、成都等多个城市，在运营及已签约项目累计100余万方。</p><p>尔家商业致力于成为业内领先的商业地产运营专家，秉着为社会打造诚信的行业标杆，为股东创造稳健的资本收益，为客户筑造美好的生活空间，为员工营造优质且有温情发展平台的使命，竭力成为一个让社会认可、股东信任、客户满意、员工信赖的优秀企业。</p>'
 				},
 				epco: {
 					text: '将EPC(工程总承包)和om（委托运营）完成组合，满足运营导向下的全生命周期管理的需要，最大限度提升政府就去改造和城市更新项目投资效率的需要。',
-					img1: require('@/assets/img/comein/epco1.png'),
-					img2: require('@/assets/img/comein/epco2.png'),
+					// img1: require('@/assets/img/comein/epco1.png'),
+					// img2: require('@/assets/img/comein/epco2.png'),
+					img1: WEBCONFIG.resource_url_img + '/comein/epco1.png',
+					img2: WEBCONFIG.resource_url_img + '/comein/epco2.png',
 				},
 				bfso: {
 					text: '以全球业界标杆美国铁狮门的运营模式为框架，结合国内行业特点，深耕商业地产运营领域，研发出独特具尔家特色的BFSO活化运营模式，实现商业资本变现和持续增值。',
