@@ -111,7 +111,8 @@
 	import Footer from '@/components/Footer.vue';
 
 	import {
-		projectList
+		projectList,
+		projectTypeList
 	} from '@/network/project.js';
 
 	export default {
@@ -233,7 +234,8 @@
 		mounted() {
 			this.jump();
 			this.getProjectList1();
-			this.getProjectList2();
+			this.getTypes();
+			// this.getProjectList2();
 		},
 		watch: {
 			$route: {
@@ -262,6 +264,21 @@
 					}
 				});
 			},
+			getTypes() {
+				projectTypeList().then(data => {
+					this.types.splice(0, this.types.length);
+					this.types = data.data.map((item, index) => {
+						return {
+							name: item.key,
+							value: item.val,
+							selected: index == 0
+						}
+					})
+					console.log(this.types)
+					this.activeType = this.types[0] && this.types[0].value;
+					this.getProjectList2();
+				})
+			},
 			getProjectList1() {
 				projectList({
 					pageNum: 1,
@@ -284,7 +301,7 @@
 					pageNum: 1,
 					pageSize: 999,
 					series: 1,
-					projectTypeStr: this.activeType
+					projectType: this.activeType
 				}).then(data => {
 					this.houseList2.splice(0, this.houseList2.length);
 					this.houseList2 = data.data.map(item => {

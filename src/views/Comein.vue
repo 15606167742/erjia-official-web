@@ -461,7 +461,7 @@
 				this.videoVisible = false;
 			},
 			getProjectList1() {
-				projectList({ pageNum: 1, pageSize: 3, showType: 3 }).then(data => {
+				projectList({ pageNum: 1, pageSize: 3, projectOperationStatus: 0 }).then(data => {
 					this.saleList.splice(0, this.saleList.length);
 					this.saleList = data.data.map(item => {
 						return {
@@ -475,7 +475,7 @@
 				});
 			},
 			getProjectList2() {
-				projectList({ pageNum: 1, pageSize: 3, showType: 3 }).then(data => {
+				projectList({ pageNum: 1, pageSize: 3, projectOperationStatus: 1 }).then(data => {
 					this.runningList.splice(0, this.runningList.length);
 					this.runningList = data.data.map(item => {
 						return {

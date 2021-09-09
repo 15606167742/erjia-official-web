@@ -65,6 +65,16 @@
 					</div>
 				</div>
 			</div>
+			<!-- <div class="restaurant" :style="{'background-image':'url('+imgResource + '/service/restaurant_bg.png)'}"> -->
+			<div class="restaurant" :style="{'background-image':'url('+require('@/assets/img/service/restaurant_bg.png')+')'}">
+				<div class="title blank">
+					<div class="title-line"></div>
+					<div class="title-text">
+						餐饮服务
+					</div>
+					<div class="title-line"></div>
+				</div>
+			</div>
 		</div>
 		<div class="content2" v-else-if="activeTab === 2">
 			<div class="col">
@@ -562,6 +572,12 @@ export default {
 				justify-content: space-between;
 				
 			}
+		}
+		.restaurant{
+			overflow: hidden;
+			background-position: center;
+			background-repeat: no-repeat;
+			background-size: cover;
 		}
 	}
 

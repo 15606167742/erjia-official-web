@@ -9,3 +9,11 @@ export function projectList(params) {
 		params,
 	})
 }
+
+export function projectTypeList(params) {
+	return requestMain({
+		url: '/api/project/getProjectTypeList',
+		method: 'get',
+		params,
+	})
+}
