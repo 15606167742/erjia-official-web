@@ -274,7 +274,6 @@
 							selected: index == 0
 						}
 					})
-					console.log(this.types)
 					this.activeType = this.types[0] && this.types[0].value;
 					this.getProjectList2();
 				})

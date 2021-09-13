@@ -14,12 +14,6 @@
 				<br />
 				邮箱: uhome shg@erjiashangye.com
 			</div>
-			<div class="types">
-				<div class="type" :class="{selected: t.selected}" :key="index" v-for="(t, index) in types"
-					@click="changeType(t)">
-					{{t.name}}
-				</div>
-			</div>
 			<div class="form">
 				<div class="form-item" :class="{ 'form-item-row': form.key == 'des' }" :key="index" v-for="(form, index) in formList">
 					<div class="label">
@@ -47,6 +41,7 @@
 					<div class="line" v-if="enterprise.address">地址：{{ enterprise.address }}</div>
 				</div>
 			</div>
+			<el-image class="map" :src="imgResource + '/cooperation/map.png'" fit="cover"></el-image>
 			<div class="row1">
 				<span class="row1_l">媒体</span>
 				<span class="row1_r">合作</span>
@@ -59,13 +54,6 @@
 					<div class="title">{{ media.title }}</div>
 				</div>
 			</div>
-			<div class="row1">
-				<span class="row1_l">品牌</span>
-				<span class="row1_r">合作</span>
-				<el-image class="row1_split" :src="require('@/assets/img/cooperation/line.png')" fit="contain"></el-image>
-			</div>
-			<div class="row2">Brand cooperation</div>
-			<el-image class="map" :src="imgResource + '/cooperation/map.png'" fit="cover"></el-image>
 		</div>
 		<Footer></Footer>
 	</div>
@@ -113,23 +101,6 @@ export default {
 				]
 			},
 			activeTab: 1,
-			activeType: '1',
-			types: [{
-					name: '业务合作',
-					value: '1',
-					selected: true
-				},
-				{
-					name: '供应商合作',
-					value: '2',
-					selected: false
-				},
-				{
-					name: '生活投稿',
-					value: '3',
-					selected: false
-				}
-			],
 			formList: [
 				{
 					label: '姓名',
@@ -237,18 +208,6 @@ export default {
 				}
 			});
 		},
-		changeType(type) {
-			if (this.activeType != type.value) {
-				this.activeType = type.value;
-				this.types.forEach(t => {
-					if (type.value == t.value) {
-						t.selected = true;
-					} else {
-						t.selected = false;
-					}
-				})
-			}
-		},
 		submit() {
 			let flag = this.formList.some(item => !item.value);
 			if (flag) {
@@ -258,7 +217,6 @@ export default {
 				this.formList.forEach(item => {
 					form[item.key] = item.value;
 				});
-				form.type = this.activeType;
 				submitTouGao(form).then(() => {
 					this.$alert('提交成功');
 					this.formList.forEach(item => {
@@ -302,29 +260,6 @@ export default {
 			font-size: 1.8rem;
 			line-height: 3rem;
 			color: #666666;
-		}
-		.types {
-			display: flex;
-			align-items: center;
-		
-			.type {
-				box-sizing: border-box;
-				padding: 15px 60px;
-				font-size: 3rem;
-				font-weight: bold;
-				color: var(--color-t-active);
-				background-color: var(--color-bg-default);
-				border: 2px solid var(--color-bg-main);
-				display: flex;
-				justify-content: center;
-				align-items: center;
-				cursor: pointer;
-			}
-		
-			.selected {
-				color: var(--color-t-white);
-				background-color: var(--color-bg-main);
-			}
 		}
 		.form {
 			display: flex;
@@ -441,15 +376,6 @@ export default {
 	.cooperation {
 		.content1 {
 			margin: 0 20px;
-			.types {
-				flex-wrap: wrap;
-				margin-top: 30px;
-			
-				.type {
-					margin-top: 15px;
-					flex-basis: 100%;
-				}
-			}
 			.form {
 				margin-top: 30px;
 				.form-item {
@@ -491,14 +417,6 @@ export default {
 			margin: 20px auto;
 			width: 60%;
 			min-width: 900px;
-			.types {
-				justify-content: center;
-				margin-top: 60px;
-			
-				.type {
-					margin: 0 15px;
-				}
-			}
 			.form {
 				margin-top: 60px;
 				.form-item {

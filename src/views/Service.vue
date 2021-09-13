@@ -74,6 +74,39 @@
 					</div>
 					<div class="title-line"></div>
 				</div>
+				<div class="boxs">
+					<template v-for="(restaurant, index) in restaurantList">
+						<div class="box" :key="'1'+index">
+							<el-image class="my-img" :src="restaurant.img" fit="contain"></el-image>
+							<div class="name">
+								<div class="name_zh">
+									{{restaurant.zh}}
+								</div>
+								<div class="name_en">
+									{{restaurant.en}}
+								</div>
+							</div>
+						</div>
+						<div class="plus" :key="'2'+index" v-if="index < 2">
+							+
+						</div>
+					</template>
+				</div>
+			</div>
+			<div class="title blank">
+				<div class="title-line"></div>
+				<div class="title-text">
+					商务服务
+				</div>
+				<div class="title-line"></div>
+			</div>
+			<div class="business">
+				<template v-for="(business, index) in businessList">
+					<div class="order text" :key="'1'+index">
+						{{business.text}}
+					</div>
+					<el-image class="order my-img" :key="'2'+index" :src="business.img" fit="contain"></el-image>
+				</template>
 			</div>
 		</div>
 		<div class="content2" v-else-if="activeTab === 2">
@@ -185,7 +218,6 @@
 		<div class="content4" v-else-if="activeTab === 4">
 			<div class="row1">
 				<span class="row1_l">社群</span>
-				<span class="row1_r">圈子</span>
 				<el-image class="row1_split" :src="require('@/assets/img/service/line.png')" fit="contain"></el-image>
 			</div>
 			<div class="row2">Community</div>
@@ -213,10 +245,44 @@
 						<div class="title">{{ activity.title }}</div>
 						<div class="content">{{ activity.content }}</div>
 						<div class="date">
-							<el-image class="date-icon" :src="require('@/assets/img/info/date.png')" fit="contain"></el-image>
+							<el-image class="date-icon" :src="require('@/assets/img/service/date.png')" fit="contain"></el-image>
 							<span>{{ activity.date }}</span>
 						</div>
 					</div>
+				</div>
+			</div>
+		</div>
+		<div class="content5" v-else-if="activeTab === 5">
+			<div class="selfService">
+				<div class="title">
+					{{selfService.title}}
+				</div>
+				<div class="text">
+					{{selfService.text}}
+				</div>
+			</div>
+			<div class="system">
+				<div class="box" :key="index" v-for="(system, index) in systemList">
+					<el-image class="my-img" :src="system.img" fit="contain"></el-image>
+					<div class="title">
+						{{system.title}}
+					</div>
+				</div>
+			</div>
+			<el-image class="platform" :src="require('@/assets/img/service/platform.png')" fit="contain"></el-image>
+			<div class="rent">
+				<div class="rent-box">
+					<template v-for="(rent, index) in rentList">
+						<div class="box" :key="'1'+index">
+							<el-image class="my-img" :src="rent.img" fit="contain"></el-image>
+							<div class="title">
+								{{rent.title}}
+							</div>
+						</div>
+						<div class="arror" :key="'2'+index" v-if="index<5">
+							<el-image class="arror-img" :src="require('@/assets/img/service/rent_arror.png')" fit="contain"></el-image>
+						</div>
+					</template>
 				</div>
 			</div>
 		</div>
@@ -344,6 +410,37 @@ export default {
 					name: '停车设施(免费停车位)'
 				}
 			],
+			restaurantList: [
+				{
+					img: require('@/assets/img/service/restaurant1.png'),
+					zh: '早餐',
+					en: 'breakfast'
+				},
+				{
+					img: require('@/assets/img/service/restaurant2.png'),
+					zh: '咖啡',
+					en: 'coffee'
+				},
+				{
+					img: require('@/assets/img/service/restaurant3.png'),
+					zh: '甜点',
+					en: 'dessert'
+				},
+			],
+			businessList: [
+				{
+					img: require('@/assets/img/service/business1.png'),
+					text: '复印/打印',
+				},
+				{
+					img: require('@/assets/img/service/business2.png'),
+					text: '商务会议',
+				},
+				{
+					img: require('@/assets/img/service/business3.png'),
+					text: '快递中心',
+				},
+			],
 			keeperList: [
 				{
 					id: 1,
@@ -379,14 +476,14 @@ export default {
 					id: 1,
 					// img: require('@/assets/img/service/operation1.png'),
 					img: WEBCONFIG.resource_url_img + '/service/operation1.png',
-					title: '私人秘书',
+					title: '更好的服务提供给您--让居住更美好',
 					date: '2021-02-02'
 				},
 				{
 					id: 2,
 					// img: require('@/assets/img/service/operation2.png'),
 					img: WEBCONFIG.resource_url_img + '/service/operation2.png',
-					title: '室内特色场景布置',
+					title: '王者绝非偶然，实例成就辉煌',
 					date: '2021-02-02'
 				}
 			],
@@ -415,6 +512,54 @@ export default {
 					title: '房券礼遇｜在尔家雅寓的一天，你是怎么度过的？',
 					content: '随着夏天的到来、那抹绿让人看的神清气爽、一阵凉爽的风轻轻拂来叶子“沙拉沙拉“地奏起独特的乐曲、在这清爽的季节里一起来亲身探索在尔家雅寓成都万科云城店的一天吧！'
 				}
+			],
+			selfService: {
+				title: '自主研发运营管理系统',
+				text: '整合海量真实运营数据，精准定位自主研发“尔家公寓管理系统”，系统架构灵活调整，随时应对频繁调整的业务范围，用户界面友好易操作，多平台协调统一。Saas服务，让运营更精细更智能更安全。'
+			},
+			systemList: [
+				{
+					img: require('@/assets/img/service/system1.png'),
+					title: '管理系统',
+				},
+				{
+					img: require('@/assets/img/service/system2.png'),
+					title: '小程序系统',
+				},
+				{
+					img: require('@/assets/img/service/system3.png'),
+					title: '尔家会员系统',
+				},
+				{
+					img: require('@/assets/img/service/system4.png'),
+					title: '线上签约系统',
+				}
+			],
+			rentList: [
+				{
+					img: require('@/assets/img/service/rent1.png'),
+					title: '租户登录租房平台'
+				},
+				{
+					img: require('@/assets/img/service/rent2.png'),
+					title: '确认租赁生成合同'
+				},
+				{
+					img: require('@/assets/img/service/rent3.png'),
+					title: '租户在线实名认证'
+				},
+				{
+					img: require('@/assets/img/service/rent4.png'),
+					title: '租户签署租房合同'
+				},
+				{
+					img: require('@/assets/img/service/rent5.png'),
+					title: '发送签约通知出租房'
+				},
+				{
+					img: require('@/assets/img/service/rent6.png'),
+					title: '出租房静默签署'
+				},
 			]
 		};
 	},
@@ -556,14 +701,19 @@ export default {
 		.traffic{
 			display: flex;
 			justify-content: center;
+			align-items: stretch;
+			flex-wrap: wrap;
 			.box{
-				position: relative;
+				border-radius: 5px;
+				overflow: hidden;
+				.my-img{
+					display: block;
+				}
 				.name{
-					position: absolute;
-					bottom: 0;
 					font-size: 2.4rem;
 					font-weight: bold;
 					color: var(--color-t-white);
+					background-color: #333333;
 				}
 			}
 			.right{
@@ -578,6 +728,55 @@ export default {
 			background-position: center;
 			background-repeat: no-repeat;
 			background-size: cover;
+			.boxs{
+				display: flex;
+				flex-wrap: wrap;
+				justify-content: space-between;
+				align-items: center;
+				.box{
+					position: relative;
+					.my-img{
+						display: block;
+					}
+					.name{
+						position: absolute;
+						left: 50%;
+						top: 50%;
+						transform: translate(-50%, -50%);
+						color: var(--color-t-white);
+						font-weight: bold;
+						text-align: center;
+						.name_zh{
+							font-size: 3rem;
+							margin-bottom: 12px;
+						}
+						.name_en{
+							font-size: 1.6rem;
+							text-transform: uppercase;
+						}
+					}
+				}
+				.plus{
+					font-size: 3rem;
+					font-weight: bold;
+					color: var(--color-t-active);
+				}
+			}
+		}
+		.business{
+			display: flex;
+			flex-wrap: wrap;
+			justify-content: center;
+			align-items: stretch;
+			.text{
+				font-size: 3rem;
+				font-weight: bold;
+				color: #555555;
+				background-color: #FBFBFB;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+			}
 		}
 	}
 
@@ -783,6 +982,65 @@ export default {
 			}
 		}
 	}
+	.content5 {
+		.selfService{
+			.title{
+				font-size: 6rem;
+				font-weight: bold;
+				text-align: center;
+				letter-spacing: 0.3rem;
+				color: var(--color-t-active);
+			}
+			.text{
+				font-size: 3rem;
+				text-align: center;
+				letter-spacing: 0.1rem;
+				line-height: 4.5rem;
+				color: #999999;
+			}
+		}
+		.system{
+			display: flex;
+			flex-wrap: wrap;
+			justify-content: space-around;
+			align-items: center;
+			.box{
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				.my-img{
+					display: block;
+				}
+				.title{
+					font-size: 3rem;
+					letter-spacing: 0.1rem;
+					color: var(--color-t-active);
+				}
+			}
+		}
+		.platform{
+			display: block;
+		}
+		.rent{
+			background-color: #FCF6F0;
+			.rent-box{
+				display: flex;
+				flex-wrap: wrap;
+				justify-content: center;
+				align-items: center;
+				.box{
+					display: flex;
+					flex-direction: column;
+					align-items: center;
+					.title{
+						font-size: 2.4rem;
+						font-weight: bold;
+						color: #6B5741;
+					}
+				}
+			}
+		}
+	}
 }
 
 @media screen and (max-width: 1080px) {
@@ -815,6 +1073,38 @@ export default {
 							margin: 20px auto 40px;
 						}
 					}
+				}
+			}
+			.traffic{
+				margin: 50px 10px;
+				.box{
+					flex-basis: 100%;
+					margin-bottom: 20px;
+					.name{
+						padding: 15px 25px;
+					}
+				}
+			}
+			.restaurant{
+				.boxs{
+					margin: 50px 10px;
+					.box{
+						flex-basis: 100%;
+					}
+					.plus{
+						margin: 20px 0;
+						flex-basis: 100%;
+						text-align: center;
+					}
+				}
+			}
+			.business{
+				margin: 50px 10px;
+				.order{
+					flex-basis: 100%;
+				}
+				.text{
+					padding: 100px 0;
 				}
 			}
 		}
@@ -951,6 +1241,55 @@ export default {
 				}
 			}
 		}
+		.content5 {
+			.selfService{
+				margin: 60px 10px 40px;
+				.title{
+					margin-bottom: 30px;
+				}
+				.text{
+					margin-bottom: 60px;
+				}
+			}
+			.system{
+				margin: 0 10px 40px;
+				.box{
+					flex-basis: 100%;
+					margin-bottom: 30px;
+					.title{
+						margin-top: 20px;
+					}
+				}
+			}
+			.platform{
+				margin-bottom: 40px;
+			}
+			.rent{
+				padding: 60px 0 30px;
+				.rent-box{
+					margin: 0 10px;
+					.box{
+						flex-basis: 100%;
+						margin-bottom: 30px;
+						.my-img{
+							width: 150px;
+						}
+						.title{
+							margin-top: 20px;
+						}
+					}
+					.arror{
+						flex-basis: 100%;
+						margin-bottom: 30px;
+						text-align: center;
+						.arror-img{
+							width: 36px;
+							transform: rotateZ(90deg);
+						}
+					}
+				}
+			}
+		}
 	}
 }
 
@@ -1015,6 +1354,51 @@ export default {
 						background-repeat: no-repeat;
 						background-size: 1px 100%, 100% 1px;
 						background-position: left, top;
+					}
+				}
+			}
+			.traffic{
+				margin: 100px auto;
+				width: 60%;
+				min-width: 800px;
+				.box{
+					.name{
+						padding: 20px 35px;
+					}
+				}
+				.left{
+					flex-basis: 45%;
+					margin-right: 5%;
+				}
+				.right{
+					flex-basis: 40%;
+				}
+			}
+			.restaurant{
+				.boxs{
+					margin: 100px auto;
+					width: 70%;
+					min-width: 900px;
+					.box{
+						flex-basis: 25%;
+						max-width: 300px;
+					}
+				}
+			}
+			.business{
+				margin: 50px auto;
+				width: 70%;
+				min-width: 900px;
+				.order{
+					flex-basis: 30%;
+					&:nth-child(4){
+						order: 6;
+					}
+					&:nth-child(5){
+						order: 5;
+					}
+					&:nth-child(6){
+						order: 4;
 					}
 				}
 			}
@@ -1169,6 +1553,65 @@ export default {
 
 						.date {
 							margin-top: 20px;
+						}
+					}
+				}
+			}
+		}
+		.content5 {
+			.selfService{
+				margin: 160px auto 120px;
+				width: 60%;
+				min-width: 900px;
+				.title{
+					margin-bottom: 60px;
+				}
+				.text{
+					margin-bottom: 120px;
+				}
+			}
+			.system{
+				margin: 0 auto 120px;
+				width: 60%;
+				min-width: 900px;
+				.box{
+					flex-basis: 23%;
+					.my-img{
+						width: 150px;
+					}
+					.title{
+						margin-top: 40px;
+					}
+				}
+			}
+			.platform{
+				margin: 0 auto 160px;
+				width: 60%;
+				min-width: 900px;
+			}
+			.rent{
+				padding: 150px 0 50px;
+				.rent-box{
+					margin: 0 auto;
+					width: 70%;
+					min-width: 1000px;
+					.box{
+						flex-basis: 22%;
+						margin-bottom: 100px;
+						.my-img{
+							width: 150px;
+						}
+						.title{
+							margin-top: 30px;
+						}
+					}
+					.arror{
+						align-self: flex-start;
+						margin-top: 60px;
+						flex-basis: 4%;
+						text-align: center;
+						.arror-img{
+							width: 36px;
 						}
 					}
 				}
