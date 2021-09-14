@@ -18,8 +18,8 @@
 					</div>
 				</div>
 			</div>
-			<!-- <div class="security" :style="{'background-image':'url('+imgResource + '/service/security_bg.png)'}"> -->
-			<div class="security" :style="{'background-image':'url('+require('@/assets/img/service/security_bg.png')+')'}">
+			<!-- <div class="security" :style="{'background-image':'url('+require('@/assets/img/service/security_bg.png')+')'}"> -->
+			<div class="security" :style="{'background-image':'url('+imgResource + '/service/security_bg.png)'}">
 				<div class="title white">
 					<div class="title-line"></div>
 					<div class="title-text">
@@ -65,8 +65,8 @@
 					</div>
 				</div>
 			</div>
-			<!-- <div class="restaurant" :style="{'background-image':'url('+imgResource + '/service/restaurant_bg.png)'}"> -->
-			<div class="restaurant" :style="{'background-image':'url('+require('@/assets/img/service/restaurant_bg.png')+')'}">
+			<!-- <div class="restaurant" :style="{'background-image':'url('+require('@/assets/img/service/restaurant_bg.png')+')'}"> -->
+			<div class="restaurant" :style="{'background-image':'url('+imgResource + '/service/restaurant_bg.png)'}">
 				<div class="title blank">
 					<div class="title-line"></div>
 					<div class="title-text">
@@ -269,7 +269,8 @@
 					</div>
 				</div>
 			</div>
-			<el-image class="platform" :src="require('@/assets/img/service/platform.png')" fit="contain"></el-image>
+			<!-- <el-image class="platform" :src="require('@/assets/img/service/platform.png')" fit="contain"></el-image> -->
+			<el-image class="platform" :src="imgResource + '/service/platform.png'" fit="contain"></el-image>
 			<div class="rent">
 				<div class="rent-box">
 					<template v-for="(rent, index) in rentList">
@@ -398,15 +399,18 @@ export default {
 			],
 			trafficList: [
 				{
-					img: require('@/assets/img/service/traffic1.png'),
+					// img: require('@/assets/img/service/traffic1.png'),
+					img: WEBCONFIG.resource_url_img + '/service/traffic1.png',
 					name: '出租车预定'
 				},
 				{
-					img: require('@/assets/img/service/traffic2.png'),
+					// img: require('@/assets/img/service/traffic2.png'),
+					img: WEBCONFIG.resource_url_img + '/service/traffic2.png',
 					name: '车辆租赁'
 				},
 				{
-					img: require('@/assets/img/service/traffic3.png'),
+					// img: require('@/assets/img/service/traffic3.png'),
+					img: WEBCONFIG.resource_url_img + '/service/traffic3.png',
 					name: '停车设施(免费停车位)'
 				}
 			],
@@ -429,15 +433,18 @@ export default {
 			],
 			businessList: [
 				{
-					img: require('@/assets/img/service/business1.png'),
+					// img: require('@/assets/img/service/business1.png'),
+					img: WEBCONFIG.resource_url_img + '/service/business1.png',
 					text: '复印/打印',
 				},
 				{
-					img: require('@/assets/img/service/business2.png'),
+					// img: require('@/assets/img/service/business2.png'),
+					img: WEBCONFIG.resource_url_img + '/service/business2.png',
 					text: '商务会议',
 				},
 				{
-					img: require('@/assets/img/service/business3.png'),
+					// img: require('@/assets/img/service/business3.png'),
+					img: WEBCONFIG.resource_url_img + '/service/business3.png',
 					text: '快递中心',
 				},
 			],
