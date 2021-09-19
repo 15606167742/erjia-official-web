@@ -334,7 +334,7 @@ export default {
 						id: item.id,
 						img: item.coverUrl,
 						title: item.title,
-						content: item.content.substr(22, 50) + '...'
+						content: item.content.substr(0, 80) + '...'
 					};
 				});
 			});

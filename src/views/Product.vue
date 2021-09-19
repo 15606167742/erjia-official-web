@@ -512,6 +512,7 @@
 			.sales {
 				display: flex;
 				flex-wrap: wrap;
+				justify-content: center;
 
 				.sale {
 					position: relative;

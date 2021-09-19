@@ -92,7 +92,7 @@
 				<div class="title">项目房型</div>
 				<div class="items">
 					<div class="item" :key="item.id" v-for="item in itemList" @click="subscribeVisible = true">
-						<el-image class="item-img" :src="item.img" fit="contain"></el-image>
+						<el-image class="item-img" :src="item.img" fit="cover"></el-image>
 						<div class="item-line">
 							<div class="name">{{ item.name }}</div>
 							<div class="price">{{ item.price }}</div>
@@ -103,6 +103,9 @@
 			</div>
 			<el-dialog custom-class="my-dialog" :visible="subscribeVisible" @close="subscribeVisible = false">
 				<el-image class="item-img" :src="require('@/assets/img/project_detail/subscribe.png')" fit="contain"></el-image>
+				<div class="item-text">
+					微信扫码预约看房
+				</div>
 			</el-dialog>
 		</div>
 		<Footer></Footer>
@@ -575,6 +578,15 @@ export default {
 	}
 	::v-deep .my-dialog {
 		width: 200px;
+		.item-img {
+			display: block;
+		}
+		.item-text {
+			margin-top: 20px;
+			font-size: 2rem;
+			font-weight: bold;
+			color: #666666;
+		}
 	}
 }
 
@@ -661,6 +673,9 @@ export default {
 					.item {
 						flex-basis: 23%;
 						margin-right: 2%;
+						.item-img {
+							height: 200px;
+						}
 						.item-line {
 							margin-top: 20px;
 						}
