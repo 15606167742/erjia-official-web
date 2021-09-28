@@ -240,7 +240,7 @@
 			<div class="row2">Activity list</div>
 			<div class="tree">
 				<div class="box" :key="activity.id" v-for="activity in activityList">
-					<el-image class="my-img" :src="activity.img" fit="cover"></el-image>
+					<el-image class="my-img" :src="activity.img" fit="cover" @click="openUrl(activity.redirectUrl)"></el-image>
 					<div class="text">
 						<div class="title">{{ activity.title }}</div>
 						<div class="content">{{ activity.content }}</div>
@@ -609,10 +609,14 @@ export default {
 						date: item.createTime.slice(0, 10),
 						img: item.coverUrl,
 						title: item.title,
-						content: item.content.slice(9, -11)
+						content: item.content.slice(9, -11),
+						redirectUrl: item.redirectUrl
 					};
 				});
 			});
+		},
+		openUrl(url) {
+			window.open(url);
 		}
 	}
 };
@@ -952,6 +956,10 @@ export default {
 			.box {
 				position: relative;
 				border-bottom: 2px solid #eeeeee;
+				
+				.my-img {
+					cursor: pointer;
+				}
 
 				.text {
 					width: 100%;

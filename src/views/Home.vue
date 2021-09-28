@@ -84,7 +84,7 @@
 			<div class="projects">
 				<div class="project" :key="project.id" v-for="project in projectList">
 					<div class="project-img-box">
-						<el-image class="project-img" :src="project.img" fit="cover"></el-image>
+						<el-image class="project-img" :src="project.img" fit="cover" @click="openUrl(project.redirectUrl)"></el-image>
 						<div class="project-date">
 							<div class="date-up">{{ project.date.slice(8) }}</div>
 							<div class="date-down">{{ project.date.slice(0, 7) }}</div>
@@ -693,6 +693,7 @@ export default {
 
 					.project-img {
 						display: block;
+						cursor: pointer;
 					}
 
 					.project-date {
