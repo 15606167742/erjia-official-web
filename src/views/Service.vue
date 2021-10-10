@@ -609,7 +609,7 @@ export default {
 						date: item.createTime.slice(0, 10),
 						img: item.coverUrl,
 						title: item.title,
-						content: item.content.slice(9, -11),
+						content: item.content.length < 80 ? item.content : item.content.substr(0, 80) + '...',
 						redirectUrl: item.redirectUrl
 					};
 				});

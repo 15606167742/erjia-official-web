@@ -303,7 +303,7 @@ export default {
 						id: item.id,
 						img: item.coverUrl,
 						name: item.name,
-						price: item.rentStart + '元/月起',
+						price: item.rentStart + ' ' + item.rentStartUnit,
 						description: item.houseType
 					};
 				});

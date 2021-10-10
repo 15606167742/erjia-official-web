@@ -24,6 +24,27 @@ export function projectVideoList() {
 	})
 }
 
+export function developmentList() {
+	return requestMain({
+		url: '/api/cms/fzlc/getList',
+		method: 'get',
+	})
+}
+
+export function leaderTopOne() {
+	return requestMain({
+		url: '/api/cms/leader/getTopOne',
+		method: 'get',
+	})
+}
+
+export function leaderList() {
+	return requestMain({
+		url: '/api/cms/leader/getList',
+		method: 'get',
+	})
+}
+
 export function activityVideoList() {
 	return requestMain({
 		url: '/api/video/getSqhdVideoList',

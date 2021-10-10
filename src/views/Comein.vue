@@ -140,7 +140,7 @@ import Header from '@/components/Header.vue';
 import TopBanner from '@/components/TopBanner.vue';
 import Footer from '@/components/Footer.vue';
 
-import { projectList, indexVideo } from '@/network/comein.js';
+import { projectList, indexVideo, developmentList, leaderTopOne, leaderList } from '@/network/comein.js';
 
 export default {
 	name: 'Comein',
@@ -395,6 +395,9 @@ export default {
 	mounted() {
 		this.jump();
 		this.getIndexVideo();
+		this.getDevelopmentList();
+		this.getLeaderTopOne();
+		this.getLeaderList();
 		this.getProjectList1();
 		this.getProjectList2();
 	},
@@ -451,6 +454,42 @@ export default {
 			this.$refs.myVideo.pause();
 			this.videoVisible = false;
 		},
+		getDevelopmentList() {
+			developmentList().then(data => {
+				this.dhs.splice(0, this.dhs.length);
+				this.dhs = data.data.map(item => {
+					return {
+						time: item.dateTitle,
+						things: [
+							{
+								title: item.title,
+								text: item.des.replace(/<[^<]+>|&nbsp;/g, '')
+							}
+						]
+					};
+				}).reverse();
+			})
+		},
+		getLeaderTopOne() {
+			leaderTopOne().then(data => {
+				this.leader.img = data.data.img;
+				this.leader.name = data.data.name;
+				this.leader.job = data.data.post;
+				this.leader.infoList = data.data.des.replace(/<[^<]+>/g, '').split('；');
+			})
+		},
+		getLeaderList() {
+			leaderList().then(data => {
+				this.memberList.splice(0, this.memberList.length);
+				this.memberList = data.data.map(item => {
+					return {
+						img: item.img,
+						name: item.name,
+						job: item.post
+					};
+				});
+			})
+		},
 		getProjectList1() {
 			projectList({ pageNum: 1, pageSize: 3, projectOperationStatus: 0 }).then(data => {
 				this.saleList.splice(0, this.saleList.length);
@@ -460,7 +499,7 @@ export default {
 						img: item.coverUrl,
 						title: item.name,
 						adj: item.indexTag,
-						price: item.rentStart
+						price: item.rentStart + ' ' + item.rentStartUnit
 					};
 				});
 			});
@@ -485,7 +524,7 @@ export default {
 					id
 				}
 			});
-		}
+		},
 	}
 };
 </script>
