@@ -79,12 +79,15 @@
 				<span class="row1_r">雅寓</span>
 				<el-image class="row1_split" :src="require('@/assets/img/product/line.png')" fit="contain"></el-image>
 			</div>
-			<div class="row2">Uhome Hotel</div>
+			<div class="row2">Uhome Apartment</div>
 			<div class="types">
 				<div class="type" :class="{selected: t.selected}" :key="index" v-for="(t, index) in types"
 					@click="changeType(t)">
 					{{t.name}}
 				</div>
+			</div>
+			<div class="type-text">
+				{{types.filter(item=>item.selected)[0].text}}
 			</div>
 			<div class="sales">
 				<div class="sale" :key="house.id" v-for="house in houseList2">
@@ -202,16 +205,19 @@
 				types: [{
 						name: '风系列',
 						value: '风',
+						text: '风系是尔家旗下为白领阶层在一线城市非核心区域及二、三线城市打造的中端服务式公寓。融合了社交、艺术、文化、运动等内容用开放性思维为企业员工及城市白领提供便捷、融合、无忧的居住体验以及带有社交属性的租住空间。',
 						selected: true
 					},
 					{
 						name: '菁系列',
 						value: '箐',
+						text: '箐系是尔家旗下中高端产品线，在一线城市及新一线城市融合了Home与HoteI的专业品质，将莫兰迪色运用到多元的复合型业态打造绿色环保的生活场景，为有志阶层带来舒适休闲的绿色生活',
 						selected: false
 					},
 					{
 						name: '阳系列',
 						value: '阳系',
+						text: '阳系是尔家旗下高端产品线，主打定制化设计，旨在一线城市的核心区域，为享受品质生活的高端人群，抛开杂乱糟糕的心情，尽情呼吸享受生活，从而提供健康、舒适的居家生活环境;全心全意为尊贵的住客提供超凡的奢华体验，营造专属的精致生活。',
 						selected: false
 					}
 				],
@@ -509,6 +515,12 @@
 				}
 			}
 
+			.type-text {
+				font-size: 1.8rem;
+				line-height: 3rem;
+				color: #999999;
+			}
+
 			.sales {
 				display: flex;
 				flex-wrap: wrap;
@@ -680,6 +692,10 @@
 						flex-basis: 100%;
 					}
 				}
+				
+				.type-text {
+					margin-top: 30px;
+				}
 
 				.sales {
 					margin-top: 30px;
@@ -788,6 +804,13 @@
 					.type {
 						margin: 0 15px;
 					}
+				}
+				
+				.type-text {
+					width: 80%;
+					min-width: 800px;
+					margin: 60px auto 0;
+					text-align: center;
 				}
 
 				.sales {
