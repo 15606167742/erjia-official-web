@@ -288,7 +288,7 @@ export default {
 				this.detail.name = data.data.name;
 				this.detail.area = data.data.area + 'm²';
 				this.detail.type = data.data.houseType;
-				this.detail.price = data.data.rentStart + '元/月起';
+				this.detail.price = data.data.rentStart + data.data.rentStartUnit;
 				this.detail.address = data.data.address;
 				this.detail.lng = data.data.lng;
 				this.detail.lat = data.data.lat;

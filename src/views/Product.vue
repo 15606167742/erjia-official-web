@@ -277,6 +277,7 @@
 						return {
 							name: item.key,
 							value: item.val,
+							text: item.des,
 							selected: index == 0
 						}
 					})
