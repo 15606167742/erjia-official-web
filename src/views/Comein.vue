@@ -712,6 +712,7 @@
 						font-size: 1.8rem;
 						color: var(--color-t-active);
 						font-weight: bold;
+						text-align: right;
 					}
 
 					.dh-dot {
@@ -725,6 +726,7 @@
 					.dh-things {
 						flex-basis: 50%;
 						box-sizing: border-box;
+						text-align: left;
 
 						.dh-thing {
 							.thing-title {
@@ -746,6 +748,14 @@
 
 				.reverse {
 					flex-direction: row-reverse;
+
+					.dh-time {
+						text-align: left;
+					}
+
+					.dh-things {
+						text-align: right;
+					}
 				}
 			}
 
